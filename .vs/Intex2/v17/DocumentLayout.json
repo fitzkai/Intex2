@@ -1,11 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\",
+  "WorkspaceRootPath": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\",
   "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is455\\intex2\\backend\\intex2\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is455\\intex2\\backend\\intex2\\data\\movies_titles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\data\\movies_titles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
     {
       "AbsoluteMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is455\\intex2\\backend\\intex2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{230DF215-2BFF-4459-909F-484426328FA5}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-
     }
   ],
   "DocumentGroupContainers": [
@@ -15,12 +22,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-          
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MoviesController.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Controllers\\MoviesController.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
+              "RelativeToolTip": "backend\\Intex2\\Controllers\\MoviesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T20:15:50.737Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Bookmark",
@@ -28,12 +47,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MoviesController.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Controllers\\MoviesController.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
-              "RelativeToolTip": "backend\\Intex2\\Controllers\\MoviesController.cs",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Program.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Program.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Program.cs",
+              "RelativeToolTip": "backend\\Intex2\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-07T18:53:16.221Z",
@@ -41,39 +60,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MoviesDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Movies_Titles.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Data\\Movies_Titles.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\Movies_Titles.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS455\\Intex2\\backend\\Intex2\\Data\\Movies_Titles.cs",
+              "RelativeToolTip": "backend\\Intex2\\Data\\Movies_Titles.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:56:56.541Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MoviesUser.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesUser.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\MoviesUser.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesUser.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\MoviesUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:25:57.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Program.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Program.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Program.cs",
-              "RelativeToolTip": "backend\\Intex2\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:21:45.878Z"
+              "WhenOpened": "2025-04-07T22:15:26.787Z",
+              "EditorCaption": ""
             }
           ]
         }
