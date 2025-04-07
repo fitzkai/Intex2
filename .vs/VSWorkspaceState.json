@@ -6,6 +6,6 @@
     "\\backend\\Intex2\\Controllers",
     "\\backend\\Intex2\\Data"
   ],
-  "SelectedNode": "\\backend\\Intex2\\Data\\Movies_Titles.cs",
+  "SelectedNode": "\\backend\\Intex2\\Controllers\\MoviesController.cs",
   "PreviewInSolutionExplorer": false
 }

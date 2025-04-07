@@ -1,10 +1,15 @@
 import './App.css';
 import PrivacyPage from './Pages/PrivacyPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <PrivacyPage />
+      <Router>
+        <Routes>
+          <Route path="/privacy" element={<PrivacyPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
