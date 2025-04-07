@@ -9,61 +9,72 @@ namespace Intex2.Controllers
     {
         private MoviesContext _moviesContext;
         public MoviesController(MoviesContext temp) => _moviesContext = temp;
+
         [HttpGet("AllMovies")]
-        public IEnumerable<string> GetMovies()
+        public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
-            return _moviesContext.MoviesTitles
+            var query = _moviesContext.MoviesTitles.AsQueryable();
+
+            var totalNumMovies = query.Count();
+
+            var movies = query
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
                 .Select(m => m.Title)
                 .ToList();
+
+            var result = new
+            {
+                Movies = movies,
+                TotalNumMovies = totalNumMovies,
+            };
+
+            return Ok(result);
         }
 
-        [HttpGet("MoviesPage")]
-        public IActionResult GetMoviesPage()
+        [HttpPost("AddMovie")]
+        public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
         {
-            var coreGenres = new Dictionary<string, Func<MoviesTitle, bool>>
-    {
-        { "Action", m => m.Action == 1 },
-        { "Adventure", m => m.Adventure == 1 },
-        { "Comedy", m => m.Comedies == 1 || m.ComediesRomanticMovies == 1 },
-        { "Drama", m => m.Dramas == 1 || m.TvDramas == 1 },
-        { "Documentary", m => m.Documentaries == 1 || m.Docuseries == 1 },
-        { "Family", m => m.FamilyMovies == 1 || m.Children == 1 || m.KidsTv == 1 },
-        { "Fantasy", m => m.Fantasy == 1 },
-        { "Horror", m => m.HorrorMovies == 1 },
-        { "Romance", m => m.DramasRomanticMovies == 1 || m.ComediesRomanticMovies == 1 },
-        { "Thriller", m => m.Thrillers == 1 || m.InternationalMoviesThrillers == 1 },
-        { "Reality", m => m.RealityTv == 1 },
-        { "Musical", m => m.Musicals == 1 }
-    };
-
-            var movies = _moviesContext.MoviesTitles
-                .ToList()
-                .Select(m =>
-                {
-                    var matchedGenres = coreGenres
-                        .Where(g => g.Value(m))
-                        .Select(g => g.Key)
-                        .ToList();
-
-                    // If nothing matched, assign "Other"
-                    if (!matchedGenres.Any())
-                    {
-                        matchedGenres.Add("Other");
-                    }
-
-                    return new
-                    {
-                        m.ShowId,
-                        m.Title,
-                        m.Description,
-                        Genre = string.Join(", ", matchedGenres)
-                    };
-                })
-                .ToList();
-
-            return Ok(movies);
+            _moviesContext.MoviesTitles.Add(newMovie);
+            _moviesContext.SaveChanges();
+            return Ok(newMovie);
         }
 
+        [HttpPut("UpdateMovie/{ShowId}")]
+        public IActionResult UpdateMovie(string ShowId, [FromBody] MoviesTitle updatedMovie)
+        {
+            var existingMovie = _moviesContext.MoviesTitles.Find(ShowId);
+
+            existingMovie.Type = updatedMovie.Type;
+            existingMovie.Title = updatedMovie.Title;
+            existingMovie.Director = updatedMovie.Director;
+            existingMovie.Cast = updatedMovie.Cast;
+            existingMovie.Country = updatedMovie.Country;
+            existingMovie.ReleaseYear = updatedMovie.ReleaseYear;
+            existingMovie.Duration = updatedMovie.Duration;
+            existingMovie.Description = updatedMovie.Description;
+            //existingMovie.Genre = updatedMovie.Genre;
+
+            _moviesContext.MoviesTitles.Update(existingMovie);
+            _moviesContext.SaveChanges();
+
+            return Ok(existingMovie);
+        }
+
+        [HttpDelete("DeleteMovie/{ShowId}")]
+        public IActionResult DeleteMovie(string ShowId) 
+        {
+            var movie = _moviesContext.MoviesTitles.Find(ShowId);
+
+            if (movie == null)
+            {
+                return NotFound(new { message = "Movie Not Found" });
+            }
+
+            _moviesContext.MoviesTitles.Remove(movie);
+            _moviesContext.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
-
