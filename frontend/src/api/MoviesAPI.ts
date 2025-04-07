@@ -1,5 +1,5 @@
 interface FetchMoviesResponse {
-    movies: Movie[];
+    movies: MoviesTitle[];
     totalNumMovies: number;
 }
 
@@ -24,7 +24,7 @@ export const fetchMovies = async (
     }
 }
 
-export const AddMovie = async (newMovie: Movie): Promise<Movie> => {
+export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
     try {
         const response = await fetch(`${API_URL}/AddMoive`, {
             method: 'POST',
@@ -45,7 +45,7 @@ export const AddMovie = async (newMovie: Movie): Promise<Movie> => {
     }
 };
 
-export const UpdateMovie = async(movieId: number, updatedMovie: Movie): Promise<Movie> => {
+export const UpdateMovie = async(movieId: number, updatedMovie: MoviesTitle): Promise<MoviesTitle> => {
     try {
         const response = await fetch(`${API_URL}/UpdateMovie/${movieId}`, {
             method: 'PUT',
@@ -54,6 +54,8 @@ export const UpdateMovie = async(movieId: number, updatedMovie: Movie): Promise<
             },
             body: JSON.stringify(updatedMovie),
         });
+
+        return await response.json();
     } catch (error) {
         console.error("Error updating movie", error);
         throw error;
