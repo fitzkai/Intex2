@@ -3,8 +3,9 @@
     "",
     "\\backend",
     "\\backend\\Intex2",
+    "\\backend\\Intex2\\Controllers",
     "\\backend\\Intex2\\Data"
   ],
-  "SelectedNode": "\\backend\\Intex2\\Data\\Movies_ratings.cs",
+  "SelectedNode": "\\backend\\Intex2\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
