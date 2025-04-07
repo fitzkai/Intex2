@@ -1,18 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using Intex2.API.Data;
+using Intex2.Models;
+
 namespace Intex2.Controllers
 {
-    [Route("[controller")]
+    [Route("[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private MoviesDbContext _moviesContext;
-        public MoviesController(MoviesDbContext temp) => _moviesContext = temp;
+        private MoviesContext _moviesContext;
+        public MoviesController(MoviesContext temp) => _moviesContext = temp;
         [HttpGet("AllMovies")]
-        public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
+        public IEnumerable<string> GetMovies()
         {
-            var movieList = _moviesContext.Movies.ToList();
-            return (movieList);
+            return _moviesContext.MoviesTitles
+                .Select(m => m.Title)
+                .ToList();
         }
     }
 }
