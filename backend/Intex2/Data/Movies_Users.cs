@@ -2,8 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-public class MoviesUser
+public class Movies_Users
 {
+    [Key]
     [Column("user_id")]
     public int UserId { get; set; }
     public string Name { get; set; }
