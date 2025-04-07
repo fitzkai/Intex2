@@ -75,95 +75,229 @@ function NewUserForm() {
   const handleLoginClick = () => navigate('/login');
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="card border-0 shadow rounded-3">
-          <div className="card-body p-4 p-sm-5">
-            <h5 className="card-title text-center mb-5 fw-light fs-5">
-              Register
-            </h5>
-            <form onSubmit={handleSubmit}>
-              {/* Basic Inputs */}
-              {[
-                { label: 'Name', name: 'name', type: 'text' },
-                { label: 'Phone', name: 'phone', type: 'text' },
-                { label: 'Email address', name: 'email', type: 'email' },
-                { label: 'Age', name: 'age', type: 'number' },
-                { label: 'Gender', name: 'gender', type: 'text' },
-                { label: 'City', name: 'city', type: 'text' },
-                { label: 'State', name: 'state', type: 'text' },
-                { label: 'Zip Code', name: 'zip', type: 'text' },
-                { label: 'Password', name: 'password', type: 'password' },
-                {
-                  label: 'Confirm Password',
-                  name: 'confirmPassword',
-                  type: 'password',
-                },
-              ].map(({ label, name, type }) => (
-                <div className="form-floating mb-3" key={name}>
-                  <input
-                    className="form-control"
-                    id={name}
-                    name={name}
-                    type={type}
-                    value={(form as any)[name]}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor={name}>{label}</label>
-                </div>
-              ))}
+    <div className="container my-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-lg-10">
+          <div className="card border-0 shadow rounded-4">
+            <div className="card-body p-4 p-md-5">
+              <h3 className="card-title text-center mb-4 fw-bold">
+                Create Your Account
+              </h3>
 
-              {/* Subscription checkboxes */}
-              <div className="mb-3">
-                <label className="form-label">Streaming Services</label>
-                <div className="form-check">
-                  {[
-                    'netflix',
-                    'amazonPrime',
-                    'disney',
-                    'paramount',
-                    'max',
-                    'hulu',
-                    'appleTv',
-                    'peacock',
-                  ].map((platform) => (
-                    <div key={platform}>
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        name={platform}
-                        id={platform}
-                        checked={(form as any)[platform]}
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor={platform}>
-                        {platform.charAt(0).toUpperCase() +
-                          platform.slice(1).replace(/([A-Z])/g, ' $1')}
-                      </label>
-                    </div>
-                  ))}
+              <form onSubmit={handleSubmit}>
+                {/* First Row: Name + Phone */}
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="name" className="form-label">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="form-control"
+                      value={form.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="phone" className="form-label">
+                      Phone
+                    </label>
+                    <input
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      className="form-control"
+                      value={form.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-primary btn-login text-uppercase fw-bold"
-                  type="submit"
-                >
-                  Register
-                </button>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-outline-secondary text-uppercase fw-bold"
-                  type="button"
-                  onClick={handleLoginClick}
-                >
-                  Go to Login
-                </button>
-              </div>
-            </form>
-            {error && <p className="error text-danger fw-bold">{error}</p>}
+                {/* Second Row: Email + Age + Gender */}
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="form-control"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-3 mb-3">
+                    <label htmlFor="age" className="form-label">
+                      Age
+                    </label>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      className="form-control"
+                      value={form.age}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-3 mb-3">
+                    <label htmlFor="gender" className="form-label">
+                      Gender
+                    </label>
+                    <input
+                      type="text"
+                      id="gender"
+                      name="gender"
+                      className="form-control"
+                      value={form.gender}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Third Row: City + State + Zip */}
+                <div className="row">
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="city" className="form-label">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      className="form-control"
+                      value={form.city}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="state" className="form-label">
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      className="form-control"
+                      value={form.state}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="zip" className="form-label">
+                      Zip Code
+                    </label>
+                    <input
+                      type="text"
+                      id="zip"
+                      name="zip"
+                      className="form-control"
+                      value={form.zip}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Fourth Row: Passwords */}
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="password" className="form-label">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="form-control"
+                      value={form.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="confirmPassword" className="form-label">
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      className="form-control"
+                      value={form.confirmPassword}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Streaming Services */}
+                <div className="mb-4">
+                  <label className="form-label fw-semibold">
+                    Streaming Services
+                  </label>
+                  <div className="row">
+                    {[
+                      'netflix',
+                      'amazonPrime',
+                      'disney',
+                      'paramount',
+                      'max',
+                      'hulu',
+                      'appleTv',
+                      'peacock',
+                    ].map((platform) => (
+                      <div className="col-md-3" key={platform}>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={platform}
+                            name={platform}
+                            checked={(form as any)[platform]}
+                            onChange={handleChange}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={platform}
+                          >
+                            {platform.charAt(0).toUpperCase() +
+                              platform.slice(1).replace(/([A-Z])/g, ' $1')}
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Submit + Login Buttons */}
+                <div className="d-grid gap-3">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-lg fw-bold text-uppercase"
+                  >
+                    Register
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-lg fw-bold text-uppercase"
+                    onClick={handleLoginClick}
+                  >
+                    Go to Login
+                  </button>
+                </div>
+              </form>
+
+              {error && (
+                <p className="text-danger fw-semibold mt-3 text-center">
+                  {error}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
