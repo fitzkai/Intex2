@@ -1,3 +1,5 @@
+import { MoviesTitle } from "../types/MoviesTitle";
+
 interface FetchMoviesResponse {
     movies: MoviesTitle[];
     totalNumMovies: number;
@@ -17,6 +19,8 @@ export const fetchMovies = async (
     if (!response.ok) {
         throw new Error('Failed to fetch movies');
     }
+
+    return await response.json();
 
     } catch (error) {
         console.error("Error fetching movies:", error);
@@ -45,7 +49,7 @@ export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
     }
 };
 
-export const UpdateMovie = async(movieId: number, updatedMovie: MoviesTitle): Promise<MoviesTitle> => {
+export const UpdateMovie = async(movieId: string, updatedMovie: MoviesTitle): Promise<MoviesTitle> => {
     try {
         const response = await fetch(`${API_URL}/UpdateMovie/${movieId}`, {
             method: 'PUT',
@@ -62,7 +66,7 @@ export const UpdateMovie = async(movieId: number, updatedMovie: MoviesTitle): Pr
     }
 };
 
-export const DeleteProject = async (movieId: number): Promise<void> => {
+export const DeleteMovie = async (movieId: string): Promise<void> => {
     try {
         const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, 
             {
