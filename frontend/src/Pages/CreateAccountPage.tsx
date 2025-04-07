@@ -1,3 +1,4 @@
+import NewUserForm from '../components/NewUserForm';
 import WelcomeBand from '../components/WelcomeBand';
 
 function CreateAccountPage() {
@@ -5,6 +6,7 @@ function CreateAccountPage() {
     <>
       <div>
         <WelcomeBand />
+        <NewUserForm />
       </div>
     </>
   );
