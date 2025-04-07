@@ -7,24 +7,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Controllers\\MoviesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\Movies_Titles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Data\\Movies_Titles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesTitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Models\\MoviesTitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesDbContext.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Data\\MoviesDbContext.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesRating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Models\\MoviesRating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Data\\MoviesUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesRating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Data\\MoviesRating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Intex2\\Models\\MoviesUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,35 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MoviesRating.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesRating.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\MoviesRating.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesRating.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\MoviesRating.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:26:14.461Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Movies_Titles.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\Movies_Titles.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\Movies_Titles.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\Movies_Titles.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\Movies_Titles.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:26:43.093Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -79,46 +44,49 @@
               "RelativeDocumentMoniker": "backend\\Intex2\\Controllers\\MoviesController.cs",
               "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
               "RelativeToolTip": "backend\\Intex2\\Controllers\\MoviesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAUwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T18:53:16.221Z",
+              "WhenOpened": "2025-04-07T20:33:26.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MoviesTitle.cs",
+              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesTitle.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Models\\MoviesTitle.cs",
+              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesTitle.cs",
+              "RelativeToolTip": "backend\\Intex2\\Models\\MoviesTitle.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAUwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T20:31:13.102Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MoviesDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\MoviesDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
+              "Title": "MoviesRating.cs",
+              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesRating.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Models\\MoviesRating.cs",
+              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesRating.cs",
+              "RelativeToolTip": "backend\\Intex2\\Models\\MoviesRating.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:56:56.541Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MoviesUser.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesUser.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\MoviesUser.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Data\\MoviesUser.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\MoviesUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:25:57.829Z"
+              "WhenOpened": "2025-04-07T20:31:11.515Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Program.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Program.cs",
-              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Program.cs",
-              "RelativeToolTip": "backend\\Intex2\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
+              "Title": "MoviesUser.cs",
+              "DocumentMoniker": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesUser.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Models\\MoviesUser.cs",
+              "ToolTip": "C:\\Users\\kolto\\OneDrive\\Desktop\\Intex2\\Intex2\\backend\\Intex2\\Models\\MoviesUser.cs",
+              "RelativeToolTip": "backend\\Intex2\\Models\\MoviesUser.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T17:21:45.878Z"
+              "WhenOpened": "2025-04-07T20:30:53.934Z",
+              "EditorCaption": ""
             }
           ]
         }
