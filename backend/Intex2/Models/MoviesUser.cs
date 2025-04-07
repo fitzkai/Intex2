@@ -38,4 +38,6 @@ public partial class MoviesUser
     public string? State { get; set; }
 
     public int? Zip { get; set; }
+    
+    public string PasswordHash { get; set; }  // Store hashed password only
 }
