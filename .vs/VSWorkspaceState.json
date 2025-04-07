@@ -4,7 +4,7 @@
     "\\backend",
     "\\backend\\Intex2",
     "\\backend\\Intex2\\Controllers",
-    "\\backend\\Intex2\\Data"
+    "\\backend\\Intex2\\Models"
   ],
   "SelectedNode": "\\backend\\Intex2\\Controllers\\MoviesController.cs",
   "PreviewInSolutionExplorer": false
