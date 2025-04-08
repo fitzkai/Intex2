@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
-import Logout from '../components/Logout';
+import WelcomeBand from '../components/WelcomeBand';
+import { useNavigate } from 'react-router-dom';
 
 interface Movie {
-  id: number;
+  showId: string;
   title: string;
   description: string;
-  genre: string; // Comma-separated string like "Action, Comedy"
+  genre: string;
+  imagePath: string;
 }
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 16;
 
 const MoviesPage: React.FC = () => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
@@ -18,16 +19,15 @@ const MoviesPage: React.FC = () => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-
+  const navigate = useNavigate();
   // Fetch movies once
   useEffect(() => {
-    fetch('https://localhost:5000/Movies/MoviesPage', {
-      credentials: 'include',
-    })
+    fetch('https://localhost:5000/Movies/MoviesPage')
       .then((res) => res.json())
       .then((data) => {
         setAllMovies(data);
         setVisibleMovies(data.slice(0, PAGE_SIZE));
+        console.log(data.imagePath);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -84,13 +84,7 @@ const MoviesPage: React.FC = () => {
 
   return (
     <>
-      {/* <AuthorizeView>
-        <span>
-          <Logout>
-            Logout <AuthorizedUser value="email" />
-          </Logout>
-        </span> */}
-      {/* <WelcomeBand/> */}
+      <WelcomeBand />
       <div>
         <h1>All Movies</h1>
         <div style={{ padding: '2rem' }}>
@@ -134,7 +128,16 @@ const MoviesPage: React.FC = () => {
 
           <div style={styles.grid}>
             {filteredMovies.map((movie) => (
-              <div key={movie.id} style={styles.card}>
+              <div
+                key={movie.showId}
+                style={styles.card}
+                onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+              >
+                <img
+                  src={movie.imagePath}
+                  alt={movie.title}
+                  style={styles.poster}
+                />
                 <h2>{movie.title}</h2>
                 <p>{movie.description}</p>
                 <small style={{ color: '#777' }}>{movie.genre}</small>
@@ -149,7 +152,6 @@ const MoviesPage: React.FC = () => {
           )}
         </div>
       </div>
-      {/* </AuthorizeView> */}
     </>
   );
 };
@@ -187,6 +189,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: 'pointer',
     backgroundColor: '#eee',
     transition: 'all 0.2s',
+  },
+  poster: {
+    width: '100%',
+    height: '300px',
+    objectFit: 'cover',
+    borderRadius: '8px',
+    marginBottom: '0.5rem',
   },
 };
 

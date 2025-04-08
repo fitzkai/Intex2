@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Intex2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
+
 
 namespace Intex2.Controllers
 {
@@ -36,6 +38,26 @@ namespace Intex2.Controllers
             return Ok(result);
         }
         
+        // Reusable genre-detection logic
+        private Dictionary<string, Func<MoviesTitle, bool>> CoreGenres => new()
+        {
+            { "Action", m => m.Action == 1 },
+            { "Adventure", m => m.Adventure == 1 },
+            { "Comedy", m => m.Comedies == 1 || m.ComediesRomanticMovies == 1 },
+            { "Drama", m => m.Dramas == 1 || m.TvDramas == 1 },
+            { "Documentary", m => m.Documentaries == 1 || m.Docuseries == 1 },
+            { "Family", m => m.FamilyMovies == 1 || m.Children == 1 || m.KidsTv == 1 },
+            { "Fantasy", m => m.Fantasy == 1 },
+            { "Horror", m => m.HorrorMovies == 1 },
+            { "Romance", m => m.DramasRomanticMovies == 1 || m.ComediesRomanticMovies == 1 },
+            { "Thriller", m => m.Thrillers == 1 || m.InternationalMoviesThrillers == 1 },
+            { "Reality", m => m.RealityTv == 1 },
+            { "Musical", m => m.Musicals == 1 }
+        };
+        private string SanitizeFileName(string title)
+        {
+            return Regex.Replace(title, @"[^\p{L}\p{Nd} ]+", "");
+        }
 
         [HttpPost("AddMovie")]
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
@@ -82,6 +104,61 @@ namespace Intex2.Controllers
             return NoContent();
         }
         
+        [HttpGet("MoviesPage")]
+        public IActionResult GetMoviesPage()
+        {
+            var movies = _moviesContext.MoviesTitles
+                .ToList()
+                .Select(m =>
+                {
+                    var matchedGenres = CoreGenres
+                        .Where(g => g.Value(m))
+                        .Select(g => g.Key)
+                        .ToList();
+                    if (!matchedGenres.Any())
+                        matchedGenres.Add("Other");
+                    return new
+                    {
+                        m.ShowId,
+                        m.Title,
+                        m.Description,
+                        Genre = string.Join(", ", matchedGenres),
+                        ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(m.Title)}.jpg"
+                    };
+                })
+                .ToList();
+            return Ok(movies);
+        }
+        [HttpGet("MoviesPage/{id}")]
+        public IActionResult GetMovieById(string id)
+        {
+            var movieEntity = _moviesContext.MoviesTitles
+                .FirstOrDefault(m => m.ShowId == id);
+            if (movieEntity == null)
+                return NotFound();
+            var matchedGenres = CoreGenres
+                .Where(g => g.Value(movieEntity))
+                .Select(g => g.Key)
+                .ToList();
+            if (!matchedGenres.Any())
+                matchedGenres.Add("Other");
+            var movie = new
+            {
+                movieEntity.ShowId,
+                movieEntity.Title,
+                movieEntity.Type,
+                movieEntity.Director,
+                movieEntity.Cast,
+                movieEntity.ReleaseYear,
+                movieEntity.Country,
+                movieEntity.Rating,
+                movieEntity.Duration,
+                movieEntity.Description,
+                Genre = string.Join(", ", matchedGenres),
+                ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(movieEntity.Title)}.jpg"
+            };
+            return Ok(movie);
+        }
         
     }
 }
