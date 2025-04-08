@@ -154,10 +154,54 @@ namespace Intex2.Controllers
                 movieEntity.Duration,
                 movieEntity.Description,
                 Genre = string.Join(", ", matchedGenres),
-                ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(movieEntity.Title)}.jpg"
+                ImagePath = $"/images/movie-posters/{Uri.EscapeDataString(SanitizeFileName(movieEntity.Title))}.jpg"
             };
             return Ok(movie);
         }
         
-    }
-}
+        [HttpPost("Rate")]
+        public IActionResult RateMovie([FromBody] RatingDto rating)
+        {
+            // Use userId from body (for testing/dev), or pull from auth claim
+            int? userId = rating.UserId;
+
+            if (userId == null)
+            {
+                var sub = User.FindFirst("sub")?.Value;
+                if (int.TryParse(sub, out var parsedId))
+                {
+                    userId = parsedId;
+                }
+            }
+
+            if (userId == null) return Unauthorized();
+
+            var existing = _moviesContext.MoviesRatings
+                .FirstOrDefault(r => r.UserId == userId && r.ShowId == rating.ShowId);
+
+            if (existing != null)
+            {
+                existing.Rating = rating.Value;
+            }
+            else
+            {
+                _moviesContext.MoviesRatings.Add(new MoviesRating
+                {
+                    UserId = userId,
+                    ShowId = rating.ShowId,
+                    Rating = rating.Value
+                });
+            }
+
+            _moviesContext.SaveChanges();
+            return Ok();
+        }
+
+        public class RatingDto
+        {
+            public int ShowId { get; set; }
+            public int Value { get; set; }
+            public int? UserId { get; set; } // Optional if passed from frontend
+        }
+
+}}

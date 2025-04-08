@@ -4,6 +4,9 @@ import StarRating from '../components/StarRating';
 import { useNavigate } from 'react-router-dom';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
+import './MovieDetailPage.css';
+import { motion } from 'framer-motion';
+
 interface Movie {
   showId: string;
   title: string;
@@ -22,6 +25,11 @@ const MovieDetailPage: React.FC = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
   const navigate = useNavigate();
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() => {
+    setFadeIn(true);
+  }, []);
+
   useEffect(() => {
     fetch(`https://localhost:5000/Movies/MoviesPage/${id}`)
       .then((res) => res.json())
@@ -29,6 +37,7 @@ const MovieDetailPage: React.FC = () => {
       .catch((err) => console.error(err));
   }, [id]);
   if (!movie) return <p>Loading...</p>;
+
   return (
     <AuthorizeView>
       <span>
@@ -36,29 +45,33 @@ const MovieDetailPage: React.FC = () => {
           Logout <AuthorizedUser value="email" />
         </Logout>
       </span>
-      <div
-        style={{
-          display: 'flex',
-          gap: '2rem',
-          padding: '2rem',
-          maxWidth: '1500px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="d-flex gap-4 align-items-start flex-wrap flex-md-nowrap">
         {/* Poster on the left */}
-        <img
-          src={movie.imagePath}
-          alt={movie.title}
-          style={{
-            width: '400px',
-            height: 'auto',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            flexShrink: 0,
-          }}
-        />
+        <motion.div
+          layoutId={`movie-${movie.showId}`}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.4 }}
+          style={{ flex: '0 0 350px', maxWidth: '350px' }}
+        >
+          <img
+            src={movie.imagePath}
+            alt={movie.title}
+            style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: '500px',
+              objectFit: 'cover',
+              borderRadius: '12px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              marginBottom: '1rem',
+            }}
+          />
+        </motion.div>
+
         {/* Info on the right */}
-        <div>
+        <div style={{ flex: '1 1 auto' }}>
           <h1 style={{ marginBottom: '0.5rem' }}>{movie.title}</h1>
           <p style={{ fontStyle: 'italic', color: '#777' }}>{movie.type}</p>
           <ul
@@ -74,7 +87,7 @@ const MovieDetailPage: React.FC = () => {
             </li>
             <li>
               <strong>Cast:</strong>{' '}
-              {movie.cast.match(/\b[A-Z][a-z]+\s[A-Z][a-z]+\b/g)?.join(', ') ??
+              {movie.cast?.match(/\b[A-Z][a-z]+\s[A-Z][a-z]+\b/g)?.join(', ') ??
                 movie.cast}
             </li>
             <li>

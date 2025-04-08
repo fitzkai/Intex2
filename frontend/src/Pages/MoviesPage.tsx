@@ -3,6 +3,8 @@ import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
+import './MovieCard.css';
+import { motion } from 'framer-motion';
 
 interface Movie {
   showId: string;
@@ -85,6 +87,16 @@ const MoviesPage: React.FC = () => {
 
     return matchesTitle && matchesGenre;
   });
+const handleCardClick = (
+  e: React.MouseEvent<HTMLDivElement>,
+  showId: string
+) => {
+  const card = e.currentTarget;
+  card.classList.add('zooming');
+  setTimeout(() => {
+    navigate(`/MoviesPage/${showId}`);
+  }, 300); // match transition duration
+};
 
   return (
     <>
@@ -139,10 +151,13 @@ const MoviesPage: React.FC = () => {
 
             <div style={styles.grid}>
               {filteredMovies.map((movie) => (
-                <div
+                <motion.div
                   key={movie.showId}
+                  layoutId={`movie-${movie.showId}`}
                   style={styles.card}
                   onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <img
                     src={movie.imagePath}
@@ -152,7 +167,7 @@ const MoviesPage: React.FC = () => {
                   <h2>{movie.title}</h2>
                   <p>{movie.description}</p>
                   <small style={{ color: '#777' }}>{movie.genre}</small>
-                </div>
+                </motion.div>
               ))}
             </div>
 
