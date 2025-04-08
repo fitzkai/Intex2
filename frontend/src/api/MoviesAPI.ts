@@ -8,8 +8,8 @@ interface FetchMoviesResponse {
 const API_URL = 'https://localhost:5000/Movies';
 
 export const fetchMovies = async (
-  pageSize: number,
-  pageNum: number
+  pageSize: number = 10,
+  pageNum: number = 1
 ): Promise<FetchMoviesResponse> => {
   try {
     const response = await fetch(

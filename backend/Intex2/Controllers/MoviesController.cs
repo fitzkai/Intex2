@@ -17,6 +17,7 @@ namespace Intex2.Controllers
         public MoviesController(MoviesContext temp) => _moviesContext = temp;
 
         [HttpGet("AllMovies")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
             var query = _moviesContext.MoviesTitles.AsQueryable();
@@ -59,6 +60,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddMovie")]
+        [Authorize]
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
         {
             _moviesContext.MoviesTitles.Add(newMovie);
@@ -67,6 +69,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPut("UpdateMovie/{ShowId}")]
+        [Authorize]
         public IActionResult UpdateMovie(string ShowId, [FromBody] MoviesTitle updatedMovie)
         {
             var existingMovie = _moviesContext.MoviesTitles.Find(ShowId);
@@ -88,6 +91,7 @@ namespace Intex2.Controllers
         }
 
         [HttpDelete("DeleteMovie/{ShowId}")]
+        [Authorize]
         public IActionResult DeleteMovie(string ShowId) 
         {
             var movie = _moviesContext.MoviesTitles.Find(ShowId);
@@ -104,6 +108,7 @@ namespace Intex2.Controllers
         }
         
         [HttpGet("MoviesPage")]
+        [Authorize]
         public IActionResult GetMoviesPage()
         {
             var movies = _moviesContext.MoviesTitles
@@ -129,6 +134,7 @@ namespace Intex2.Controllers
             return Ok(movies);
         }
         [HttpGet("MoviesPage/{id}")]
+        [Authorize]
         public IActionResult GetMovieById(string id)
         {
             var movieEntity = _moviesContext.MoviesTitles
@@ -157,6 +163,20 @@ namespace Intex2.Controllers
                 ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(movieEntity.Title)}.jpg"
             };
             return Ok(movie);
+        }
+        [HttpGet("CheckRoles")]
+        [Authorize]
+        public IActionResult CheckRoles()
+        {
+            return Ok(new
+            {
+                User = User.Identity?.Name,
+                IsAuthenticated = User.Identity?.IsAuthenticated,
+                Roles = User.Claims
+                    .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
+                    .Select(c => c.Value)
+                    .ToList()
+            });
         }
         
     }
