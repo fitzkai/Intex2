@@ -6,6 +6,8 @@ import EditMovieForm from '../components/EditMovieForm';
 import Pagination from '../context/Pagination';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
+import { Accordion } from 'react-bootstrap';
+import WelcomeBand from '../components/WelcomeBand';
 
 const AdminPage = () => {
   const [movies, setMovies] = useState<MoviesTitle[]>([]);
@@ -16,6 +18,7 @@ const AdminPage = () => {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
   const [editingMovie, setEditingMovie] = useState<MoviesTitle | null>(null);
+
   useEffect(() => {
     const loadMovies = async () => {
       try {
@@ -30,6 +33,7 @@ const AdminPage = () => {
     };
     loadMovies();
   }, [pageSize, pageNum]);
+
   const handleDelete = async (showId: string) => {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this show?'
@@ -42,18 +46,23 @@ const AdminPage = () => {
       alert('Failed to delete show. Please try again');
     }
   };
+
   if (loading) return <p>Loading shows...</p>;
   if (error) return <p>Error: {error}</p>;
+
   return (
-    // <AuthorizeView>
-    //   <span>
-    //     <Logout>
-    //       Logout <AuthorizedUser value="email" />
-    //     </Logout>
-    //   </span>
-    <div>
-      <h1>Admin - CineNiche</h1>
-      {!showForm && <button onClick={() => setShowForm(true)}>Add Show</button>}
+    <div className="container mt-4">
+      <h1 className="mb-4">Admin - CineNiche</h1>
+
+      {!showForm && (
+        <button
+          className="btn btn-success mb-4"
+          onClick={() => setShowForm(true)}
+        >
+          Add Show
+        </button>
+      )}
+
       {showForm && (
         <NewMovieForm
           onSuccess={() => {
@@ -65,6 +74,7 @@ const AdminPage = () => {
           onCancel={() => setShowForm(false)}
         />
       )}
+
       {editingMovie && (
         <EditMovieForm
           movie={editingMovie}
@@ -77,51 +87,53 @@ const AdminPage = () => {
           onCancel={() => setEditingMovie(null)}
         />
       )}
-      <table>
-        <thead>
-          <tr>
-            <th>ShowId</th>
-            <th>Type</th>
-            <th>Title</th>
-            <th>Director</th>
-            <th>Cast</th>
-            <th>County</th>
-            <th>Release Year</th>
-            <th>Duration</th>
-            <th>Description</th>
-            {/* <th>Genre</th> */}
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {movies.map((m) => (
-            <tr key={m.showId}>
-              <td>{m.type}</td>
-              <td>{m.title}</td>
-              <td>{m.director}</td>
-              <td>{m.cast}</td>
-              <td>{m.country}</td>
-              <td>{m.releaseYear}</td>
-              <td>{m.duration}</td>
-              <td>{m.description}</td>
-              <td>
+
+      <Accordion defaultActiveKey="">
+        {movies.map((m, index) => (
+          <Accordion.Item eventKey={index.toString()} key={m.showId}>
+            <Accordion.Header>
+              <div className="d-flex w-100 justify-content-between align-items-center">
+                <div className="fw-bold">{m.title}</div>
+                <div className="text-muted">{m.releaseYear}</div>
+              </div>
+            </Accordion.Header>
+            <Accordion.Body>
+              <p>
+                <strong>Director:</strong> {m.director}
+              </p>
+              <p>
+                <strong>Cast:</strong> {m.cast}
+              </p>
+              <p>
+                <strong>Country:</strong> {m.country}
+              </p>
+              <p>
+                <strong>Duration:</strong> {m.duration}
+              </p>
+              <p>
+                <strong>Description:</strong> {m.description}
+              </p>
+              <div className="d-flex justify-content-center gap-4 mt-4">
                 <button
-                  className="btn btn-primary btn-sm w-100 mb-1"
+                  className="btn btn-primary px-4"
+                  style={{ minWidth: '150px' }}
                   onClick={() => setEditingMovie(m)}
                 >
                   Edit
                 </button>
                 <button
-                  className="btn btn-danger btn-sm w-100 mb-1"
+                  className="btn btn-danger px-4"
+                  style={{ minWidth: '150px' }}
                   onClick={() => handleDelete(m.showId!)}
                 >
                   Delete
                 </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
+
       <Pagination
         currentPage={pageNum}
         totalPages={totalPages}
@@ -133,7 +145,7 @@ const AdminPage = () => {
         }}
       />
     </div>
-    // </AuthorizeView>
   );
 };
+
 export default AdminPage;
