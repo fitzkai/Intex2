@@ -13,7 +13,10 @@ export const fetchMovies = async (
 ): Promise<FetchMoviesResponse> => {
   try {
     const response = await fetch(
-      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}`
+      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}`,
+      {
+        credentials: 'include',
+      }
     );
 
     if (!response.ok) {
@@ -29,12 +32,13 @@ export const fetchMovies = async (
 
 export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
   try {
-    const response = await fetch(`${API_URL}/AddMoive`, {
+    const response = await fetch(`${API_URL}/AddMovie`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newMovie),
+      credentials: 'include',
     });
 
     if (!response.ok) {
@@ -59,6 +63,7 @@ export const UpdateMovie = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedMovie),
+      credentials: 'include',
     });
 
     return await response.json();

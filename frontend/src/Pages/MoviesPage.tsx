@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
+import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
+import Logout from '../components/Logout';
 
 interface Movie {
   showId: string;
@@ -22,7 +24,9 @@ const MoviesPage: React.FC = () => {
   const navigate = useNavigate();
   // Fetch movies once
   useEffect(() => {
-    fetch('https://localhost:5000/Movies/MoviesPage')
+    fetch('https://localhost:5000/Movies/MoviesPage', {
+      credentials: 'include',
+    })
       .then((res) => res.json())
       .then((data) => {
         setAllMovies(data);
@@ -84,74 +88,84 @@ const MoviesPage: React.FC = () => {
 
   return (
     <>
-      <WelcomeBand />
-      <div>
-        <h1>All Movies</h1>
-        <div style={{ padding: '2rem' }}>
-          <input
-            type="text"
-            placeholder="Search by title..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={styles.search}
-          />
+      <AuthorizeView>
+        <span>
+          <Logout>
+            Logout <AuthorizedUser value="email" />
+          </Logout>
+        </span>
+        <WelcomeBand />
+        <div>
+          <h1>All Movies</h1>
+          <div style={{ padding: '2rem' }}>
+            <input
+              type="text"
+              placeholder="Search by title..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={styles.search}
+            />
 
-          <div style={styles.genreContainer}>
-            <button
-              onClick={() => setSelectedGenres([])}
-              style={{
-                ...styles.genreButton,
-                backgroundColor: selectedGenres.length === 0 ? '#333' : '#bbb',
-                color: selectedGenres.length === 0 ? '#fff' : '#000',
-                fontWeight: 'bold',
-              }}
-            >
-              Clear Filters
-            </button>
-
-            {genres.map((genre) => (
+            <div style={styles.genreContainer}>
               <button
-                key={genre}
-                onClick={() => toggleGenre(genre)}
+                onClick={() => setSelectedGenres([])}
                 style={{
                   ...styles.genreButton,
-                  backgroundColor: selectedGenres.includes(genre)
-                    ? '#333'
-                    : '#eee',
-                  color: selectedGenres.includes(genre) ? '#fff' : '#000',
+                  backgroundColor:
+                    selectedGenres.length === 0 ? '#333' : '#bbb',
+                  color: selectedGenres.length === 0 ? '#fff' : '#000',
+                  fontWeight: 'bold',
                 }}
               >
-                {genre}
+                Clear Filters
               </button>
-            ))}
-          </div>
 
-          <div style={styles.grid}>
-            {filteredMovies.map((movie) => (
-              <div
-                key={movie.showId}
-                style={styles.card}
-                onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+              {genres.map((genre) => (
+                <button
+                  key={genre}
+                  onClick={() => toggleGenre(genre)}
+                  style={{
+                    ...styles.genreButton,
+                    backgroundColor: selectedGenres.includes(genre)
+                      ? '#333'
+                      : '#eee',
+                    color: selectedGenres.includes(genre) ? '#fff' : '#000',
+                  }}
+                >
+                  {genre}
+                </button>
+              ))}
+            </div>
+
+            <div style={styles.grid}>
+              {filteredMovies.map((movie) => (
+                <div
+                  key={movie.showId}
+                  style={styles.card}
+                  onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+                >
+                  <img
+                    src={movie.imagePath}
+                    alt={movie.title}
+                    style={styles.poster}
+                  />
+                  <h2>{movie.title}</h2>
+                  <p>{movie.description}</p>
+                  <small style={{ color: '#777' }}>{movie.genre}</small>
+                </div>
+              ))}
+            </div>
+
+            {hasMore && (
+              <p
+                style={{ textAlign: 'center', padding: '1rem', color: '#666' }}
               >
-                <img
-                  src={movie.imagePath}
-                  alt={movie.title}
-                  style={styles.poster}
-                />
-                <h2>{movie.title}</h2>
-                <p>{movie.description}</p>
-                <small style={{ color: '#777' }}>{movie.genre}</small>
-              </div>
-            ))}
+                Loading more movies...
+              </p>
+            )}
           </div>
-
-          {hasMore && (
-            <p style={{ textAlign: 'center', padding: '1rem', color: '#666' }}>
-              Loading more movies...
-            </p>
-          )}
         </div>
-      </div>
+      </AuthorizeView>
     </>
   );
 };
