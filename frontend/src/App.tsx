@@ -20,6 +20,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route
+            path="/unauthorized"
+            element={<h2>🚫 You are not authorized to access this page.</h2>}
+          />
         </Routes>
       </Router>
     </>
