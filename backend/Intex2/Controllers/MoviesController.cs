@@ -26,7 +26,6 @@ namespace Intex2.Controllers
             var movies = query
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
-                .Select(m => m.Title)
                 .ToList();
 
             var result = new

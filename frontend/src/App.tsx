@@ -1,12 +1,12 @@
 import './App.css';
-import MoviesPage from './Pages/MoviesPage';
-import PrivacyPage from './Pages/PrivacyPage';
+import MoviesPage from './pages/MoviesPage';
+import PrivacyPage from './pages/PrivacyPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RegisterPage from './Pages/RegisterPage';
-import LoginPage from './Pages/LoginPage';
-import AdminPage from './Pages/AdminPage';
-import HomePage from './Pages/HomePage';
-import MovieDetailPage from './Pages/MovieDetailPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import AdminPage from './pages/AdminPage';
+import HomePage from './pages/HomePage';
+import MovieDetailPage from './pages/MovieDetailPage';
 
 function App() {
   return (
