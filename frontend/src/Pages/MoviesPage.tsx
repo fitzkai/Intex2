@@ -133,15 +133,6 @@ const MoviesPage: React.FC = () => {
               ))}
             </div>
 
-        <div style={styles.grid}>
-          {filteredMovies.map((movie) => (
-            <div key={movie.id} style={styles.card}>
-              <h2>{movie.title}</h2>
-              <p>{movie.description}</p>
-              <small style={{ color: '#777' }}>{movie.genre}</small>
-            </div>
-          ))}
-        </div>
             <div style={styles.grid}>
               {filteredMovies.map((movie) => (
                 <div key={movie.id} style={styles.card}>
