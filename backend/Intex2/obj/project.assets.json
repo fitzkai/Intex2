@@ -8462,24 +8462,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/rebeccaharrison/.nuget/packages/": {}
+    "C:\\Users\\kolto\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/Intex2.csproj",
+      "projectUniqueName": "C:\\Users\\kolto\\OneDrive - Brigham Young University\\Intex\\Intex2\\backend\\Intex2\\Intex2.csproj",
       "projectName": "Intex2",
-      "projectPath": "/Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/Intex2.csproj",
-      "packagesPath": "/Users/rebeccaharrison/.nuget/packages/",
-      "outputPath": "/Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/obj/",
+      "projectPath": "C:\\Users\\kolto\\OneDrive - Brigham Young University\\Intex\\Intex2\\backend\\Intex2\\Intex2.csproj",
+      "packagesPath": "C:\\Users\\kolto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kolto\\OneDrive - Brigham Young University\\Intex\\Intex2\\backend\\Intex2\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/rebeccaharrison/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\kolto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8498,7 +8505,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -8560,7 +8567,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

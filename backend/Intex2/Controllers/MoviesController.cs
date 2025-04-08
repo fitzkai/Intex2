@@ -123,7 +123,7 @@ namespace Intex2.Controllers
                         m.Title,
                         m.Description,
                         Genre = string.Join(", ", matchedGenres),
-                        ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(m.Title)}.jpg"
+                        ImagePath = $"/images/movie-posters/{Uri.EscapeDataString(SanitizeFileName(m.Title))}.jpg"
                     };
                 })
                 .ToList();
