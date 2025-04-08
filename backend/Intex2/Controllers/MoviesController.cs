@@ -30,7 +30,7 @@ namespace Intex2.Controllers
 
             var result = new
             {
-                Movies = movies,
+                movies = movies,
                 TotalNumMovies = totalNumMovies,
             };
 
