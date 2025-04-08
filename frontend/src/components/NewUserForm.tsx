@@ -19,7 +19,7 @@ function NewUserForm() {
     hulu: false,
     appleTv: false,
     peacock: false,
-    password: '',
+    passwordHash: '',
     confirmPassword: '',
   });
 
@@ -37,7 +37,7 @@ function NewUserForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!form.email || !form.password || !form.confirmPassword) {
+    if (!form.email || !form.passwordHash || !form.confirmPassword) {
       setError('Please fill in all required fields.');
       return;
     }
@@ -47,7 +47,7 @@ function NewUserForm() {
       return;
     }
 
-    if (form.password !== form.confirmPassword) {
+    if (form.passwordHash !== form.confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
@@ -55,7 +55,7 @@ function NewUserForm() {
     setError('');
 
     try {
-      const res = await fetch('https://localhost:5000/register', {
+      const res = await fetch('https://localhost:5000/Movies', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -206,15 +206,15 @@ function NewUserForm() {
                 {/* Fourth Row: Passwords */}
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="password" className="form-label">
+                    <label htmlFor="passwordHash" className="form-label">
                       Password
                     </label>
                     <input
                       type="password"
-                      id="password"
-                      name="password"
+                      id="passwordHash"
+                      name="passwordHash"
                       className="form-control"
-                      value={form.password}
+                      value={form.passwordHash}
                       onChange={handleChange}
                       required
                     />

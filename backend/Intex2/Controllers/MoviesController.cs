@@ -1,5 +1,9 @@
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Intex2.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex2.Controllers
 {
@@ -31,6 +35,7 @@ namespace Intex2.Controllers
 
             return Ok(result);
         }
+        
 
         [HttpPost("AddMovie")]
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
@@ -76,5 +81,7 @@ namespace Intex2.Controllers
 
             return NoContent();
         }
+        
+        
     }
 }

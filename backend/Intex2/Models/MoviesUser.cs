@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intex2.Models;
 
 public partial class MoviesUser
 {
-    public int? UserId { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("user_id")]
+    public int UserId { get; set; }
 
     public string? Name { get; set; }
 
@@ -39,5 +44,5 @@ public partial class MoviesUser
 
     public int? Zip { get; set; }
     
-    public string PasswordHash { get; set; }  // Store hashed password only
+    public string? PasswordHash { get; set; }  // Store hashed password only
 }

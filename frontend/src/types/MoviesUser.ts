@@ -16,5 +16,5 @@ export class MoviesUser {
   city?: string;
   state?: string;
   zip?: number;
-  password?: string;
+  passwordHash?: string;
 }
