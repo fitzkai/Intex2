@@ -7,11 +7,9 @@ import LoginPage from './Pages/LoginPage';
 import AdminPage from './Pages/AdminPage';
 import HomePage from './Pages/HomePage';
 import MovieDetailPage from './Pages/MovieDetailPage';
-<<<<<<< HEAD
 import RecommendationsPage from './Pages/RecommendationsPage';
-=======
 import UserInfoForm from './components/UserInfoForm';
->>>>>>> cc1b693ac3aac1f8870da61866cd8bf8c731f50c
+
 
 function App() {
   return (
@@ -25,11 +23,8 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
-<<<<<<< HEAD
           <Route path="/recommendations" element={<RecommendationsPage />} />
-=======
           <Route path="/userinfo" element={<UserInfoForm />} />
->>>>>>> cc1b693ac3aac1f8870da61866cd8bf8c731f50c
         </Routes>
       </Router>
     </>

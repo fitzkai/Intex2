@@ -171,6 +171,41 @@ namespace Intex2.Controllers
                     .ToList()
             });
         }
+        
+        [HttpPost("AddUserInfo")]
+        [AllowAnonymous]
+        public IActionResult AddUserInfo([FromBody] MoviesUser user)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(user.Name) || user.Age == null || string.IsNullOrWhiteSpace(user.City))
+                {
+                    return BadRequest("Missing or invalid required fields.");
+                }
+
+                // Default 0s for nulls
+                user.Netflix ??= 0;
+                user.AmazonPrime ??= 0;
+                user.Disney ??= 0;
+                user.Paramount ??= 0;
+                user.Max ??= 0;
+                user.Hulu ??= 0;
+                user.AppleTv ??= 0;
+                user.Peacock ??= 0;
+
+                _moviesContext.MoviesUsers.Add(user);
+                _moviesContext.SaveChanges();
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR saving MoviesUser: " + ex.Message);
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+
 
         //[HttpGet("api/recommendations/title/{title}")]
         //public async Task<IActionResult> GetRecommendationsByTitle(string title)

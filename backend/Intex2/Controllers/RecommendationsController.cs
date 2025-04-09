@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Intex2.Data;
 using Intex2.Models;
+using Intex2.Services;
 
 namespace Intex2.Controllers
 {
@@ -10,12 +11,16 @@ namespace Intex2.Controllers
     public class RecommendationsController : ControllerBase
     {
         private readonly RecommendationsContext _context;
+
+        private readonly AzureMLService _mlService;
         private readonly MoviesContext _moviesContext;
 
-        public RecommendationsController(RecommendationsContext context, MoviesContext moviesContext)
+
+
+        public RecommendationsController(RecommendationsContext context, AzureMLService mlService)
         {
             _context = context;
-            _moviesContext = moviesContext;
+            _mlService = mlService;
         }
 
         // GET: api/Recommendations
@@ -25,7 +30,24 @@ namespace Intex2.Controllers
             return await _context.Recommendations.ToListAsync();
         }
 
+
+        // GET: api/Recommendations/5
+        // ✅ 1. Keep exact string routes first
+        [HttpPost("ml")]
+        public async Task<IActionResult> GetMLRecommendations([FromBody] List<InputItem> input)
+        {
+            var result = await _mlService.GetRecommendationsAsync(input);
+
+            if (result == null || result.Results.WebServiceOutput0.Count == 0)
+                return StatusCode(500, "Failed to get predictions from Azure ML");
+
+            return Ok(result.Results.WebServiceOutput0.First());
+        }
+
+// 🔍 2. Search by title
+
         // GET: api/Recommendations/search?title=Inception
+
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Recommendation>>> SearchByTitle(string title)
         {
@@ -35,6 +57,9 @@ namespace Intex2.Controllers
 
             return Ok(results);
         }
+
+
+// 🔢 3. Route with parameter goes LAST
 
         [HttpGet("Title/{title}")]
         public async Task<ActionResult<Recommendation>> GetMovieByTitle(string title)
@@ -55,6 +80,7 @@ namespace Intex2.Controllers
             public string? Title { get; set; }
             public List<MoviesTitle> RecommendedMovies { get; set; } = new();
         }
+
 
         [HttpGet("{showId}")]
         public async Task<ActionResult<RecommendationWithMoviesDto>> GetRecommendationByShowId(int showId)

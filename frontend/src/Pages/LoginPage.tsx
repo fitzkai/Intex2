@@ -60,7 +60,6 @@ function LoginPage() {
         console.warn('No JSON body returned from login.');
       }
 
-
       if (!response.ok) {
         throw new Error(data?.message || 'Invalid email or password.');
       }
