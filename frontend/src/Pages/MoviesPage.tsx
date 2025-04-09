@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 // import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
+
+//we do not need
 import AuthorizeView from '../components/AuthorizeView';
 // import Logout from '../components/Logout';
 import '../css/MovieCard.css';
