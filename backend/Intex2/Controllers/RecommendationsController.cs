@@ -46,7 +46,7 @@ namespace Intex2.Controllers
                 .Where(r => r.Title.Contains(title))
                 .ToListAsync();
 
-            return results;
+            return Ok(results);
         }
     }
 }

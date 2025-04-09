@@ -6,7 +6,6 @@ import EditMovieForm from '../components/EditMovieForm';
 import Pagination from '../context/Pagination';
 import { Accordion } from 'react-bootstrap';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
-import Logout from '../components/Logout';
 
 const AdminPage = () => {
   const [movies, setMovies] = useState<MoviesTitle[]>([]);
@@ -51,11 +50,6 @@ const AdminPage = () => {
 
   return (
     <AuthorizeView>
-      <span>
-        <Logout>
-          Logout <AuthorizedUser value="email" />
-        </Logout>
-      </span>
       <div className="container mt-4">
         <h1 className="mb-4">Admin - CineNiche</h1>
 
