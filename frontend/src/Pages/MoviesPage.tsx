@@ -3,6 +3,9 @@ import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
+import '../css/MovieCard.css';
+import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
 
 interface Movie {
   showId: string;
@@ -11,9 +14,7 @@ interface Movie {
   genre: string;
   imagePath: string;
 }
-
 const PAGE_SIZE = 16;
-
 const MoviesPage: React.FC = () => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
   const [visibleMovies, setVisibleMovies] = useState<Movie[]>([]);
@@ -35,66 +36,61 @@ const MoviesPage: React.FC = () => {
       })
       .catch((err) => console.error(err));
   }, []);
-
   // Scroll handler
   useEffect(() => {
     const handleScroll = () => {
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
-
       if (nearBottom && hasMore) {
         const nextPage = page + 1;
         const nextMovies = allMovies.slice(0, nextPage * PAGE_SIZE);
         setVisibleMovies(nextMovies);
         setPage(nextPage);
-
         if (nextMovies.length >= allMovies.length) {
           setHasMore(false);
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [page, allMovies, hasMore]);
-
   // Extract individual genres
   const genres = Array.from(
     new Set(
       allMovies.flatMap((movie) => movie.genre.split(', ').map((g) => g.trim()))
     )
   ).sort();
-
   // Toggle genre chip
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
       prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
     );
   };
-
   // Filtered + visible movies
   const filteredMovies = visibleMovies.filter((movie) => {
     const matchesTitle = movie.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-
     const matchesGenre =
       selectedGenres.length === 0
         ? true
         : selectedGenres.some((g) => movie.genre.split(', ').includes(g));
-
     return matchesTitle && matchesGenre;
   });
-
+  const handleCardClick = (
+    e: React.MouseEvent<HTMLDivElement>,
+    showId: string
+  ) => {
+    const card = e.currentTarget;
+    card.classList.add('zooming');
+    setTimeout(() => {
+      navigate(`/MoviesPage/${showId}`);
+    }, 300); // match transition duration
+  };
   return (
     <>
       <AuthorizeView>
-        <span>
-          <Logout>
-            Logout <AuthorizedUser value="email" />
-          </Logout>
-        </span>
-        <WelcomeBand />
+        <Navbar />
         <div>
           <h1>All Movies</h1>
           <div style={{ padding: '2rem' }}>
@@ -105,7 +101,6 @@ const MoviesPage: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={styles.search}
             />
-
             <div style={styles.genreContainer}>
               <button
                 onClick={() => setSelectedGenres([])}
@@ -119,7 +114,6 @@ const MoviesPage: React.FC = () => {
               >
                 Clear Filters
               </button>
-
               {genres.map((genre) => (
                 <button
                   key={genre}
@@ -136,13 +130,15 @@ const MoviesPage: React.FC = () => {
                 </button>
               ))}
             </div>
-
             <div style={styles.grid}>
               {filteredMovies.map((movie) => (
-                <div
+                <motion.div
                   key={movie.showId}
+                  layoutId={`movie-${movie.showId}`}
                   style={styles.card}
                   onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <img
                     src={movie.imagePath}
@@ -152,10 +148,9 @@ const MoviesPage: React.FC = () => {
                   <h2>{movie.title}</h2>
                   <p>{movie.description}</p>
                   <small style={{ color: '#777' }}>{movie.genre}</small>
-                </div>
+                </motion.div>
               ))}
             </div>
-
             {hasMore && (
               <p
                 style={{ textAlign: 'center', padding: '1rem', color: '#666' }}
@@ -212,5 +207,4 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: '0.5rem',
   },
 };
-
 export default MoviesPage;
