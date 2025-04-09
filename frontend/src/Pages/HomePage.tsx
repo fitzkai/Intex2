@@ -9,7 +9,7 @@ const HomePage = () => {
       <WelcomeBand />
       <h1>Go no further for all your favorites!</h1>
       <h3>Sign up today or login in with your account here!</h3>
-      <button onClick={() => navigate('/login')}>Login</button>
+      <button onClick={() => navigate('/MoviesPage')}>Login</button>
       <button onClick={() => navigate('/userinfo')}>Register</button>
       <p>
         We value your privacy. Learn more about our steps to keep you safe in
