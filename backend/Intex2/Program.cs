@@ -71,7 +71,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
     policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/")
+        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net")
             .AllowCredentials()
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -91,10 +91,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowReactApp");
 
-/*if (!app.Environment.IsDevelopment())
-{
+if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection(); // You can disable this temporarily
-}*/
 
 app.UseAuthentication();
 app.UseAuthorization();
