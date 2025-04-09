@@ -30,7 +30,7 @@ const MoviesPage: React.FC = () => {
     fetch(
       'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/MoviesPage',
       {
-        // credentials: 'include',
+        credentials: 'include',
       }
     )
       .then((res) => res.json())
