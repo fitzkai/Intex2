@@ -7,6 +7,7 @@ import LoginPage from './Pages/LoginPage';
 import AdminPage from './Pages/AdminPage';
 import HomePage from './Pages/HomePage';
 import MovieDetailPage from './Pages/MovieDetailPage';
+import UserInfoForm from './components/UserInfoForm';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/userinfo" element={<UserInfoForm />} />
         </Routes>
       </Router>
     </>
