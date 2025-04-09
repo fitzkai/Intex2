@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
-import Logout from '../components/Logout';
-import '../css/MovieCard.css';
+// import Logout from '../components/Logout';
+// import '../css/MovieCard.css';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 
 interface Movie {
   showId: string;
@@ -90,7 +89,7 @@ const MoviesPage: React.FC = () => {
   return (
     <>
       <AuthorizeView>
-        <Navbar />
+        {/* <Navbar /> */}
         <div>
           <h1>All Movies</h1>
           <div style={{ padding: '2rem' }}>

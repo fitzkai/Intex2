@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "mVdCfQeyPfbnmwz0/1alMiZjvs1R7ljACa9VPP/3rRM=",
+  "Hash": "4vENbcmnEeEEVLnqm0ciX7x6WYNWmAFJnm2kc4zoNnY=",
   "Source": "Intex2",
   "BasePath": "_content/Intex2",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Intex2\\wwwroot",
+      "Source": "Intex2",
+      "ContentRoot": "C:\\Users\\kolto\\OneDrive - Brigham Young University\\Intex2\\Intex2\\backend\\Intex2\\wwwroot\\",
+      "BasePath": "_content/Intex2",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }

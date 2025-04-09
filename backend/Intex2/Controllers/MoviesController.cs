@@ -5,6 +5,8 @@ using Intex2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using System.Data.SQLite;
+
 
 
 namespace Intex2.Controllers
@@ -178,36 +180,5 @@ namespace Intex2.Controllers
                     .ToList()
             });
         }
-        
-        [HttpGet("api/recommendations/title/{title}")]
-        public async Task<IActionResult> GetRecommendationsByTitle(string title)
-        {
-            using var connection = new SQLiteConnection(_yourConnectionString);
-            await connection.OpenAsync();
-
-            var command = new SQLiteCommand("SELECT * FROM Recommendations WHERE title = @title", connection);
-            command.Parameters.AddWithValue("@title", title);
-
-            using var reader = await command.ExecuteReaderAsync();
-
-            if (!reader.HasRows) return NotFound("Movie not found.");
-
-            await reader.ReadAsync();
-
-            var recommendations = new {
-                ContentBased = new List<string>(),
-                CollaborativeFiltering = new List<string>()
-            };
-
-            for (int i = 2; i <= 7; i++) // CB_Recommendation 2 to 6
-                recommendations.ContentBased.Add(reader.GetString(i));
-
-            for (int i = 8; i <= 13; i++) // CF_Recommendation 2 to 6
-                recommendations.CollaborativeFiltering.Add(reader.GetString(i));
-
-            return Ok(recommendations);
-        }
-
-        
     }
 }
