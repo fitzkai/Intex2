@@ -17,7 +17,7 @@ namespace Intex2.Controllers
         public MoviesController(MoviesContext temp) => _moviesContext = temp;
 
         [HttpGet("AllMovies")]
-        [Authorize(Roles = "Administrator")]
+         [Authorize] //(Roles = "Administrator")
         public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
             var query = _moviesContext.MoviesTitles.AsQueryable();
@@ -60,7 +60,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddMovie")]
-        [Authorize]
+         [Authorize]
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
         {
             _moviesContext.MoviesTitles.Add(newMovie);
@@ -69,8 +69,8 @@ namespace Intex2.Controllers
         }
 
         [HttpPut("UpdateMovie/{ShowId}")]
-        [Authorize]
-        public IActionResult UpdateMovie(string ShowId, [FromBody] MoviesTitle updatedMovie)
+         [Authorize]
+        public IActionResult UpdateMovie(int ShowId, [FromBody] MoviesTitle updatedMovie)
         {
             var existingMovie = _moviesContext.MoviesTitles.Find(ShowId);
 
@@ -82,7 +82,6 @@ namespace Intex2.Controllers
             existingMovie.ReleaseYear = updatedMovie.ReleaseYear;
             existingMovie.Duration = updatedMovie.Duration;
             existingMovie.Description = updatedMovie.Description;
-            //existingMovie.Genre = updatedMovie.Genre;
 
             _moviesContext.MoviesTitles.Update(existingMovie);
             _moviesContext.SaveChanges();
@@ -91,8 +90,8 @@ namespace Intex2.Controllers
         }
 
         [HttpDelete("DeleteMovie/{ShowId}")]
-        [Authorize]
-        public IActionResult DeleteMovie(string ShowId) 
+         [Authorize]
+        public IActionResult DeleteMovie(int ShowId) 
         {
             var movie = _moviesContext.MoviesTitles.Find(ShowId);
 
@@ -135,7 +134,7 @@ namespace Intex2.Controllers
         }
         [HttpGet("MoviesPage/{id}")]
         [Authorize]
-        public IActionResult GetMovieById(string id)
+        public IActionResult GetMovieById(int id)
         {
             var movieEntity = _moviesContext.MoviesTitles
                 .FirstOrDefault(m => m.ShowId == id);
@@ -179,34 +178,34 @@ namespace Intex2.Controllers
             });
         }
         
-        [HttpGet("api/recommendations/title/{title}")]
-        public async Task<IActionResult> GetRecommendationsByTitle(string title)
-        {
-            using var connection = new SQLiteConnection(_yourConnectionString);
-            await connection.OpenAsync();
+        //[HttpGet("api/recommendations/title/{title}")]
+        //public async Task<IActionResult> GetRecommendationsByTitle(string title)
+        //{
+        //    using var connection = new SQLiteConnection(_yourConnectionString);
+        //    await connection.OpenAsync();
 
-            var command = new SQLiteCommand("SELECT * FROM Recommendations WHERE title = @title", connection);
-            command.Parameters.AddWithValue("@title", title);
+        //    var command = new SQLiteCommand("SELECT * FROM Recommendations WHERE title = @title", connection);
+        //    command.Parameters.AddWithValue("@title", title);
 
-            using var reader = await command.ExecuteReaderAsync();
+        //    using var reader = await command.ExecuteReaderAsync();
 
-            if (!reader.HasRows) return NotFound("Movie not found.");
+        //    if (!reader.HasRows) return NotFound("Movie not found.");
 
-            await reader.ReadAsync();
+        //    await reader.ReadAsync();
 
-            var recommendations = new {
-                ContentBased = new List<string>(),
-                CollaborativeFiltering = new List<string>()
-            };
+        //    var recommendations = new {
+        //        ContentBased = new List<string>(),
+        //        CollaborativeFiltering = new List<string>()
+        //    };
 
-            for (int i = 2; i <= 7; i++) // CB_Recommendation 2 to 6
-                recommendations.ContentBased.Add(reader.GetString(i));
+        //    for (int i = 2; i <= 7; i++) // CB_Recommendation 2 to 6
+        //        recommendations.ContentBased.Add(reader.GetString(i));
 
-            for (int i = 8; i <= 13; i++) // CF_Recommendation 2 to 6
-                recommendations.CollaborativeFiltering.Add(reader.GetString(i));
+        //    for (int i = 8; i <= 13; i++) // CF_Recommendation 2 to 6
+        //        recommendations.CollaborativeFiltering.Add(reader.GetString(i));
 
-            return Ok(recommendations);
-        }
+        //    return Ok(recommendations);
+        //}
 
         
     }

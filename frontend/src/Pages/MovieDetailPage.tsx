@@ -4,9 +4,9 @@ import StarRating from '../components/StarRating';
 import { useNavigate } from 'react-router-dom';
 import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
-import '../css/MovieDetailPage.css';
+// import '../css/MovieDetailPage.css';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import BarNav from '../components/BarNav';
 interface Movie {
   showId: string;
   title: string;
@@ -53,7 +53,7 @@ const MovieDetailPage: React.FC = () => {
   if (!movie) return <p>Loading...</p>;
   return (
     <AuthorizeView>
-      <Navbar />
+      <BarNav />
       <div className="d-flex gap-4 align-items-start flex-wrap flex-md-nowrap">
         {/* Poster on the left */}
         <motion.div

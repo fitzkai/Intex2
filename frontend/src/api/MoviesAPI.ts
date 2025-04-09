@@ -53,7 +53,7 @@ export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
 };
 
 export const UpdateMovie = async (
-  movieId: string,
+  movieId: number,
   updatedMovie: MoviesTitle
 ): Promise<MoviesTitle> => {
   try {
@@ -77,6 +77,7 @@ export const DeleteMovie = async (movieId: string): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, {
       method: 'DELETE',
+      credentials: 'include',
     });
 
     if (!response.ok) {
