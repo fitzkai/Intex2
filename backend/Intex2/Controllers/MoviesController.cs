@@ -17,7 +17,7 @@ namespace Intex2.Controllers
         public MoviesController(MoviesContext temp) => _moviesContext = temp;
 
         [HttpGet("AllMovies")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
             var query = _moviesContext.MoviesTitles.AsQueryable();
