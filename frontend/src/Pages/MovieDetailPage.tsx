@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import StarRating from '../components/StarRating';
-import { useNavigate } from 'react-router-dom';
-import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
-import Logout from '../components/Logout';
-import '../css/MovieDetailPage.css';
+import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
-import BarNav from '../components/BarNav';
+
 interface Movie {
   showId: string;
   title: string;
@@ -21,17 +18,20 @@ interface Movie {
   genre: string;
   imagePath: string;
 }
+
 const MovieDetailPage: React.FC = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [recommendedMovies, setRecommendedMovies] = useState<Movie[]>([]);
+
   const navigate = useNavigate();
-  const [fadeIn, setFadeIn] = useState(false);
+
   useEffect(() => {
-    setFadeIn(true);
-  }, []);
-  useEffect(() => {
+    if (!id) return;
+
+    // Fetch movie details
     fetch(`https://localhost:5000/Movies/MoviesPage/${id}`, {
-      credentials: 'include', // important if you're using cookie-based auth
+      credentials: 'include',
     })
       .then(async (res) => {
         if (!res.ok) {
@@ -40,22 +40,32 @@ const MovieDetailPage: React.FC = () => {
         }
         return res.json();
       })
-      .then((data) => setMovie(data))
-      .catch((err) => {
-        console.error('❌ Movie fetch failed:', err.message);
+      .then((data) => {
+        setMovie(data);
+        console.log('Movie ID:', data.showId);
 
+        // Fetch recommendations by showId
+        fetch(`https://localhost:5000/api/Recommendations/${data.showId}`)
+          .then((res) => res.json())
+          .then((rec) => {
+            console.log('🎬 Recommended full movies:', rec.recommendedMovies);
+            setRecommendedMovies(rec.recommendedMovies ?? []);
+          });
+      })
+      .catch((err) => {
+        console.error('Movie fetch failed:', err.message);
         if (err.message.includes('401')) {
-          navigate('/login'); // or show a user-friendly message instead
+          navigate('/login');
         }
       });
-  }, [id]);
+  }, [id, navigate]);
 
   if (!movie) return <p>Loading...</p>;
+
   return (
     <AuthorizeView>
-      <BarNav />
       <div className="d-flex gap-4 align-items-start flex-wrap flex-md-nowrap">
-        {/* Poster on the left */}
+        {/* Poster */}
         <motion.div
           layoutId={`movie-${movie.showId}`}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -78,7 +88,8 @@ const MovieDetailPage: React.FC = () => {
             }}
           />
         </motion.div>
-        {/* Info on the right */}
+
+        {/* Info */}
         <div style={{ flex: '1 1 auto' }}>
           <h1 style={{ marginBottom: '0.5rem' }}>{movie.title}</h1>
           <p style={{ fontStyle: 'italic', color: '#777' }}>{movie.type}</p>
@@ -114,14 +125,50 @@ const MovieDetailPage: React.FC = () => {
               <strong>Genre:</strong> {movie.genre}
             </li>
           </ul>
+
+          {/* Description */}
           <div style={{ marginTop: '1rem', textAlign: 'center' }}>
             <h3>Description</h3>
             <p style={{ textAlign: 'left' }}>{movie.description}</p>
           </div>
+
+          {/* Star Rating */}
           <div style={{ marginTop: '2rem' }}>
             <h3>Seen this one? Rate it below!</h3>
             <StarRating showId={movie.showId} rating={0} />
           </div>
+
+          <div style={{ marginTop: '2rem' }}>
+            <h3>You might like...</h3>
+            <div className="d-flex flex-wrap gap-3">
+              {recommendedMovies.map((movie, index) => {
+
+                console.log('image path:', movie.imagePath);
+                return (
+                  <div key={movie.showId} style={{ width: '180px' }}>
+                    <img
+                      src={movie.imagePath}
+                      alt={movie.title}
+                      style={{
+                        width: '100%',
+                        borderRadius: '8px',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                        marginBottom: '0.5rem',
+                      }}
+                    />
+                    <div>
+                      <strong>{movie.title}</strong>
+                      <p style={{ fontSize: '0.8rem', color: '#666' }}>
+                        {movie.genre}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Back Button */}
           <button
             style={{
               marginTop: '2rem',
@@ -140,4 +187,5 @@ const MovieDetailPage: React.FC = () => {
     </AuthorizeView>
   );
 };
+
 export default MovieDetailPage;

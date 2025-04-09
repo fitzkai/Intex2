@@ -11,7 +11,10 @@ namespace Intex2.Controllers
     public class RecommendationsController : ControllerBase
     {
         private readonly RecommendationsContext _context;
+
         private readonly AzureMLService _mlService;
+        private readonly MoviesContext _moviesContext;
+
 
 
         public RecommendationsController(RecommendationsContext context, AzureMLService mlService)
@@ -27,6 +30,7 @@ namespace Intex2.Controllers
             return await _context.Recommendations.ToListAsync();
         }
 
+
         // GET: api/Recommendations/5
         // ✅ 1. Keep exact string routes first
         [HttpPost("ml")]
@@ -41,6 +45,9 @@ namespace Intex2.Controllers
         }
 
 // 🔍 2. Search by title
+
+        // GET: api/Recommendations/search?title=Inception
+
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Recommendation>>> SearchByTitle(string title)
         {
@@ -51,9 +58,32 @@ namespace Intex2.Controllers
             return Ok(results);
         }
 
+
 // 🔢 3. Route with parameter goes LAST
+
+        [HttpGet("Title/{title}")]
+        public async Task<ActionResult<Recommendation>> GetMovieByTitle(string title)
+        {
+            var movie = await _context.Recommendations
+                .FirstOrDefaultAsync(m =>
+                    EF.Functions.Like(m.Title.ToLower(), $"%{title.ToLower().Trim()}%"));
+
+            if (movie == null)
+                return NotFound();
+
+            return Ok(movie);
+        }
+
+        public class RecommendationWithMoviesDto
+        {
+            public int ShowId { get; set; }
+            public string? Title { get; set; }
+            public List<MoviesTitle> RecommendedMovies { get; set; } = new();
+        }
+
+
         [HttpGet("{showId}")]
-        public async Task<ActionResult<Recommendation>> GetRecommendationByShowId(int showId)
+        public async Task<ActionResult<RecommendationWithMoviesDto>> GetRecommendationByShowId(int showId)
         {
             var recommendation = await _context.Recommendations
                 .FirstOrDefaultAsync(r => r.ShowId == showId);
@@ -63,10 +93,37 @@ namespace Intex2.Controllers
                 return NotFound(new { message = "Recommendation not found." });
             }
 
-            return recommendation;
+            var recommendedTitles = new List<string?>
+            {
+                recommendation.CB_Recommendation2,
+                recommendation.CB_Recommendation3,
+                recommendation.CB_Recommendation4,
+                recommendation.CB_Recommendation5,
+                recommendation.CB_Recommendation6,
+                recommendation.CF_Recommendation2,
+                recommendation.CF_Recommendation3,
+                recommendation.CF_Recommendation4,
+                recommendation.CF_Recommendation5,
+                recommendation.CF_Recommendation6
+            }
+            .Where(title => !string.IsNullOrWhiteSpace(title) && title != "0")
+            .Select(title => title!.Trim())
+            .ToList();
+
+            var recommendedMovies = await _moviesContext.MoviesTitles
+            .Where(m => recommendedTitles.Contains(m.Title))
+            .ToListAsync();
+
+            var dto = new RecommendationWithMoviesDto
+            {
+                ShowId = recommendation.ShowId,
+                Title = recommendation.Title,
+                RecommendedMovies = recommendedMovies
+            };
+
+
+            return Ok(dto);
         }
-
-
 
 
 
