@@ -1,0 +1,29 @@
+.nav-link {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+/* Add padding to body or a wrapper element under navbar */
+.page-content {
+  padding-top: 4.5rem; /* Adjust based on navbar height */
+}
+
+/* Proper styling for .input class */
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+  border-radius: 0.375rem; /* Tailwind's rounded-md */
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Tailwind's ring-blue-400 */
+}
