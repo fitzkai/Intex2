@@ -1,12 +1,9 @@
 import { MoviesTitle } from '../types/MoviesTitle';
-
 interface FetchMoviesResponse {
   movies: MoviesTitle[];
   totalNumMovies: number;
 }
-
 const API_URL = 'https://localhost:5000/Movies';
-
 export const fetchMovies = async (
   pageSize: number = 10,
   pageNum: number = 1
@@ -18,18 +15,15 @@ export const fetchMovies = async (
         credentials: 'include',
       }
     );
-
     if (!response.ok) {
       throw new Error('Failed to fetch movies');
     }
-
     return await response.json();
   } catch (error) {
     console.error('Error fetching movies:', error);
     throw error;
   }
 };
-
 export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
   try {
     const response = await fetch(`${API_URL}/AddMovie`, {
@@ -40,11 +34,9 @@ export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
       body: JSON.stringify(newMovie),
       credentials: 'include',
     });
-
     if (!response.ok) {
       throw new Error('Failed to add movie');
     }
-
     return await response.json();
   } catch (error) {
     console.error('Error adding movie', error);
@@ -53,7 +45,7 @@ export const AddMovie = async (newMovie: MoviesTitle): Promise<MoviesTitle> => {
 };
 
 export const UpdateMovie = async (
-  movieId: string,
+  movieId: number,
   updatedMovie: MoviesTitle
 ): Promise<MoviesTitle> => {
   try {
@@ -65,18 +57,17 @@ export const UpdateMovie = async (
       body: JSON.stringify(updatedMovie),
       credentials: 'include',
     });
-
     return await response.json();
   } catch (error) {
     console.error('Error updating movie', error);
     throw error;
   }
 };
-
 export const DeleteMovie = async (movieId: string): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, {
       method: 'DELETE',
+      credentials: 'include',
     });
 
     if (!response.ok) {

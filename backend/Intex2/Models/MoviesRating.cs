@@ -9,7 +9,7 @@ public partial class MoviesRating
     [Key]
     public int? UserId { get; set; }
 
-    public string? ShowId { get; set; }
+    public int? ShowId { get; set; }
 
     public int? Rating { get; set; }
 }

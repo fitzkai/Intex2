@@ -1,5 +1,5 @@
 export class MoviesRating {
     userId?: number;
-    showId?: string;
+    showId?: number;
     rating?: number;
 }
