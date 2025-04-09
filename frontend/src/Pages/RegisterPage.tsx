@@ -37,7 +37,7 @@ function Register() {
       // clear error message
       setError('');
       // post data to the /register api
-      fetch('https://localhost:5000/register', {
+      fetch('https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

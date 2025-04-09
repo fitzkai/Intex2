@@ -1,8 +1,8 @@
-interface Movie {
+export interface Movie {
   showId: number;
   title: string;
 }
-interface MovieDetail {
+export interface MovieDetail {
   showId: string;
   title: string;
   type: string;

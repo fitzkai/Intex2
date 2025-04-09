@@ -3,7 +3,7 @@ interface FetchMoviesResponse {
   movies: MoviesTitle[];
   totalNumMovies: number;
 }
-const API_URL = 'https://localhost:5000/Movies';
+const API_URL = 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies';
 export const fetchMovies = async (
   pageSize: number = 10,
   pageNum: number = 1
@@ -63,7 +63,7 @@ export const UpdateMovie = async (
     throw error;
   }
 };
-export const DeleteMovie = async (movieId: string): Promise<void> => {
+export const DeleteMovie = async (movieId: number): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, {
       method: 'DELETE',

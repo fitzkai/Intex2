@@ -1,9 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import BarNav from '../components/BarNav';
 import MLRecommendations from '../components/MLRecommendations';
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
