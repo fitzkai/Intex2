@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using RootkitAuth.API.Services;
+using Intex2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,9 @@ builder.Services.AddDbContext<RecommendationsContext>(options =>
 
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));
+
+builder.Services.AddHttpClient<AzureMLService>();
+
 
 builder.Services.AddAuthorization();
 
@@ -86,7 +91,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowReactApp");
 
-app.UseHttpsRedirection();
+/*if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection(); // You can disable this temporarily
+}*/
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -107,6 +115,7 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
     });
 
     return Results.Ok(new { message = "Logout successful" });
+
 }).RequireAuthorization();
 
 
@@ -118,12 +127,14 @@ app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
     {
         Console.WriteLine("Unauthorized request to /pingauth");
         return Results.Unauthorized();
+
     }
 
     var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com";
     Console.WriteLine($"Authenticated User Email: {email}");
 
     return Results.Json(new { email = email });
+
 }).RequireAuthorization();
 
 app.Run();
