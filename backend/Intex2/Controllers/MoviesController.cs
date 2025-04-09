@@ -160,7 +160,7 @@ namespace Intex2.Controllers
                 movieEntity.Duration,
                 movieEntity.Description,
                 Genre = string.Join(", ", matchedGenres),
-                ImagePath = $"https://localhost:5000/movie-posters/{SanitizeFileName(movieEntity.Title)}.jpg"
+                ImagePath = $"/images/movie-posters/{Uri.EscapeDataString(SanitizeFileName(movieEntity.Title))}.jpg"
             };
             return Ok(movie);
         }
@@ -178,6 +178,8 @@ namespace Intex2.Controllers
                     .ToList()
             });
         }
+        
+
         
     }
 }
