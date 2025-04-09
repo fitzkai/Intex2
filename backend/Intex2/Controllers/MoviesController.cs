@@ -37,7 +37,7 @@ namespace Intex2.Controllers
 
             return Ok(result);
         }
-        
+
         // Reusable genre-detection logic
         private Dictionary<string, Func<MoviesTitle, bool>> CoreGenres => new()
         {
@@ -54,6 +54,7 @@ namespace Intex2.Controllers
             { "Reality", m => m.RealityTv == 1 },
             { "Musical", m => m.Musicals == 1 }
         };
+
         private string SanitizeFileName(string title)
         {
             return Regex.Replace(title, @"[^\p{L}\p{Nd} ]+", "");
@@ -92,7 +93,7 @@ namespace Intex2.Controllers
 
         [HttpDelete("DeleteMovie/{ShowId}")]
         [Authorize]
-        public IActionResult DeleteMovie(string ShowId) 
+        public IActionResult DeleteMovie(string ShowId)
         {
             var movie = _moviesContext.MoviesTitles.Find(ShowId);
 
@@ -106,7 +107,7 @@ namespace Intex2.Controllers
 
             return NoContent();
         }
-        
+
         [HttpGet("MoviesPage")]
         [Authorize]
         public IActionResult GetMoviesPage()
@@ -133,6 +134,7 @@ namespace Intex2.Controllers
                 .ToList();
             return Ok(movies);
         }
+
         [HttpGet("MoviesPage/{id}")]
         [Authorize]
         public IActionResult GetMovieById(string id)
@@ -164,6 +166,7 @@ namespace Intex2.Controllers
             };
             return Ok(movie);
         }
+
         [HttpGet("CheckRoles")]
         [Authorize]
         public IActionResult CheckRoles()
@@ -178,9 +181,9 @@ namespace Intex2.Controllers
                     .ToList()
             });
         }
-        
-        [HttpGet("api/recommendations/title/{title}")]
-        public async Task<IActionResult> GetRecommendationsByTitle(string title)
+
+        /*[HttpGet("api/recommendations/title/{title}")]*/
+        /*public async Task<IActionResult> GetRecommendationsByTitle(string title)
         {
             using var connection = new SQLiteConnection(_yourConnectionString);
             await connection.OpenAsync();
@@ -206,8 +209,9 @@ namespace Intex2.Controllers
                 recommendations.CollaborativeFiltering.Add(reader.GetString(i));
 
             return Ok(recommendations);
-        }
+        }*/
 
-        
+
+
     }
 }
