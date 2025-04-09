@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is413\\intex2\\backend\\intex2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is413\\intex2\\backend\\intex2\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Program.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Program.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Program.cs",
+              "RelativeToolTip": "backend\\Intex2\\Program.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAEkAAADEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T22:21:57.015Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -22,6 +44,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Properties\\launchSettings.json",
+              "RelativeToolTip": "backend\\Intex2\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-09T22:21:24.933Z",
+              "EditorCaption": ""
             }
           ]
         }
