@@ -1,5 +1,5 @@
 export class MoviesTitle {
-    showId?: string;
+    showId?: number;
     type?: string;
     title?: string;
     director?: string;

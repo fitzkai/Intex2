@@ -9,22 +9,16 @@ public partial class MoviesContext : DbContext
     public MoviesContext()
     {
     }
-
     public MoviesContext(DbContextOptions<MoviesContext> options)
         : base(options)
     {
     }
-
     public virtual DbSet<MoviesRating> MoviesRatings { get; set; }
-
     public virtual DbSet<MoviesTitle> MoviesTitles { get; set; }
-
     public virtual DbSet<MoviesUser> MoviesUsers { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlite("Data Source=Movies.db");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<MoviesRating>(entity =>
@@ -32,7 +26,6 @@ public partial class MoviesContext : DbContext
             entity
                 .HasNoKey()
                 .ToTable("movies_ratings");
-
             entity.Property(e => e.Rating).HasColumnName("rating");
             entity.Property(e => e.ShowId).HasColumnName("show_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
@@ -40,9 +33,8 @@ public partial class MoviesContext : DbContext
 
         modelBuilder.Entity<MoviesTitle>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("movies_titles");
+            entity.HasKey(e => e.ShowId);
+            entity.ToTable("movies_titles");
 
             entity.Property(e => e.AnimeSeriesInternationalTvShows).HasColumnName("Anime Series International TV Shows");
             entity.Property(e => e.BritishTvShowsDocuseriesInternationalTvShows).HasColumnName("British TV Shows Docuseries International TV Shows");
@@ -82,7 +74,6 @@ public partial class MoviesContext : DbContext
             entity
                 .HasNoKey()
                 .ToTable("movies_users");
-
             entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.AmazonPrime).HasColumnName("Amazon Prime");
             entity.Property(e => e.AppleTv).HasColumnName("Apple TV+");
@@ -97,9 +88,7 @@ public partial class MoviesContext : DbContext
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Zip).HasColumnName("zip");
         });
-
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

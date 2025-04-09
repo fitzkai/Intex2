@@ -1,16 +1,48 @@
 import { useState } from 'react';
 import { MoviesTitle } from '../types/MoviesTitle';
 import { UpdateMovie } from '../api/MoviesAPI';
+
 interface EditFormProps {
   movie: MoviesTitle;
   onSuccess: () => void;
   onCancel: () => void;
 }
+
+const categoryFields: (keyof MoviesTitle)[] = [
+  'action', 'adventure', 'animeSeriesInternationalTvShows', 'britishTvShowsDocuseriesInternationalTvShows',
+  'children', 'comedies', 'comediesDramasInternationalMovies', 'comediesInternationalMovies',
+  'comediesRomanticMovies', 'crimeTvShowsDocuseries', 'documentaries', 'documentariesInternationalMovies',
+  'docuseries', 'dramas', 'dramasInternationalMovies', 'dramasRomanticMovies', 'familyMovies',
+  'fantasy', 'horrorMovies', 'internationalMoviesThrillers', 'internationalTvShowsRomanticTvShowsTvDramas',
+  'kidsTv', 'languageTvShows', 'musicals', 'natureTv', 'realityTv', 'spirituality',
+  'tvAction', 'tvComedies', 'tvDramas', 'talkShowsTvComedies', 'thrillers',
+];
+
+const formatFieldLabel = (field: string): string => {
+  return field
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, char => char.toUpperCase());
+};
+
 const EditMovieForm = ({ movie, onSuccess, onCancel }: EditFormProps) => {
   const [formData, setFormData] = useState<MoviesTitle>({ ...movie });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'number'
+        ? parseInt(value, 10) || 0
+        : type === 'checkbox'
+        ? checked ? 1 : 0
+        : value,
+    }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.showId) {
@@ -20,9 +52,10 @@ const EditMovieForm = ({ movie, onSuccess, onCancel }: EditFormProps) => {
     await UpdateMovie(formData.showId, formData);
     onSuccess();
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Update</h2>
+      <h2>Edit Movie</h2>
       <div className="form-grid">
         <label>
           Type:
@@ -96,17 +129,26 @@ const EditMovieForm = ({ movie, onSuccess, onCancel }: EditFormProps) => {
             onChange={handleChange}
           />
         </label>
-        {/* <label>
-                Genre:
+
+        <fieldset>
+          <legend>Categories:</legend>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {categoryFields.map(field => (
+              <label key={field} style={{ marginRight: '15px', marginBottom: '10px' }}>
                 <input
-                    type="text"
-                    name="genre"
-                    value={formData.genre}
-                    onChange={handleChange}
+                  type="checkbox"
+                  name={field}
+                  checked={formData[field] === 1}
+                  onChange={handleChange}
                 />
-                </label> */}
+                {formatFieldLabel(field)}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
         <button className="btn btn-success btn-sm" type="submit">
-          Update Project
+          Update Movie
         </button>
         <button type="button" onClick={onCancel}>
           Cancel
@@ -115,4 +157,5 @@ const EditMovieForm = ({ movie, onSuccess, onCancel }: EditFormProps) => {
     </form>
   );
 };
+
 export default EditMovieForm;
