@@ -18,7 +18,7 @@ namespace Intex2.Controllers
 
         [HttpGet("AllMovies")]
         [Authorize] //(Roles = "Administrator")
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
             var query = _moviesContext.MoviesTitles.AsQueryable();
