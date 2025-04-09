@@ -63,6 +63,38 @@ function NewUserForm() {
 
       if (res.ok) {
         setError('Successful registration. Please log in.');
+
+        const recommenderPayload = {
+          age: parseInt(form.age.toString()),
+          gender: form.gender,
+          platforms: {
+            Netflix: form.netflix ? 1 : 0,
+            AmazonPrime: form.amazonPrime ? 1 : 0,
+            Hulu: form.hulu ? 1 : 0,
+            'Disney+': form.disney ? 1 : 0,
+            'AppleTV+': form.appleTv ? 1 : 0,
+            'Paramount+': form.paramount ? 1 : 0,
+            Peacock: form.peacock ? 1 : 0,
+            Max: form.max ? 1 : 0,
+          },
+          genres: ['Action', 'Comedies', 'Dramas', 'Fantasy', 'Family'],
+        };
+
+        // 📡 Send request to Flask recommender API
+        const recRes = await fetch('http://localhost:5050/recommendations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(recommenderPayload),
+        });
+
+        if (recRes.ok) {
+          const recData = await recRes.json();
+          console.log('🎬 Recommendations received:', recData.recommendations);
+          // You can redirect or display recommendations here
+        } else {
+          console.error('Error fetching recommendations.');
+          setError('Error fetching recommendations.');
+        }
       } else {
         setError('Error registering.');
       }

@@ -53,16 +53,52 @@ function LoginPage() {
 
       // Ensure we only parse JSON if there is content
       let data = null;
-      const contentLength = response.headers.get('content-length');
-      if (contentLength && parseInt(contentLength, 10) > 0) {
+      try {
         data = await response.json();
+      } catch (err) {
+        // It's okay — maybe there's no JSON response
+        console.warn('No JSON body returned from login.');
       }
+
 
       if (!response.ok) {
         throw new Error(data?.message || 'Invalid email or password.');
       }
 
-      navigate('/MoviesPage');
+      // Build recommender payload (you can store this data in session/context too)
+      const recommenderPayload = {
+        age: data.age, // assuming your backend sends back age, gender, etc.
+        gender: data.gender,
+        platforms: {
+          Netflix: data.netflix ? 1 : 0,
+          'Amazon Prime': data.amazonPrime ? 1 : 0,
+          Hulu: data.hulu ? 1 : 0,
+          'Disney+': data.disney ? 1 : 0,
+          'Apple TV+': data.appleTv ? 1 : 0,
+          'Paramount+': data.paramount ? 1 : 0,
+          Peacock: data.peacock ? 1 : 0,
+          Max: data.max ? 1 : 0,
+        },
+        genres: ['Action', 'Comedies', 'Dramas', 'Fantasy', 'Family'], // Or let user choose
+      };
+
+      // Fetch recommendations from Flask
+      const recRes = await fetch('http://localhost:5050/recommendations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recommenderPayload),
+      });
+
+      if (!recRes.ok) {
+        throw new Error('Could not load recommendations.');
+      }
+
+      const recData = await recRes.json();
+
+      // Navigate to recommendations page with data
+      navigate('/recommendations', {
+        state: { recommendations: recData.recommendations },
+      });
     } catch (error: any) {
       setError(error.message || 'Error logging in.');
       console.error('Fetch attempt failed:', error);
