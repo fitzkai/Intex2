@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //we do not need
-//import AuthorizeView from '../components/AuthorizeView';
+import AuthorizeView from '../components/AuthorizeView';
 // import Logout from '../components/Logout';
 import '../css/MovieCard.css';
 import { motion } from 'framer-motion';
@@ -94,7 +94,7 @@ const MoviesPage: React.FC = () => {
   // };
   return (
     <>
-      {/* <AuthorizeView> */}
+      <AuthorizeView>
       <BarNav />
       <div>
         <h1>All Movies</h1>
@@ -162,7 +162,7 @@ const MoviesPage: React.FC = () => {
           )}
         </div>
       </div>
-      {/* </AuthorizeView> */}
+      </AuthorizeView>
     </>
   );
 };
