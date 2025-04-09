@@ -40,8 +40,8 @@ function LoginPage() {
     }
 
     const loginUrl = rememberme
-      ? 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/login?useCookies=true'
-      : 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/login?useSessionCookies=true';
+      ? 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useCookies=true'
+      : 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useSessionCookies=true';
 
     try {
       const response = await fetch(loginUrl, {

@@ -3,7 +3,7 @@ interface FetchMoviesResponse {
   movies: MoviesTitle[];
   totalNumMovies: number;
 }
-const API_URL = 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies';
+const API_URL = 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies';
 export const fetchMovies = async (
   pageSize: number = 10,
   pageNum: number = 1

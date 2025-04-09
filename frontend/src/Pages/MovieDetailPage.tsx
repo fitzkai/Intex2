@@ -30,7 +30,7 @@ const MovieDetailPage: React.FC = () => {
     if (!id) return;
 
     // Fetch movie details
-    fetch(`https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/MoviesPage/${id}`, {
+    fetch(`https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage/${id}`, {
       credentials: 'include',
     })
       .then(async (res) => {
@@ -45,7 +45,7 @@ const MovieDetailPage: React.FC = () => {
         console.log('Movie ID:', data.showId);
 
         // Fetch recommendations by showId
-        fetch(`https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/api/Recommendations/${data.showId}`)
+        fetch(`https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/api/Recommendations/${data.showId}`)
           .then((res) => res.json())
           .then((rec) => {
             console.log('🎬 Recommended full movies:', rec.recommendedMovies);
