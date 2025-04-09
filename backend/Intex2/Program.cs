@@ -15,6 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
 
+builder.Services.AddDbContext<RecommendationsContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("RecommendationsConnection")));
+
 
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));

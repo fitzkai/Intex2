@@ -1,0 +1,11 @@
+/* Movie card css */
+.movie-card {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  cursor: pointer;
+}
+.movie-card.zoom-out {
+  transform: scale(1.2);
+  opacity: 0;
+}

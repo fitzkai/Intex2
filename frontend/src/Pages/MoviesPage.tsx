@@ -5,7 +5,7 @@ import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
 import Logout from '../components/Logout';
 import '../css/MovieCard.css';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import BarNav from '../components/BarNav';
 
 interface Movie {
   showId: string;
@@ -90,7 +90,7 @@ const MoviesPage: React.FC = () => {
   return (
     <>
       <AuthorizeView>
-        <Navbar />
+        <BarNav />
         <div>
           <h1>All Movies</h1>
           <div style={{ padding: '2rem' }}>
