@@ -30,7 +30,7 @@ const MovieDetailPage: React.FC = () => {
     if (!id) return;
 
     // Fetch movie details
-    fetch(`https://localhost:5000/Movies/MoviesPage/${id}`, {
+    fetch(`https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/MoviesPage/${id}`, {
       credentials: 'include',
     })
       .then(async (res) => {
@@ -45,7 +45,7 @@ const MovieDetailPage: React.FC = () => {
         console.log('Movie ID:', data.showId);
 
         // Fetch recommendations by showId
-        fetch(`https://localhost:5000/api/Recommendations/${data.showId}`)
+        fetch(`https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/api/Recommendations/${data.showId}`)
           .then((res) => res.json())
           .then((rec) => {
             console.log('🎬 Recommended full movies:', rec.recommendedMovies);
@@ -141,7 +141,7 @@ const MovieDetailPage: React.FC = () => {
           <div style={{ marginTop: '2rem' }}>
             <h3>You might like...</h3>
             <div className="d-flex flex-wrap gap-3">
-              {recommendedMovies.map((movie, index) => {
+              {recommendedMovies.map((movie) => {
 
                 console.log('image path:', movie.imagePath);
                 return (

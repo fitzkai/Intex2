@@ -5,7 +5,7 @@ import NewMovieForm from '../components/NewMovieForm';
 import EditMovieForm from '../components/EditMovieForm';
 import Pagination from '../context/Pagination';
 import { Accordion } from 'react-bootstrap';
-import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
+import AuthorizeView from '../components/AuthorizeView';
 
 const AdminPage = () => {
   const [movies, setMovies] = useState<MoviesTitle[]>([]);
@@ -32,7 +32,7 @@ const AdminPage = () => {
     loadMovies();
   }, [pageSize, pageNum]);
 
-  const handleDelete = async (showId: string) => {
+  const handleDelete = async (showId: number) => {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this show?'
     );
