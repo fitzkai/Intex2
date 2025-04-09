@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import WelcomeBand from '../components/WelcomeBand';
+// import WelcomeBand from '../components/WelcomeBand';
 import { useNavigate } from 'react-router-dom';
-import AuthorizeView, { AuthorizedUser } from '../components/AuthorizeView';
-import Logout from '../components/Logout';
+import AuthorizeView from '../components/AuthorizeView';
+// import Logout from '../components/Logout';
 import '../css/MovieCard.css';
 import { motion } from 'framer-motion';
 import BarNav from '../components/BarNav';
@@ -25,7 +25,7 @@ const MoviesPage: React.FC = () => {
   const navigate = useNavigate();
   // Fetch movies once
   useEffect(() => {
-    fetch('https://localhost:5000/Movies/MoviesPage', {
+    fetch('https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/MoviesPage', {
       credentials: 'include',
     })
       .then((res) => res.json())
@@ -77,16 +77,16 @@ const MoviesPage: React.FC = () => {
         : selectedGenres.some((g) => movie.genre.split(', ').includes(g));
     return matchesTitle && matchesGenre;
   });
-  const handleCardClick = (
-    e: React.MouseEvent<HTMLDivElement>,
-    showId: string
-  ) => {
-    const card = e.currentTarget;
-    card.classList.add('zooming');
-    setTimeout(() => {
-      navigate(`/MoviesPage/${showId}`);
-    }, 300); // match transition duration
-  };
+  // const handleCardClick = (
+  //   e: React.MouseEvent<HTMLDivElement>,
+  //   showId: string
+  // ) => {
+  //   const card = e.currentTarget;
+  //   card.classList.add('zooming');
+  //   setTimeout(() => {
+  //     navigate(`/MoviesPage/${showId}`);
+  //   }, 300); // match transition duration
+  // };
   return (
     <>
       <AuthorizeView>

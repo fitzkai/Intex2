@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using RootkitAuth.API.Services;
+using Intex2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,9 @@ builder.Services.AddDbContext<RecommendationsContext>(options =>
 
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));
+
+builder.Services.AddHttpClient<AzureMLService>();
+
 
 builder.Services.AddAuthorization();
 
@@ -66,7 +71,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
     policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/")
+        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net")
             .AllowCredentials()
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -86,7 +91,25 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowReactApp");
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+    app.UseHttpsRedirection(); // You can disable this temporarily
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy",
+        "default-src 'self'; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com; " +
+        "style-src 'self' 'unsafe-inline' fonts.googleapis.com https://accounts.google.com; " +
+        "img-src 'self' data: https://localhost:5000 http://localhost:4000 https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net; " +
+        "frame-ancestors 'none'; " +
+        "font-src 'self' fonts.gstatic.com data:; " +
+        "connect-src 'self' https://localhost:5000 https://accounts.google.com https://oauth2.googleapis.com https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net; " +
+        "object-src 'none'; " +
+        "base-uri 'self'; " +
+        "form-action 'self'; " +
+        "frame-src 'self' https://accounts.google.com https://oauth2.googleapis.com;");
+    await next();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -107,6 +130,7 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
     });
 
     return Results.Ok(new { message = "Logout successful" });
+
 }).RequireAuthorization();
 
 
@@ -118,12 +142,16 @@ app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
     {
         Console.WriteLine("Unauthorized request to /pingauth");
         return Results.Unauthorized();
+
     }
 
     var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com";
     Console.WriteLine($"Authenticated User Email: {email}");
 
     return Results.Json(new { email = email });
+
 }).RequireAuthorization();
+
+
 
 app.Run();
