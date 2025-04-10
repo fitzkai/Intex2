@@ -21,25 +21,31 @@ const HomePage = () => {
             </div>
           </div>
           <div className="col-12 col-md-6">
-            <div className="homepage-right">
+            <div className="homepage-right poster-grid">
               <img
-                src="/images/Ganglands.jpg"
-                alt="Movie 1"
+                src="https://moviepostersintex48.blob.core.windows.net/movieposters/Grown Ups.jpg"
+                alt="Grown-ups"
                 className="poster"
               />
               <img
-                src="/images/some-movie.jpg"
-                alt="Movie 2"
+                src="https://moviepostersintex48.blob.core.windows.net/movieposters/Dick Johnson Is Dead.jpg"
+                alt="Dick Johnson is Dead"
+                className="poster"
+              />
+              <img
+                src="https://moviepostersintex48.blob.core.windows.net/movieposters/My Little Pony Friendship Is Magic.jpg"
+                alt="My little Pony"
+                className="poster"
+              />
+              <img
+                src="https://moviepostersintex48.blob.core.windows.net/movieposters/Avengers Infinity War.jpg"
+                alt="Avengers"
                 className="poster"
               />
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+
         <footer className="footer">
           <p>
             We value your privacy. Learn more about our steps to keep you safe

@@ -16,7 +16,9 @@
   border: none;
   background-color: #0b3d91;
   color: white;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .homepage-buttons button:hover {
@@ -25,12 +27,18 @@
 }
 
 /* Poster styling */
+.poster-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
 .poster {
   width: 100%;
-  max-width: 250px;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* Ensure posters appear stacked on mobile, side-by-side on desktop */
@@ -58,19 +66,8 @@
   width: 100%;
 }
 
-
-.footer a {
-  color: #66b2ff;
-  text-decoration: underline;
-}
-
-.footer a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
 .page-wrapper {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-
