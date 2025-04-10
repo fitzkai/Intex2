@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/identity.css';
 
 function Register() {
   // state variables for email and passwords
@@ -63,66 +64,66 @@ function Register() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="card border-0 shadow rounded-3 ">
-          <div className="card-body p-4 p-sm-5">
-            <h5 className="card-title text-center mb-5 fw-light fs-5">
-              Register
-            </h5>
-            <form onSubmit={handleSubmit}>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-                <label htmlFor="email">Email address</label>
-              </div>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                />
-                <label htmlFor="password">Password</label>
-              </div>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={handleChange}
-                />
-                <label htmlFor="confirmPassword">Confirm Password</label>
-              </div>
+    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+      <div className="row w-100 justify-content-center">
+        <div className="col-md-6 col-lg-4">
+          <div className="form_background">
+            <div className="card-body p-4 p-sm-5">
+              <strong>
+                <h3 className="card-title text-center mb-5 fs-5">Register</h3>
+              </strong>
+              <form onSubmit={handleSubmit}>
+                <div className="form-floating mb-3">
+                  <input
+                    className="form-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="email">Email address</label>
+                </div>
+                <div className="form-floating mb-3">
+                  <input
+                    className="form-control"
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="password">Password</label>
+                </div>
+                <div className="form-floating mb-3">
+                  <input
+                    className="form-control"
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                </div>
 
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-primary btn-login text-uppercase fw-bold"
-                  type="submit"
-                >
-                  Register
-                </button>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-primary btn-login text-uppercase fw-bold"
-                  onClick={handleLoginClick}
-                >
-                  Go to Login
-                </button>
-              </div>
-            </form>
-            <strong>{error && <p className="error">{error}</p>}</strong>
+                <div className="d-grid mb-2">
+                  <button className="btn-login" type="submit">
+                    Register
+                  </button>
+                </div>
+                <div className="d-grid mb-2">
+                  <button
+                    type="button"
+                    className="btn-login"
+                    onClick={handleLoginClick}
+                  >
+                    Go to Login
+                  </button>
+                </div>
+              </form>
+              {error && <p className="error">{error}</p>}
+            </div>
           </div>
         </div>
       </div>

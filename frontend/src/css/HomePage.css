@@ -1,0 +1,47 @@
+.homepage-container {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 3rem;
+  min-height: 80vh;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to right, #373535, #0b3d91);
+}
+
+.homepage-left h1,
+.homepage-left h3 {
+  margin-bottom: 1.5rem;
+}
+
+.homepage-buttons {
+  margin-bottom: 2rem;
+}
+
+.homepage-buttons button {
+  margin-right: 1rem;
+  padding: 0.6rem 1.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px; /* Oval shape */
+  border: none;
+  background-color: #0b3d91;
+  color: white;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.homepage-buttons button:hover {
+  background-color: #1464d2;
+  transform: scale(1.05); /* subtle pop effect */
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}

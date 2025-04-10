@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/identity.css';
 
 function UserInfoForm() {
   const navigate = useNavigate();
@@ -84,12 +85,14 @@ function UserInfoForm() {
 
   return (
     <div className="container mt-5">
-      <div className="card shadow p-4">
-        <h3 className="mb-4">Step 1: Tell us about yourself</h3>
+      <div className="form_background">
+        <h3 className="mb-4 text-center text-white">
+          Step 1: Tell us about yourself
+        </h3>
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             <div className="col-md-6">
-              <label className="form-label">Name</label>
+              <label className="form-label text-white">Name</label>
               <input
                 className="form-control"
                 name="name"
@@ -98,7 +101,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">Phone</label>
+              <label className="form-label text-white">Phone</label>
               <input
                 className="form-control"
                 name="phone"
@@ -107,7 +110,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">Email</label>
+              <label className="form-label text-white">Email</label>
               <input
                 className="form-control"
                 name="email"
@@ -117,7 +120,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-3">
-              <label className="form-label">Age</label>
+              <label className="form-label text-white">Age</label>
               <input
                 className="form-control"
                 name="age"
@@ -127,7 +130,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-3">
-              <label className="form-label">Gender</label>
+              <label className="form-label text-white">Gender</label>
               <input
                 className="form-control"
                 name="gender"
@@ -136,7 +139,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">City</label>
+              <label className="form-label text-white">City</label>
               <input
                 className="form-control"
                 name="city"
@@ -145,7 +148,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">State</label>
+              <label className="form-label text-white">State</label>
               <input
                 className="form-control"
                 name="state"
@@ -154,7 +157,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label">Zip Code</label>
+              <label className="form-label text-white">Zip Code</label>
               <input
                 className="form-control"
                 name="zip"
@@ -165,7 +168,7 @@ function UserInfoForm() {
             </div>
 
             <div className="col-12 mt-4">
-              <h5>Streaming Services</h5>
+              <h5 className="text-white">Streaming Services</h5>
               {streamingServices.map(({ name, label }) => (
                 <div className="form-check form-check-inline" key={name}>
                   <input
@@ -185,12 +188,12 @@ function UserInfoForm() {
           </div>
 
           <div className="d-grid mt-4">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-login">
               Next
             </button>
           </div>
 
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
+          {error && <div className="error mt-3">{error}</div>}
         </form>
       </div>
     </div>

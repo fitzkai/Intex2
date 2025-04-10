@@ -1,6 +1,7 @@
+import "../css/WelcomeBand.css"
 function WelcomeBand() {
   return (
-    <div className="row bg-primary text-white">
+    <div className="welcome-band" >
       <h1>CineNiche</h1>
     </div>
   );
