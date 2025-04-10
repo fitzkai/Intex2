@@ -17,7 +17,7 @@ namespace Intex2.Data
             modelBuilder.Entity<DetailRecommendation>(entity =>
             {
                 entity.HasNoKey();
-                entity.ToTable("Reccomendations", "dbo");
+                entity.ToTable("Recommendations", "dbo");
             });
         }
     }

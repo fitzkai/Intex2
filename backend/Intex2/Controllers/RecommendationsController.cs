@@ -19,7 +19,7 @@ namespace Intex2.Controllers
         }
 
         [HttpGet("{showId}")]
-        public async Task<IActionResult> GetRecommendations(int showId)
+        public async Task<IActionResult> GetRecommendations(long showId)
         {
             var recommendation = await _context.DetailRecommendations
                 .FirstOrDefaultAsync(r => r.ShowId == showId);
