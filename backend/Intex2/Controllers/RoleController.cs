@@ -17,7 +17,7 @@ public class RoleController : Controller
         _roleManager = roleManager;
         _userManager = userManager;
     }
-    
+
     [HttpPost("AddRole")]
     public async Task<IActionResult> AddRole(string roleName)
     {
@@ -70,7 +70,7 @@ public class RoleController : Controller
         return StatusCode(500, "An error occurred while assigning the role.");
     }
     [HttpGet("CheckRoles")]
-    [Authorize]
+    //[Authorize]
     public IActionResult CheckRoles()
     {
         return Ok(new
