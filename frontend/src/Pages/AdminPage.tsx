@@ -5,7 +5,7 @@ import NewMovieForm from '../components/NewMovieForm';
 import EditMovieForm from '../components/EditMovieForm';
 import Pagination from '../context/Pagination';
 import { Accordion } from 'react-bootstrap';
-import AuthorizeView from '../components/AuthorizeView';
+// import AuthorizeView from '../components/AuthorizeView';
 
 const AdminPage = () => {
   const [movies, setMovies] = useState<MoviesTitle[]>([]);
