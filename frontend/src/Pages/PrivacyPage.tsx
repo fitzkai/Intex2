@@ -8,7 +8,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: '40px auto',
     padding: '0 20px',
     lineHeight: 1.6,
-    color: '#333',
+    color: '#FFFFFF',
     textAlign: 'left',
   },
 };
@@ -111,10 +111,9 @@ const PrivacyPolicy: React.FC = () => {
           <h2>8. Contact Us</h2>
           <p>If you have questions or concerns, please contact us at:</p>
           <p>
-            📧{' '}
-            <a href="mailto:your-email@example.com">your-email@example.com</a>
+            <a href="mailto:admin@cineniche.com">Email: admin@cineniche.com</a>
             <br />
-            📍 Your City, State
+            Provo, Utah
           </p>
         </section>
 
@@ -156,7 +155,7 @@ const PrivacyPolicy: React.FC = () => {
           </ul>
           <p>
             To exercise these rights, contact us at{' '}
-            <a href="mailto:your-email@example.com">your-email@example.com</a>.
+            <a href="mailto:admin@cineniche.com">admin@cineniche.com</a>.
           </p>
         </section>
 
