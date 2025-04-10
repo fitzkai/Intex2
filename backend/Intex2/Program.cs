@@ -29,8 +29,8 @@ builder.Services.AddHttpClient<AzureMLService>();
 
 builder.Services.AddAuthorization();
 
-//builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
