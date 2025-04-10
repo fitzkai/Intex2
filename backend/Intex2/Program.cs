@@ -81,7 +81,7 @@ app.UseCors("AllowReactApp");
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection(); // You can disable this temporarily
 
-app.Use(async (context, next) =>
+/*app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy",
         "default-src 'self'; " +
@@ -96,7 +96,7 @@ app.Use(async (context, next) =>
         "form-action 'self'; " +
         "frame-src 'self' https://accounts.google.com https://oauth2.googleapis.com;");
     await next();
-});
+});*/
 
 app.UseAuthentication();
 app.UseAuthorization();
