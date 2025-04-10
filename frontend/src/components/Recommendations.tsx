@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 interface RecommendedMovie {
-  showId: number;
   title: string;
   genres: string[];
 }
@@ -44,9 +43,27 @@ const Recommendations: React.FC = () => {
           throw new Error('Failed to fetch recommendations.');
         }
 
-        const recs = await response.json();
-        setMovies(recs);
-      } catch (err) {
+        const data = await response.json();
+        const genreMap = data.recommendations;
+
+        const transformed: RecommendedMovie[] = [];
+
+        for (const [genre, titles] of Object.entries(genreMap)) {
+          for (const title of titles as string[]) {
+            const existing = transformed.find((m) => m.title === title);
+            if (existing) {
+              existing.genres.push(genre);
+            } else {
+              transformed.push({
+                title,
+                genres: [genre],
+              });
+            }
+          }
+        }
+
+        setMovies(transformed);
+      } catch (err: any) {
         console.error(err);
         setError('Something went wrong fetching recommendations.');
       } finally {
@@ -65,7 +82,7 @@ const Recommendations: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Your Recommendations</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {movies.map((movie) => (
-          <div key={movie.showId} className="rounded-xl shadow-md p-4 bg-white">
+          <div className="rounded-xl shadow-md p-4 bg-white">
             <h2 className="text-xl font-semibold">{movie.title}</h2>
             <p className="text-sm text-gray-600">{movie.genres.join(', ')}</p>
           </div>
