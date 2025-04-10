@@ -60,7 +60,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
     policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net/")
+        policy.WithOrigins("http://localhost:3000", "http://localhost:3000/", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net", "https://victorious-ocean-0d29f0010.6.azurestaticapps.net/", "https://flaskapi-fi03.onrender.com/recommendations")
             .AllowCredentials()
             .AllowAnyMethod()
             .AllowAnyHeader()
