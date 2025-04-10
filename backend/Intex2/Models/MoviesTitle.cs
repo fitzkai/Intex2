@@ -7,7 +7,7 @@ namespace Intex2.Models;
 public partial class MoviesTitle
 {
     [Key]
-    public int ShowId { get; set; }
+    public long ShowId { get; set; }
 
     public string? Type { get; set; }
 

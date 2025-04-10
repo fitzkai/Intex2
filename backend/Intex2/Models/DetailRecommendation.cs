@@ -5,8 +5,8 @@ namespace Intex2.Models
     public class DetailRecommendation
     {
         [Column("show_id")]
-        public int ShowId { get; set; }
-        [Column("Title")] 
+        public long ShowId { get; set; }
+        [Column("Title")]
         public string Title { get; set; }
         [Column("CB_Recommendation_2")]
         public string Recommendation1 { get; set; }
