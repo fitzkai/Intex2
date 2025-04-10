@@ -56,7 +56,7 @@ export const UpdateMovie = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedMovie),
-      // credentials: 'include',
+      credentials: 'include',
     });
     return await response.json();
   } catch (error) {
@@ -68,7 +68,7 @@ export const DeleteMovie = async (movieId: number): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, {
       method: 'DELETE',
-      // credentials: 'include',
+      credentials: 'include',
     });
 
     if (!response.ok) {
