@@ -21,7 +21,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     setCurrentRating(value);
     setRating?.(value); // propagate to parent if needed
     try {
-      const response = await fetch('https://localhost:5000/Ratings/Rate', {
+      const response = await fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Ratings/Rate', {
         method: 'POST',
         credentials: 'include',
         headers: {

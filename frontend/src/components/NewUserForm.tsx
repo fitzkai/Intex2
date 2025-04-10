@@ -55,7 +55,7 @@ function NewUserForm() {
     setError('');
 
     try {
-      const res = await fetch('https://localhost:5000/Movies', {
+      const res = await fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

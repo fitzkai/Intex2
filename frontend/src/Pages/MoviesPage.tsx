@@ -27,7 +27,7 @@ const MoviesPage: React.FC = () => {
   const navigate = useNavigate();
   // Fetch movies once
   useEffect(() => {
-    fetch('https://localhost:5000/Movies/MoviesPage', {
+    fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage', {
       credentials: 'include',
     })
       .then(async (res) => {
