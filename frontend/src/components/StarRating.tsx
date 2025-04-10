@@ -21,17 +21,20 @@ const StarRating: React.FC<StarRatingProps> = ({
     setCurrentRating(value);
     setRating?.(value); // propagate to parent if needed
     try {
-      const response = await fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Ratings/Rate', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          showId,
-          value,
-        }),
-      });
+      const response = await fetch(
+        'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Ratings/Rate',
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            showId,
+            value,
+          }),
+        }
+      );
       if (!response.ok) {
         console.error('Failed to save rating');
       }

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/identity.css';
 
 function Register() {
   // state variables for email and passwords
@@ -24,6 +23,7 @@ function Register() {
     if (name === 'confirmPassword') setConfirmPassword(value);
   };
 
+  //please work
   // handle submit event for the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,12 +39,13 @@ function Register() {
       setError('');
       // post data to the /register api
       fetch(
-        'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/register',
+        'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/register',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({
             email: email,
             password: password,
@@ -67,66 +68,71 @@ function Register() {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="form_background">
-        <h3 className="mb-4 text-center">Register</h3>
-        <form onSubmit={handleSubmit}>
-          <div className="form-floating mb-3">
-            <input
-              className="form-control"
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-            />
-            <label htmlFor="email">Email address</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              className="form-control"
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              className="form-control"
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={handleChange}
-            />
-            <label htmlFor="confirmPassword">Confirm Password</label>
-          </div>
-
-          <div className="d-flex justify-content-center mb-3">
-            <button type="submit" className="btn-login">
+    <div className="container">
+      <div className="row">
+        <div className="card border-0 shadow rounded-3 ">
+          <div className="card-body p-4 p-sm-5">
+            <h5 className="card-title text-center mb-5 fw-light fs-5">
               Register
-            </button>
-          </div>
+            </h5>
+            <form onSubmit={handleSubmit}>
+              <div className="form-floating mb-3">
+                <input
+                  className="form-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                />
+                <label htmlFor="email">Email address</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  className="form-control"
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                />
+                <label htmlFor="password">Password</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  className="form-control"
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleChange}
+                />
+                <label htmlFor="confirmPassword">Confirm Password</label>
+              </div>
 
-          <div className="d-flex justify-content-center mb-2">
-            <button
-              type="button"
-              className="btn-login"
-              onClick={handleLoginClick}
-            >
-              Go to Login
-            </button>
+              <div className="d-grid mb-2">
+                <button
+                  className="btn btn-primary btn-login text-uppercase fw-bold"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </div>
+              <div className="d-grid mb-2">
+                <button
+                  className="btn btn-primary btn-login text-uppercase fw-bold"
+                  onClick={handleLoginClick}
+                >
+                  Go to Login
+                </button>
+              </div>
+            </form>
+            <strong>{error && <p className="error">{error}</p>}</strong>
           </div>
-
-          {error && <p className="error mt-3">{error}</p>}
-        </form>
+        </div>
       </div>
     </div>
   );
-
 }
 
 export default Register;

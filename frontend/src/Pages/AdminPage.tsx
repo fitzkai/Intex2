@@ -5,7 +5,8 @@ import NewMovieForm from '../components/NewMovieForm';
 import EditMovieForm from '../components/EditMovieForm';
 import Pagination from '../context/Pagination';
 import { Accordion } from 'react-bootstrap';
-import AuthorizeView from '../components/AuthorizeView';
+import BarNav from '../components/BarNav';
+// import AuthorizeView from '../components/AuthorizeView';
 
 const AdminPage = () => {
   const [movies, setMovies] = useState<MoviesTitle[]>([]);
@@ -49,7 +50,9 @@ const AdminPage = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <AuthorizeView>
+    // <AuthorizeView>
+    <>
+      <BarNav />
       <div className="container mt-4">
         <h1 className="mb-4">Admin - CineNiche</h1>
 
@@ -144,7 +147,8 @@ const AdminPage = () => {
           }}
         />
       </div>
-    </AuthorizeView>
+    </>
+    // </AuthorizeView>
   );
 };
 

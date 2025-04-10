@@ -23,14 +23,23 @@ function NewUserForm() {
     confirmPassword: '',
   });
 
+  //this betta work
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    const isCheckbox =
+      e.target instanceof HTMLInputElement && e.target.type === 'checkbox';
+    const checked = isCheckbox
+      ? (e.target as HTMLInputElement).checked
+      : undefined;
+
     setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: isCheckbox ? checked : value,
     }));
   };
 
@@ -55,11 +64,14 @@ function NewUserForm() {
     setError('');
 
     try {
-      const res = await fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        }
+      );
 
       if (res.ok) {
         setError('Successful registration. Please log in.');
@@ -149,14 +161,17 @@ function NewUserForm() {
                     <label htmlFor="gender" className="form-label">
                       Gender
                     </label>
-                    <input
-                      type="text"
+                    <select
                       id="gender"
                       name="gender"
-                      className="form-control"
+                      className="form-select"
                       value={form.gender}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value="">Select...</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
                   </div>
                 </div>
 

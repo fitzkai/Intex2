@@ -26,11 +26,14 @@ builder.Services.AddDbContext<MoviesContext>(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services
-    .AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -69,6 +72,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles();
 
 app.UseCors("AllowReactApp");
 
@@ -120,6 +125,5 @@ app.MapGet("/pingauth", (ClaimsPrincipal user) =>
     return Results.Json(new { email = email }); // Return as JSON
 }).RequireAuthorization();
 
-//something needs to be different
 
 app.Run();
