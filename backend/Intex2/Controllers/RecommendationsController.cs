@@ -29,20 +29,7 @@ namespace Intex2.Controllers
         {
             return await _context.Recommendations.ToListAsync();
         }
-
-
-        // GET: api/Recommendations/5
-        // ✅ 1. Keep exact string routes first
-        [HttpPost("ml")]
-        public async Task<IActionResult> GetMLRecommendations([FromBody] List<InputItem> input)
-        {
-            var result = await _mlService.GetRecommendationsAsync(input);
-
-            if (result == null || result.Results.WebServiceOutput0.Count == 0)
-                return StatusCode(500, "Failed to get predictions from Azure ML");
-
-            return Ok(result.Results.WebServiceOutput0.First());
-        }
+        
 
         // 🔍 2. Search by title
 
