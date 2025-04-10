@@ -46,7 +46,7 @@ function LoginPage() {
     try {
       const response = await fetch(loginUrl, {
         method: 'POST',
-        credentials: 'include', // ✅ Ensures cookies are sent & received
+        // credentials: 'include', // ✅ Ensures cookies are sent & received
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
