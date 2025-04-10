@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is413\\intex2\\backend\\intex2\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|c:\\users\\fitzk\\onedrive - brigham young university\\is413\\intex2\\backend\\intex2\\data\\recommendationscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACC08C9A-BA00-4768-B5E6-2CA75B280A00}|backend\\Intex2\\Intex2.csproj|solutionrelative:backend\\intex2\\data\\recommendationscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,14 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RecommendationsContext.cs",
-              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Data\\RecommendationsContext.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\RecommendationsContext.cs",
-              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Data\\RecommendationsContext.cs",
-              "RelativeToolTip": "backend\\Intex2\\Data\\RecommendationsContext.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBcAAAABAAAAAAAAAA==",
+              "Title": "MoviesController.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Controllers\\MoviesController.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Controllers\\MoviesController.cs",
+              "RelativeToolTip": "backend\\Intex2\\Controllers\\MoviesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgAAACcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T16:53:34.364Z",
+              "WhenOpened": "2025-04-10T18:31:25.49Z",
               "EditorCaption": ""
             },
             {
@@ -48,6 +52,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "RecommendationsContext.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Data\\RecommendationsContext.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Data\\RecommendationsContext.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Data\\RecommendationsContext.cs",
+              "RelativeToolTip": "backend\\Intex2\\Data\\RecommendationsContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T16:53:34.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\appsettings.json",
               "RelativeDocumentMoniker": "backend\\Intex2\\appsettings.json",
@@ -55,8 +72,7 @@
               "RelativeToolTip": "backend\\Intex2\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-10T04:03:31.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-10T04:03:31.947Z"
             }
           ]
         }
