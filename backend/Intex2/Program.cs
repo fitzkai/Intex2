@@ -123,5 +123,6 @@ app.MapGet("/pingauth", (ClaimsPrincipal user) =>
     return Results.Json(new { email = email }); // Return as JSON
 }).RequireAuthorization();
 
+//something needs to be different
 
 app.Run();
