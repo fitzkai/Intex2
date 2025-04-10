@@ -23,14 +23,19 @@ const HomePage = () => {
         </div>
 
         <div className="row mt-10">
-          <div className="col-md-6"></div>
-          <div className="homepage-right">
-            <img src="/images/Ganglands.jpg" alt="Movie 1" className="poster" />
-            <img src="/images/.jpg" alt="Movie 2" className="poster" />
+          <div className="col-md-6">
+            <div className="homepage-right">
+              <img
+                src="/images/Ganglands.jpg"
+                alt="Movie 1"
+                className="poster"
+              />
+              <img src="/images/.jpg" alt="Movie 2" className="poster" />
+            </div>
           </div>
         </div>
       </div>
-      <footer>
+      <footer className="footer">
         <p>
           We value your privacy. Learn more about our steps to keep you safe in
           our <Link to="/privacy">privacy policy</Link>.

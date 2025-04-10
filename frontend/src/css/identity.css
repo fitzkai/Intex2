@@ -6,10 +6,14 @@ body {
   min-width: 500px;
 }
 
+.page-content {
+  padding-top: 4.5rem; /* Adjust based on navbar height */
+}
+
 /* Standard form container */
 .form_background {
   background-color: #ffffff; /* White background */
-  color: #1a1a1a;            /* Black text */
+  color: #1a1a1a; /* Black text */
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -52,7 +56,9 @@ body {
   background-color: #0b3d91;
   color: rgb(251, 248, 248);
   border: 1px solid #0b3d91;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btn-login:hover {
@@ -81,4 +87,34 @@ body {
   font-weight: bold;
   text-align: center;
   margin-top: 1rem;
+}
+/* Narrower form container */
+.card {
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+  color: #1a1a1a;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-next {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 50px;
+  background-color: #1464d2; /* lighter than .btn-login */
+  color: white;
+  border: none;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  height: 55px;
+  width: 65%;
+  align-items: center;
+}
+
+.btn-next:hover {
+  background-color: #1c7ff0;
+  transform: scale(1.05);
 }

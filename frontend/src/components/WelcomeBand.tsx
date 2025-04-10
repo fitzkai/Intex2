@@ -1,9 +1,12 @@
-import "../css/WelcomeBand.css"
-function WelcomeBand() {
+import '../css/WelcomeBand.css';
+
+function WelcomeBanner() {
   return (
-    <div className="welcome-band" >
-      <h1>CineNiche</h1>
+    <div className="welcome-banner">
+      <h1 className="banner-title">CineNiche</h1>
+      <p className="banner-subtitle">Stream. Discover. Repeat.</p>
     </div>
   );
 }
-export default WelcomeBand;
+
+export default WelcomeBanner;

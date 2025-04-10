@@ -86,13 +86,11 @@ function UserInfoForm() {
   return (
     <div className="container mt-5">
       <div className="form_background">
-        <h3 className="mb-4 text-center text-white">
-          Step 1: Tell us about yourself
-        </h3>
+        <h3 className="mb-4 text-center">Step 1: Tell us about yourself</h3>
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             <div className="col-md-6">
-              <label className="form-label text-white">Name</label>
+              <label className="form-label">Name</label>
               <input
                 className="form-control"
                 name="name"
@@ -101,7 +99,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label text-white">Phone</label>
+              <label className="form-label">Phone</label>
               <input
                 className="form-control"
                 name="phone"
@@ -110,7 +108,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label text-white">Email</label>
+              <label className="form-label">Email</label>
               <input
                 className="form-control"
                 name="email"
@@ -120,7 +118,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-3">
-              <label className="form-label text-white">Age</label>
+              <label className="form-label">Age</label>
               <input
                 className="form-control"
                 name="age"
@@ -130,7 +128,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-3">
-              <label className="form-label text-white">Gender</label>
+              <label className="form-label">Gender</label>
               <input
                 className="form-control"
                 name="gender"
@@ -139,7 +137,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label text-white">City</label>
+              <label className="form-label">City</label>
               <input
                 className="form-control"
                 name="city"
@@ -148,7 +146,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label text-white">State</label>
+              <label className="form-label">State</label>
               <input
                 className="form-control"
                 name="state"
@@ -157,7 +155,7 @@ function UserInfoForm() {
               />
             </div>
             <div className="col-md-4">
-              <label className="form-label text-white">Zip Code</label>
+              <label className="form-label">Zip Code</label>
               <input
                 className="form-control"
                 name="zip"
@@ -168,7 +166,7 @@ function UserInfoForm() {
             </div>
 
             <div className="col-12 mt-4">
-              <h5 className="text-white">Streaming Services</h5>
+              <h5>Streaming Services</h5>
               {streamingServices.map(({ name, label }) => (
                 <div className="form-check form-check-inline" key={name}>
                   <input
@@ -187,8 +185,8 @@ function UserInfoForm() {
             </div>
           </div>
 
-          <div className="d-grid mt-4">
-            <button type="submit" className="btn btn-login">
+          <div className="d-flex justify-content-center mt-4">
+            <button type="submit" className="btn-next">
               Next
             </button>
           </div>
