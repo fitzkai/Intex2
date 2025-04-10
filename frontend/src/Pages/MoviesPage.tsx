@@ -27,19 +27,22 @@ const MoviesPage: React.FC = () => {
   const navigate = useNavigate();
   // Fetch movies once
   useEffect(() => {
-    fetch(
-      'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage',
-      {
-        credentials: 'include',
-      }
-    )
-      .then((res) => res.json())
+    fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage', {
+      credentials: 'include',
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(`Backend error: ${res.status} ${errorText}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         setAllMovies(data);
         setVisibleMovies(data.slice(0, PAGE_SIZE));
-        console.log(data.imagePath);
+        console.log(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Error loading movies:', err));
   }, []);
   // Scroll handler
   useEffect(() => {
