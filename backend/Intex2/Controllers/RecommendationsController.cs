@@ -44,7 +44,7 @@ namespace Intex2.Controllers
             return Ok(result.Results.WebServiceOutput0.First());
         }
 
-// 🔍 2. Search by title
+        // 🔍 2. Search by title
 
         // GET: api/Recommendations/search?title=Inception
 
@@ -59,7 +59,7 @@ namespace Intex2.Controllers
         }
 
 
-// 🔢 3. Route with parameter goes LAST
+        // 🔢 3. Route with parameter goes LAST
 
         [HttpGet("Title/{title}")]
         public async Task<ActionResult<Recommendation>> GetMovieByTitle(string title)
@@ -76,7 +76,7 @@ namespace Intex2.Controllers
 
         public class RecommendationWithMoviesDto
         {
-            public int ShowId { get; set; }
+            public long ShowId { get; set; }
             public string? Title { get; set; }
             public List<MoviesTitle> RecommendedMovies { get; set; } = new();
         }
