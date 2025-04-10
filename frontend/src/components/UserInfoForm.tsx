@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/identity.css';
 
 function UserInfoForm() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function UserInfoForm() {
       return;
     }
 
-    fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/AddUserInfo', {
+    fetch('https://localhost:5000/Movies/AddUserInfo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -84,8 +85,8 @@ function UserInfoForm() {
 
   return (
     <div className="container mt-5">
-      <div className="card shadow p-4">
-        <h3 className="mb-4">Step 1: Tell us about yourself</h3>
+      <div className="form_background">
+        <h3 className="mb-4 text-center">Step 1: Tell us about yourself</h3>
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
             <div className="col-md-6">
@@ -184,13 +185,13 @@ function UserInfoForm() {
             </div>
           </div>
 
-          <div className="d-grid mt-4">
-            <button type="submit" className="btn btn-primary">
+          <div className="d-flex justify-content-center mt-4">
+            <button type="submit" className="btn-next">
               Next
             </button>
           </div>
 
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
+          {error && <div className="error mt-3">{error}</div>}
         </form>
       </div>
     </div>
