@@ -66,7 +66,7 @@ namespace Intex2.Controllers
 
         [HttpPut("UpdateMovie/{ShowId}")]
         /*[Authorize]*/
-        public IActionResult UpdateMovie(int ShowId, [FromBody] MoviesTitle updatedMovie)
+        public IActionResult UpdateMovie(long ShowId, [FromBody] MoviesTitle updatedMovie)
         {
             var existingMovie = _moviesContext.MoviesTitles.Find(ShowId);
 
@@ -85,7 +85,7 @@ namespace Intex2.Controllers
 
         [HttpDelete("DeleteMovie/{ShowId}")]
         /*[Authorize]*/
-        public IActionResult DeleteMovie(int ShowId)
+        public IActionResult DeleteMovie(long ShowId)
         {
             var movie = _moviesContext.MoviesTitles.Find(ShowId);
 
