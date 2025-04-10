@@ -118,7 +118,7 @@ namespace Intex2.Controllers
                         m.Title,
                         m.Description,
                         Genre = string.Join(", ", matchedGenres),
-                        ImagePath = $"/images/movie-posters/{Uri.EscapeDataString(SanitizeFileName(m.Title))}.jpg"
+                        ImagePath = $"https://moviepostersintex48.blob.core.windows.net/movieposters/{Uri.EscapeDataString(SanitizeFileName(m.Title))}.jpg";
                     };
                 })
                 .ToList();
@@ -152,7 +152,8 @@ namespace Intex2.Controllers
                 movieEntity.Duration,
                 movieEntity.Description,
                 Genre = string.Join(", ", matchedGenres),
-                ImagePath = $"/images/movie-posters/{Uri.EscapeDataString(SanitizeFileName(movieEntity.Title))}.jpg"
+                ImagePath = $"https://moviepostersintex48.blob.core.windows.net/movieposters/{Uri.EscapeDataString(SanitizeFileName(m.Title))}.jpg";
+
             };
             return Ok(movie);
         }
