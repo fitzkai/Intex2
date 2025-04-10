@@ -585,26 +585,14 @@ C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/o
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/obj/Debug/net8.0/Intex2.pdb
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/obj/Debug/net8.0/Intex2.genruntimeconfig.cache
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/obj/Debug/net8.0/ref/Intex2.dll
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/web.config
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/appsettings.Development.json
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/appsettings.json
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/Intex2.deps.json
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/Intex2.runtimeconfig.json
-C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/publish/Intex2.staticwebassets.endpoints.json
 C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/Movies.sqlite
 C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/bin/Debug/net8.0/recommendations.sqlite
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Movies.sqlite
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/recommendations.sqlite
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\appsettings.Development.json
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\Intex2.staticwebassets.endpoints.json
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\Intex2.staticwebassets.endpoints.json
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\recommendations.sqlite
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\web.config
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\appsettings.json
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\appsettings.json
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\Intex2.deps.json
-C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\publish\Intex2.runtimeconfig.json
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\Movies.sqlite
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\Intex2.exe
 C:\Users\fitzk\OneDrive - Brigham Young University\IS413\Intex2\backend\Intex2\bin\Debug\net8.0\Intex2.deps.json
