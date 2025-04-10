@@ -22,7 +22,10 @@ export default defineConfig({
     },
 
     cors: {
-      origin: 'http://localhost:3000',
+      origin: [
+        'http://localhost:3000',
+        'https://victorious-ocean-0d29f0010.6.azurestaticapps.net',
+      ],
       credentials: true,
     },
   },
