@@ -26,5 +26,3 @@ dist-ssr
 public/images/*
 **/obj/
 **/bin/
-
-appsettings.json
