@@ -4,7 +4,6 @@ using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using RootkitAuth.API.Services;
 using Intex2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +22,6 @@ builder.Services.AddDbContext<RecommendationsContext>(options =>
 
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));
-
-builder.Services.AddHttpClient<AzureMLService>();
 
 
 builder.Services.AddAuthorization();
