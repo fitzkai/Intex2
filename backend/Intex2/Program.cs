@@ -18,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
 
 builder.Services.AddDbContext<RecommendationsContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("RecommendationsConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RecommendationsConnection")));
 
 
 builder.Services.AddDbContext<MoviesContext>(options =>
@@ -120,7 +120,7 @@ app.MapIdentityApi<IdentityUser>();
 app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> signInManager) =>
 {
     await signInManager.SignOutAsync();
-    
+
     // Ensure authentication cookie is removed
     context.Response.Cookies.Delete(".AspNetCore.Identity.Application", new CookieOptions
     {
@@ -137,7 +137,7 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
 app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
 {
     Console.WriteLine($"User authenticated? {user.Identity?.IsAuthenticated}");
-    
+
     if (!user.Identity?.IsAuthenticated ?? false)
     {
         Console.WriteLine("Unauthorized request to /pingauth");

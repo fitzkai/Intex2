@@ -8,39 +8,39 @@ namespace Intex2.Models
     {
         [Key]
         [Column("show_id")]
-        public int ShowId { get; set; }
+        public long ShowId { get; set; }
 
         [Column("title")]
         public string? Title { get; set; }
 
-        [Column("CB_Recommendation 2")]
+        [Column("CB_Recommendation_2")]
         public string? CB_Recommendation2 { get; set; }
 
-        [Column("CB_Recommendation 3")]
+        [Column("CB_Recommendation_3")]
         public string? CB_Recommendation3 { get; set; }
 
-        [Column("CB_Recommendation 4")]
+        [Column("CB_Recommendation_4")]
         public string? CB_Recommendation4 { get; set; }
 
-        [Column("CB_Recommendation 5")]
+        [Column("CB_Recommendation_5")]
         public string? CB_Recommendation5 { get; set; }
 
-        [Column("CB_Recommendation 6")]
+        [Column("CB_Recommendation_6")]
         public string? CB_Recommendation6 { get; set; }
 
-        [Column("CF_Recommendation 2")]
+        [Column("CF_Recommendation_2")]
         public string? CF_Recommendation2 { get; set; }
 
-        [Column("CF_Recommendation 3")]
+        [Column("CF_Recommendation_3")]
         public string? CF_Recommendation3 { get; set; }
 
-        [Column("CF_Recommendation 4")]
+        [Column("CF_Recommendation_4")]
         public string? CF_Recommendation4 { get; set; }
 
-        [Column("CF_Recommendation 5")]
+        [Column("CF_Recommendation_5")]
         public string? CF_Recommendation5 { get; set; }
 
-        [Column("CF_Recommendation 6")]
+        [Column("CF_Recommendation_6")]
         public string? CF_Recommendation6 { get; set; }
     }
 }
