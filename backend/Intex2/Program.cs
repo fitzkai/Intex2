@@ -32,7 +32,6 @@ builder.Services
 
 builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
-
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
@@ -102,17 +101,11 @@ app.MapIdentityApi<IdentityUser>();
 app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> signInManager) =>
 {
     await signInManager.SignOutAsync();
-
+    
     // Ensure authentication cookie is removed
-    context.Response.Cookies.Delete(".AspNetCore.Identity.Application", new CookieOptions
-    {
-        HttpOnly = true,
-        Secure = true,
-        SameSite = SameSiteMode.None
-    });
+    context.Response.Cookies.Delete(".AspNetCore.Identity.Application");
 
     return Results.Ok(new { message = "Logout successful" });
-
 }).RequireAuthorization();
 
 
@@ -122,20 +115,11 @@ app.MapGet("/pingauth", (ClaimsPrincipal user) =>
     {
         return Results.Unauthorized();
     }
-    var claims = user.Claims.Select(c => new { c.Type, c.Value }).ToList();
-    // Check specifically for the role claim type (usually ClaimTypes.Role or "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
-    var roles = claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
-    return Results.Ok(new
-    {
-        IsAuthenticated = user.Identity.IsAuthenticated,
-        AuthType = user.Identity.AuthenticationType, // Should show "Identity.Application"
-        UserName = user.Identity.Name, // Often the email
-        UserId = user.FindFirstValue(ClaimTypes.NameIdentifier),
-        Roles = roles, // Explicitly show roles
-        AllClaims = claims // Show all claims for debugging
-    });
-}).RequireAuthorization(); // Keep this to ensure the user IS authenticated
 
+    var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com"; // Ensure it's never null
+    return Results.Json(new { email = email }); // Return as JSON
+}).RequireAuthorization();
 
+//something needs to be different
 
 app.Run();
