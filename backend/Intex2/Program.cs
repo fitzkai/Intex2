@@ -134,23 +134,25 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
 }).RequireAuthorization();
 
 
-app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
+app.MapGet("/pingauth", (ClaimsPrincipal user) =>
 {
-    Console.WriteLine($"User authenticated? {user.Identity?.IsAuthenticated}");
-
     if (!user.Identity?.IsAuthenticated ?? false)
     {
-        Console.WriteLine("Unauthorized request to /pingauth");
         return Results.Unauthorized();
-
     }
-
-    var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com";
-    Console.WriteLine($"Authenticated User Email: {email}");
-
-    return Results.Json(new { email = email });
-
-}).RequireAuthorization();
+    var claims = user.Claims.Select(c => new { c.Type, c.Value }).ToList();
+    // Check specifically for the role claim type (usually ClaimTypes.Role or "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+    var roles = claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+    return Results.Ok(new
+    {
+        IsAuthenticated = user.Identity.IsAuthenticated,
+        AuthType = user.Identity.AuthenticationType, // Should show "Identity.Application"
+        UserName = user.Identity.Name, // Often the email
+        UserId = user.FindFirstValue(ClaimTypes.NameIdentifier),
+        Roles = roles, // Explicitly show roles
+        AllClaims = claims // Show all claims for debugging
+    });
+}).RequireAuthorization(); // Keep this to ensure the user IS authenticated
 
 
 
