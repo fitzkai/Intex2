@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intex2.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250408031349_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250410175854_CreateIdentityDB")]
+    partial class CreateIdentityDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
