@@ -1,27 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { fetchRecommendations, RecommendedMovie } from '../api/recommender';
+
+interface RecommendedMovie {
+  showId: number;
+  title: string;
+  genres: string[];
+}
+
+interface UserPrefs {
+  age: number;
+  gender: string;
+  platforms: {
+    [platform: string]: number;
+  };
+  genres: string[];
+}
 
 const Recommendations: React.FC = () => {
   const [movies, setMovies] = useState<RecommendedMovie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Replace this with real user preferences from auth/context later
-  const userPreferences = {
-    age: 28,
-    gender: 'female',
-    platforms: ['Netflix', 'Hulu'],
-    genres: ['Action', 'Romance'],
-  };
-
   useEffect(() => {
     const getRecommendations = async () => {
       try {
-        const recs = await fetchRecommendations(userPreferences);
+        const storedPrefs = localStorage.getItem('userPrefs');
+        if (!storedPrefs) {
+          setError('User preferences not found.');
+          return;
+        }
+
+        const preferences: UserPrefs = JSON.parse(storedPrefs);
+
+        const response = await fetch(
+          'https://flaskapi-fi03.onrender.com/recommendations',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(preferences),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch recommendations.');
+        }
+
+        const recs = await response.json();
         setMovies(recs);
       } catch (err) {
-        setError('Something went wrong fetching recommendations.');
         console.error(err);
+        setError('Something went wrong fetching recommendations.');
       } finally {
         setLoading(false);
       }
@@ -38,10 +65,7 @@ const Recommendations: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Your Recommendations</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {movies.map((movie) => (
-          <div
-            key={movie.showId}
-            className="rounded-xl shadow-md p-4 bg-white"
-          >
+          <div key={movie.showId} className="rounded-xl shadow-md p-4 bg-white">
             <h2 className="text-xl font-semibold">{movie.title}</h2>
             <p className="text-sm text-gray-600">{movie.genres.join(', ')}</p>
           </div>
