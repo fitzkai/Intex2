@@ -8,6 +8,7 @@ import AdminPage from './Pages/AdminPage';
 import HomePage from './Pages/HomePage';
 import MovieDetailPage from './Pages/MovieDetailPage';
 import UserInfoForm from './components/UserInfoForm';
+import Recommendations from './components/Recommendations';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/userinfo" element={<UserInfoForm />} />
+          <Route path="/recommendations" element={<Recommendations />} />
         </Routes>
       </Router>
     </>
