@@ -32,6 +32,8 @@ builder.Services.AddAuthorization();
 //builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
@@ -50,20 +52,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.Name = ".AspNetCore.Identity.Application";
     options.LoginPath = "/login";
-    options.AccessDeniedPath = "/unauthorized";
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-
-    // ✅ ADD THIS BLOCK
-    options.Events.OnRedirectToLogin = context =>
-    {
-        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        return Task.CompletedTask;
-    };
-    options.Events.OnRedirectToAccessDenied = context =>
-    {
-        context.Response.StatusCode = StatusCodes.Status403Forbidden;
-        return Task.CompletedTask;
-    };
 });
 
 
@@ -77,8 +66,6 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .WithExposedHeaders("Content-Security-Policy");
     }));
-
-builder.Services.AddSingleton<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
 var app = builder.Build();
 

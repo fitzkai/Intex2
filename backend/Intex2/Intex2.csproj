@@ -24,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Movies.db">
+    <None Update="Movies.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="recommendations.db">
+    <None Update="recommendations.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Identity.sqlite">
