@@ -26,21 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MoviesContext.cs",
-              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Models\\MoviesContext.cs",
-              "RelativeDocumentMoniker": "backend\\Intex2\\Models\\MoviesContext.cs",
-              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Models\\MoviesContext.cs",
-              "RelativeToolTip": "backend\\Intex2\\Models\\MoviesContext.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBQAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T04:50:40.886Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -55,6 +42,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MoviesContext.cs",
+              "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Models\\MoviesContext.cs",
+              "RelativeDocumentMoniker": "backend\\Intex2\\Models\\MoviesContext.cs",
+              "ToolTip": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\Models\\MoviesContext.cs",
+              "RelativeToolTip": "backend\\Intex2\\Models\\MoviesContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T04:50:40.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\fitzk\\OneDrive - Brigham Young University\\IS413\\Intex2\\backend\\Intex2\\appsettings.json",
@@ -63,8 +63,7 @@
               "RelativeToolTip": "backend\\Intex2\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-10T04:03:31.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-10T04:03:31.947Z"
             },
             {
               "$type": "Document",

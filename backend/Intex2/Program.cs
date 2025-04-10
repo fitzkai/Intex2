@@ -4,7 +4,6 @@ using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using RootkitAuth.API.Services;
 using Intex2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,19 +17,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
 
 builder.Services.AddDbContext<RecommendationsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RecommendationsConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DetailRecommendationsConnection")));
 
 
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));
 
-builder.Services.AddHttpClient<AzureMLService>();
-
 
 builder.Services.AddAuthorization();
 
-//builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
@@ -81,7 +78,7 @@ app.UseCors("AllowReactApp");
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection(); // You can disable this temporarily
 
-app.Use(async (context, next) =>
+/*app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy",
         "default-src 'self'; " +
@@ -96,7 +93,7 @@ app.Use(async (context, next) =>
         "form-action 'self'; " +
         "frame-src 'self' https://accounts.google.com https://oauth2.googleapis.com;");
     await next();
-});
+});*/
 
 app.UseAuthentication();
 app.UseAuthorization();
