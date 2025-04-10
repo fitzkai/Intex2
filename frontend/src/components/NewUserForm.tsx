@@ -23,6 +23,7 @@ function NewUserForm() {
     confirmPassword: '',
   });
 
+  //this betta work
   const [error, setError] = useState('');
   const navigate = useNavigate();
 

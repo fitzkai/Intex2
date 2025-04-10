@@ -23,6 +23,7 @@ function Register() {
     if (name === 'confirmPassword') setConfirmPassword(value);
   };
 
+  //please work
   // handle submit event for the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
