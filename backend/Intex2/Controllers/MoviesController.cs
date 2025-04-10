@@ -100,7 +100,6 @@ namespace Intex2.Controllers
         }
 
         [HttpGet("MoviesPage")]
-        [Authorize]
         public IActionResult GetMoviesPage()
         {
             var movies = _moviesContext.MoviesTitles
@@ -172,7 +171,7 @@ namespace Intex2.Controllers
                     .ToList()
             });
         }
-        
+
         [HttpPost("AddUserInfo")]
         [AllowAnonymous]
         public IActionResult AddUserInfo([FromBody] MoviesUser user)
