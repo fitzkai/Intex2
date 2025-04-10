@@ -90,11 +90,11 @@ const Recommendations: React.FC = () => {
       {Object.entries(movies).map(([genre, movieList]) => (
         <div key={genre} className="mb-8">
           <h2 className="text-xl font-semibold mb-2">{genre}</h2>
-          <div className="flex overflow-x-auto space-x-4 pb-2">
+          <div className="flex overflow-x-auto space-x-4 pb-2 w-full">
             {movieList.map((movie, index) => (
               <div
                 key={index}
-                className="min-w-[200px] flex-shrink-0 bg-white text-black rounded-lg shadow-md p-4"
+                className="min-w-[200px] max-w-[200px] flex-shrink-0 bg-white text-black rounded-lg shadow-md p-4"
               >
                 <h3 className="font-semibold text-lg">{movie.title}</h3>
                 <p className="text-sm text-gray-600">
