@@ -30,7 +30,7 @@ function AuthorizeView(props: { children: React.ReactNode }) {
 
         const data = await response.json();
 
-        if (data.email) {
+        if (data.userName) {
           setUser({ email: data.userName });
           setAuthorized(true);
         } else {
