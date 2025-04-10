@@ -181,6 +181,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: '1rem',
     borderRadius: '10px',
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+    color: '#000000',
   },
   search: {
     padding: '0.5rem 1rem',
@@ -210,6 +211,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     objectFit: 'cover',
     borderRadius: '8px',
     marginBottom: '0.5rem',
+    color: '#000000',
   },
 };
 export default MoviesPage;

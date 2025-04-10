@@ -72,7 +72,7 @@ function UserInfoForm() {
         return;
       }
 
-      // 2. Build recommender payload
+      // 2. Store recommender payload for later use
       const recommenderPayload = {
         age: formData.age,
         gender: formData.gender,
@@ -89,30 +89,13 @@ function UserInfoForm() {
         genres: ['Action', 'Comedies', 'Dramas', 'Fantasy', 'Family'],
       };
 
-      // 3. Call Flask recommender
-      const recRes = await fetch(
-        'https://flaskapi-fi03.onrender.com/recommendations',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(recommenderPayload),
-        }
-      );
+      localStorage.setItem('userPrefs', JSON.stringify(recommenderPayload));
 
-      if (!recRes.ok) {
-        throw new Error('Could not load recommendations.');
-      }
-
-      const recData = await recRes.json();
-
-      // 4. Store recommendations in localStorage or global context
-      localStorage.setItem('recommendations', JSON.stringify(recData));
-
-      // 5. Redirect to sign-in
-      navigate('/register'); // or your sign-in route
-    } catch (err) {
-      console.error(err);
-      setError('Something went wrong. Please try again.');
+      // 3. Redirect to sign-in
+      navigate('/register');
+    } catch (err: any) {
+      console.error('Error during submission:', err);
+      setError(err?.message || 'Something went wrong. Please try again.');
     }
   };
 
