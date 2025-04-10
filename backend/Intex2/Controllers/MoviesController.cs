@@ -173,7 +173,6 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddUserInfo")]
-        [AllowAnonymous]
         public IActionResult AddUserInfo([FromBody] MoviesUser user)
         {
             try

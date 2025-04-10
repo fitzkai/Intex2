@@ -297,7 +297,6 @@ C:/Users/fitzk/OneDrive - Brigham Young University/IS413/Intex2/backend/Intex2/o
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/publish/Intex2.runtimeconfig.json
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/publish/Intex2.staticwebassets.endpoints.json
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Intex2.staticwebassets.endpoints.json
-/Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Identity.sqlite
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Intex2
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Intex2.deps.json
 /Users/rebeccaharrison/Desktop/school/winter 2025/Intex2/backend/Intex2/bin/Debug/net8.0/Intex2.runtimeconfig.json
