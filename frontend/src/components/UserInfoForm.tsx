@@ -47,7 +47,7 @@ function UserInfoForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.age || !formData.city || !formData.gender) {
@@ -55,21 +55,65 @@ function UserInfoForm() {
       return;
     }
 
-    fetch('https://localhost:5000/Movies/AddUserInfo', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => {
-        if (res.ok) {
-          navigate('/register');
-        } else {
-          res.text().then(setError); // show backend error if available
+    try {
+      // 1. Save user info to backend (C# API)
+      const saveRes = await fetch(
+        'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/AddUserInfo',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
         }
-      })
-      .catch(() => {
-        setError('Unable to connect to server.');
-      });
+      );
+
+      if (!saveRes.ok) {
+        const errorMsg = await saveRes.text();
+        setError(errorMsg);
+        return;
+      }
+
+      // 2. Build recommender payload
+      const recommenderPayload = {
+        age: formData.age,
+        gender: formData.gender,
+        platforms: {
+          Netflix: formData.netflix,
+          'Amazon Prime': formData.amazonPrime,
+          Hulu: formData.hulu,
+          'Disney+': formData.disney,
+          'Apple TV+': formData.appleTv,
+          'Paramount+': formData.paramount,
+          Peacock: formData.peacock,
+          Max: formData.max,
+        },
+        genres: ['Action', 'Comedies', 'Dramas', 'Fantasy', 'Family'],
+      };
+
+      // 3. Call Flask recommender
+      const recRes = await fetch(
+        'https://flaskapi-fi03.onrender.com/recommendations',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(recommenderPayload),
+        }
+      );
+
+      if (!recRes.ok) {
+        throw new Error('Could not load recommendations.');
+      }
+
+      const recData = await recRes.json();
+
+      // 4. Store recommendations in localStorage or global context
+      localStorage.setItem('recommendations', JSON.stringify(recData));
+
+      // 5. Redirect to sign-in
+      navigate('/register'); // or your sign-in route
+    } catch (err) {
+      console.error(err);
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   const streamingServices = [
