@@ -9,19 +9,17 @@ const HomePage = () => {
     <>
       <div className="page-wrapper">
         <WelcomeBand />
-        <div className="row align-items-center">
-          <div className="col-12 col-md-6">
-            <div className="homepage-left">
-              <h1>Go no further for all your favorites!</h1>
-              <h3>Sign up today or login in with your account here!</h3>
-              <div className="homepage-buttons">
-                <button onClick={() => navigate('/login')}>Login</button>
-                <button onClick={() => navigate('/userinfo')}>Register</button>
-              </div>
+        <div className="homepage-container homepage-flex">
+          <div className="homepage-left">
+            <h1>Go no further for all your favorites!</h1>
+            <h3>Sign up today or login with your account here!</h3>
+            <div className="homepage-buttons">
+              <button onClick={() => navigate('/login')}>Login</button>
+              <button onClick={() => navigate('/userinfo')}>Register</button>
             </div>
           </div>
-          <div className="col-12 col-md-6">
-            <div className="homepage-right poster-grid">
+          <div className="homepage-right">
+            <div className="poster-grid">
               <img
                 src="https://moviepostersintex48.blob.core.windows.net/movieposters/Grown Ups.jpg"
                 alt="Grown-ups"
