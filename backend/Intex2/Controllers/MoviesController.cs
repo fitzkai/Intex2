@@ -57,7 +57,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddMovie")]
-        []
+        //[Authorize]
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
         {
             _moviesContext.MoviesTitles.Add(newMovie);
