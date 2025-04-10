@@ -29,17 +29,20 @@
 /* Poster styling */
 .poster-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 1.5rem;
+  justify-items: center;
 }
+
 
 .poster {
   width: 100%;
   height: auto;
+  max-width: 300px; /* or whatever works for your layout */
   object-fit: cover;
   border-radius: 8px;
 }
+
 
 /* Ensure posters appear stacked on mobile, side-by-side on desktop */
 .homepage-right {
