@@ -1,13 +1,24 @@
 using Microsoft.EntityFrameworkCore;
-using Intex2.Models; // or wherever your model class will go
+using Intex2.Models;
 
 namespace Intex2.Data
 {
     public class RecommendationsContext : DbContext
     {
         public RecommendationsContext(DbContextOptions<RecommendationsContext> options)
-            : base(options) { }
+            : base(options)
+        {
+        }
 
-        public DbSet<Recommendation> Recommendations { get; set; }
+        public DbSet<DetailRecommendation> DetailRecommendations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DetailRecommendation>(entity =>
+            {
+                entity.HasNoKey();
+                entity.ToTable("RecommendationsDB");
+            });
+        }
     }
 }

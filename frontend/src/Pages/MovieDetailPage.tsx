@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import StarRating from '../components/StarRating';
 import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
+import { RecommendationRow } from '../types/Movie'
 
 interface Movie {
   showId: string;
@@ -19,10 +20,14 @@ interface Movie {
   imagePath: string;
 }
 
+interface RecommendedMovie {
+  title: string;
+}
+
 const MovieDetailPage: React.FC = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
-  const [recommendedMovies, setRecommendedMovies] = useState<Movie[]>([]);
+  const [recommendedMovies, setRecommendedMovies] = useState<RecommendedMovie[]>([]);
 
   const navigate = useNavigate();
 
@@ -47,17 +52,20 @@ const MovieDetailPage: React.FC = () => {
         // Fetch recommendations by showId
         fetch(`https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/api/Recommendations/${data.showId}`)
           .then((res) => res.json())
-          .then((rec) => {
-            console.log('🎬 Recommended full movies:', rec.recommendedMovies);
-            setRecommendedMovies(rec.recommendedMovies ?? []);
+          .then((rec: RecommendationRow) => {
+            const recommendedList: RecommendedMovie[] = [];
+
+            for (let i = 1; i <= 10; i++) {
+              const key = `recommendation${i}` as keyof RecommendationRow;
+              const title = rec[key];
+              if (title) {
+                recommendedList.push({ title: String(title) });
+              }
+            }
+
+            setRecommendedMovies(recommendedList);
           });
-      })
-      .catch((err) => {
-        console.error('Movie fetch failed:', err.message);
-        if (err.message.includes('401')) {
-          navigate('/login');
-        }
-      });
+  })
   }, [id, navigate]);
 
   if (!movie) return <p>Loading...</p>;
@@ -138,35 +146,32 @@ const MovieDetailPage: React.FC = () => {
             <StarRating showId={movie.showId} rating={0} />
           </div>
 
-          <div style={{ marginTop: '2rem' }}>
-            <h3>You might like...</h3>
-            <div className="d-flex flex-wrap gap-3">
-              {recommendedMovies.map((movie) => {
-
-                console.log('image path:', movie.imagePath);
-                return (
-                  <div key={movie.showId} style={{ width: '180px' }}>
-                    <img
-                      src={movie.imagePath}
-                      alt={movie.title}
-                      style={{
-                        width: '100%',
-                        borderRadius: '8px',
-                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
-                        marginBottom: '0.5rem',
-                      }}
-                    />
-                    <div>
-                      <strong>{movie.title}</strong>
-                      <p style={{ fontSize: '0.8rem', color: '#666' }}>
-                        {movie.genre}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Recommended Movies */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
+            {recommendedMovies.map((rec, index) => (
+              <div key={index} style={{ width: '180px', textAlign: 'center' }}>
+                <div
+                  style={{
+                    width: '100%',
+                    height: '250px',
+                    backgroundColor: '#f2f2f2',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#aaa',
+                    fontStyle: 'italic',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  image coming soon
+                </div>
+                <strong>{rec.title}</strong>
+              </div>
+            ))}
           </div>
+
 
           {/* Back Button */}
           <button
