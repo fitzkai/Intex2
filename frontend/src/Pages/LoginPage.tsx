@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../css/identity.css';
+import '../css/identity.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 function LoginPage() {
@@ -40,8 +40,8 @@ function LoginPage() {
     }
 
     const loginUrl = rememberme
-      ? 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useCookies=true'
-      : 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useSessionCookies=true';
+      ? 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/login?useCookies=true'
+      : 'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/login?useSessionCookies=true';
 
     try {
       const response = await fetch(loginUrl, {
@@ -53,16 +53,51 @@ function LoginPage() {
 
       // Ensure we only parse JSON if there is content
       let data = null;
-      const contentLength = response.headers.get('content-length');
-      if (contentLength && parseInt(contentLength, 10) > 0) {
+      try {
         data = await response.json();
+      } catch (err) {
+        // It's okay — maybe there's no JSON response
+        console.warn('No JSON body returned from login.');
       }
 
       if (!response.ok) {
         throw new Error(data?.message || 'Invalid email or password.');
       }
 
-      navigate('/MoviesPage');
+      // Build recommender payload (you can store this data in session/context too)
+      const recommenderPayload = {
+        age: data.age, // assuming your backend sends back age, gender, etc.
+        gender: data.gender,
+        platforms: {
+          Netflix: data.netflix ? 1 : 0,
+          'Amazon Prime': data.amazonPrime ? 1 : 0,
+          Hulu: data.hulu ? 1 : 0,
+          'Disney+': data.disney ? 1 : 0,
+          'Apple TV+': data.appleTv ? 1 : 0,
+          'Paramount+': data.paramount ? 1 : 0,
+          Peacock: data.peacock ? 1 : 0,
+          Max: data.max ? 1 : 0,
+        },
+        genres: ['Action', 'Comedies', 'Dramas', 'Fantasy', 'Family'], // Or let user choose
+      };
+
+      // Fetch recommendations from Flask
+      const recRes = await fetch('http://localhost:5050/recommendations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recommenderPayload),
+      });
+
+      if (!recRes.ok) {
+        throw new Error('Could not load recommendations.');
+      }
+
+      const recData = await recRes.json();
+
+      // Navigate to recommendations page with data
+      navigate('/recommendations', {
+        state: { recommendations: recData.recommendations },
+      });
     } catch (error: any) {
       setError(error.message || 'Error logging in.');
       console.error('Fetch attempt failed:', error);
@@ -70,90 +105,84 @@ function LoginPage() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="card border-0 shadow rounded-3 ">
-          <div className="card-body p-4 p-sm-5">
-            <h5 className="card-title text-center mb-5 fw-light fs-5">
-              Sign In
-            </h5>
-            <form onSubmit={handleSubmit}>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-                <label htmlFor="email">Email address</label>
-              </div>
-              <div className="form-floating mb-3">
-                <input
-                  className="form-control"
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                />
-                <label htmlFor="password">Password</label>
-              </div>
-
-              <div className="form-check mb-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="rememberme"
-                  name="rememberme"
-                  checked={rememberme}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label" htmlFor="rememberme">
-                  Remember password
-                </label>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-primary btn-login text-uppercase fw-bold"
-                  type="submit"
-                >
-                  Sign in
-                </button>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-primary btn-login text-uppercase fw-bold"
-                  onClick={handleRegisterClick}
-                >
-                  Register
-                </button>
-              </div>
-              <hr className="my-4" />
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-google btn-login text-uppercase fw-bold"
-                  type="button"
-                >
-                  <i className="fa-brands fa-google me-2"></i> Sign in with
-                  Google
-                </button>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-facebook btn-login text-uppercase fw-bold"
-                  type="button"
-                >
-                  <i className="fa-brands fa-facebook-f me-2"></i> Sign in with
-                  Facebook
-                </button>
-              </div>
-            </form>
-            {error && <p className="error">{error}</p>}
+    <div className="container mt-5">
+      <div className="form_background">
+        <h3 className="mb-4 text-center">Sign In</h3>
+        <h5 className="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+        <form onSubmit={handleSubmit}>
+          <div className="form-floating mb-3">
+            <input
+              className="form-control"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+            <label htmlFor="email">Email address</label>
           </div>
-        </div>
+          <div className="form-floating mb-3">
+            <input
+              className="form-control"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+            <label htmlFor="password">Password</label>
+          </div>
+
+          <div className="form-check mb-3">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="rememberme"
+              name="rememberme"
+              checked={rememberme}
+              onChange={handleChange}
+            />
+            <label className="form-check-label" htmlFor="rememberme">
+              Remember password
+            </label>
+          </div>
+
+          <div className="d-grid mb-2">
+            <button
+              className="btn btn-primary btn-login text-uppercase fw-bold"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </div>
+          <div className="d-grid mb-2">
+            <button
+              className="btn btn-primary btn-login text-uppercase fw-bold"
+              onClick={handleRegisterClick}
+            >
+              Register
+            </button>
+          </div>
+          <hr className="my-4" />
+          <div className="d-grid mb-2">
+            <button
+              className="btn btn-google btn-login text-uppercase fw-bold"
+              type="button"
+            >
+              <i className="fa-brands fa-google me-2"></i> Sign in with Google
+            </button>
+          </div>
+          <div className="d-grid mb-2">
+            <button
+              className="btn btn-facebook btn-login text-uppercase fw-bold"
+              type="button"
+            >
+              <i className="fa-brands fa-facebook-f me-2"></i> Sign in with
+              Facebook
+            </button>
+          </div>
+        </form>
+        {error && <p className="error">{error}</p>}
       </div>
     </div>
   );

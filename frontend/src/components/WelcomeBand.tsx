@@ -1,8 +1,14 @@
-function WelcomeBand() {
+import '../css/WelcomeBand.css';
+
+function WelcomeBanner() {
   return (
-    <div className="row bg-primary text-white">
-      <h1>CineNiche</h1>
+    <div className="page-content">
+      <div className="welcome-banner">
+        <h1 className="banner-title">CineNiche</h1>
+        <p className="banner-subtitle">Stream. Discover. Repeat.</p>
+      </div>
     </div>
   );
 }
-export default WelcomeBand;
+
+export default WelcomeBanner;

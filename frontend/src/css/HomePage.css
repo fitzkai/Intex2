@@ -1,0 +1,76 @@
+/* Homepage text */
+.homepage-left {
+  color: white;
+}
+
+/* Homepage layout (optional background if needed) */
+.homepage-container {
+  padding: 2rem 1rem;
+}
+
+/* Buttons */
+.homepage-buttons button {
+  margin-right: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: none;
+  background-color: #0b3d91;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.homepage-buttons button:hover {
+  background-color: #1464d2;
+  transform: scale(1.05);
+}
+
+/* Poster styling */
+.poster {
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure posters appear stacked on mobile, side-by-side on desktop */
+.homepage-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .homepage-right {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}
+.footer {
+  background-color: #373535;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem; /* smaller text */
+  border-top: 2px solid #0b3d91;
+  margin-top: auto;
+  width: 100%;
+}
+
+
+.footer a {
+  color: #66b2ff;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
