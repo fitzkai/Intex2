@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Intex2.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
 using Intex2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,14 +25,12 @@ builder.Services.AddDbContext<MoviesContext>(options =>
 
 builder.Services.AddAuthorization();
 
-//builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddTransient<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+/*builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders();*/
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -63,6 +60,8 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .WithExposedHeaders("Content-Security-Policy");
     }));
+
+builder.Services.AddSingleton<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
 var app = builder.Build();
 
@@ -108,22 +107,32 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
     await signInManager.SignOutAsync();
     
     // Ensure authentication cookie is removed
-    context.Response.Cookies.Delete(".AspNetCore.Identity.Application");
+    context.Response.Cookies.Delete(".AspNetCore.Identity.Application", new CookieOptions
+    {
+        HttpOnly = true,
+        Secure = false,
+        SameSite = SameSiteMode.None
+    });
 
     return Results.Ok(new { message = "Logout successful" });
 }).RequireAuthorization();
 
-
-app.MapGet("/pingauth", (ClaimsPrincipal user) =>
+app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
 {
+    Console.WriteLine($"User authenticated? {user.Identity?.IsAuthenticated}");
+    
     if (!user.Identity?.IsAuthenticated ?? false)
     {
+        Console.WriteLine("Unauthorized request to /pingauth");
         return Results.Unauthorized();
     }
 
-    var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com"; // Ensure it's never null
-    return Results.Json(new { email = email }); // Return as JSON
+    var email = user.FindFirstValue(ClaimTypes.Email) ?? "unknown@example.com";
+    Console.WriteLine($"Authenticated User Email: {email}");
+
+    return Results.Json(new { email = email });
 }).RequireAuthorization();
+
 
 
 app.Run();
