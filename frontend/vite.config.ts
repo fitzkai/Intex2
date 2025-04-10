@@ -11,10 +11,10 @@ export default defineConfig({
         "default-src 'self'; " +
         "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com; " +
         "style-src 'self' 'unsafe-inline' fonts.googleapis.com https://accounts.google.com; " +
-        "img-src 'self' data: https://localhost:5000 http://localhost:4000; https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/" +
+        "img-src 'self' data: https://localhost:5000 http://localhost:4000; https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/" +
         "frame-ancestors 'none'; " +
         "font-src 'self' fonts.gstatic.com data:; " +
-        "connect-src 'self' https://localhost:5000 https://accounts.google.com https://oauth2.googleapis.com; https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/" +
+        "connect-src 'self' https://localhost:5000 https://accounts.google.com https://oauth2.googleapis.com; https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/" +
         "object-src 'none'; " +
         "base-uri 'self'; " +
         "form-action 'self'; " +

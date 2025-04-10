@@ -54,7 +54,7 @@ function UserInfoForm() {
       return;
     }
 
-    fetch('https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/AddUserInfo', {
+    fetch('https://localhost:5000/Movies/AddUserInfo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
