@@ -17,7 +17,7 @@ namespace Intex2.Controllers
         public MoviesController(MoviesContext temp) => _moviesContext = temp;
 
         [HttpGet("AllMovies")]
-        [Authorize] //(Roles = "Administrator")
+        /*[Authorize] //(Roles = "Administrator")*/
         public IActionResult GetMovies(int pageSize = 10, int pageNum = 1)
         {
             var query = _moviesContext.MoviesTitles.AsQueryable();
@@ -56,7 +56,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddMovie")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult AddMovie([FromBody] MoviesTitle newMovie)
         {
             _moviesContext.MoviesTitles.Add(newMovie);
@@ -65,7 +65,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPut("UpdateMovie/{ShowId}")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult UpdateMovie(int ShowId, [FromBody] MoviesTitle updatedMovie)
         {
             var existingMovie = _moviesContext.MoviesTitles.Find(ShowId);
@@ -84,7 +84,7 @@ namespace Intex2.Controllers
         }
 
         [HttpDelete("DeleteMovie/{ShowId}")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult DeleteMovie(int ShowId)
         {
             var movie = _moviesContext.MoviesTitles.Find(ShowId);
@@ -99,7 +99,7 @@ namespace Intex2.Controllers
         }
 
         [HttpGet("MoviesPage")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult GetMoviesPage()
         {
             var movies = _moviesContext.MoviesTitles
@@ -126,7 +126,7 @@ namespace Intex2.Controllers
         }
 
         [HttpGet("MoviesPage/{id}")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult GetMovieById(int id)
         {
             var movieEntity = _moviesContext.MoviesTitles
@@ -159,7 +159,7 @@ namespace Intex2.Controllers
         }
 
         [HttpGet("CheckRoles")]
-        [Authorize]
+        /*[Authorize]*/
         public IActionResult CheckRoles()
         {
             return Ok(new
@@ -174,7 +174,7 @@ namespace Intex2.Controllers
         }
 
         [HttpPost("AddUserInfo")]
-        [AllowAnonymous]
+        /*[AllowAnonymous]*/
         public IActionResult AddUserInfo([FromBody] MoviesUser user)
         {
             try
