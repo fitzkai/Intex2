@@ -157,7 +157,7 @@ return (
         <div className="movie-carousel">
           {recommendedMovies.map((rec, index) => (
             <div key={index} className="recommendation-card">
-              <div>
+              <div className="recommendation-image-wrapper">
                 <img
                   src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(rec.title))}.jpg`}
                   alt={rec.title}
