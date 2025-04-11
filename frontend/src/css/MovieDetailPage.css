@@ -75,11 +75,12 @@
 .recommendation-card {
   width: 180px;
   text-align: center;
+  color: black;
 }
 
 .recommendation-image {
-  width: 100%;
-  height: 250px;
+  width: auto;
+  height: 220px;
   background-color: #f2f2f2;
   border-radius: 8px;
   display: flex;
@@ -99,3 +100,22 @@
   color: #fff;
   border: none;
 }
+
+.movie-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.movie-card {
+  flex: 0 1 calc(20% - 1rem); /* 5 per row with gap adjustment */
+  max-width: calc(20% - 1rem);
+}
+/* Hide scrollbar */
+.movie-carousel::-webkit-scrollbar {
+  display: none;
+}
+
