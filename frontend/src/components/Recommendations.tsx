@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../css/recommendations.css'
 
 interface RecommendedMovie {
   title: string;
@@ -16,6 +17,10 @@ interface UserPrefs {
 
 interface GroupedByGenre {
   [genre: string]: RecommendedMovie[];
+}
+
+function sanitizeFileName(title: string): string {
+  return title.replace(/[^\p{L}\p{Nd} ]+/gu, '');
 }
 
 const Recommendations: React.FC = () => {
@@ -93,8 +98,11 @@ const Recommendations: React.FC = () => {
           <div className="movie-carousel">
             {movieList.map((movie, index) => (
               <div key={index} className="movie-card">
+                <img
+                  src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                  alt={movie.title}
+                />
                 <h3 className="movie-title">{movie.title}</h3>
-                <p className="movie-genres">{movie.genres.join(', ')}</p>
               </div>
             ))}
           </div>

@@ -43,6 +43,16 @@ const BarNav = () => {
             Admin
           </NavLink>
           <NavLink
+            to="/recommendations"
+            className="nav-link"
+            style={({ isActive }) => ({
+              color: isActive ? '#0d6efd' : '#212529',
+              fontWeight: isActive ? '500' : '400',
+            })}
+          >
+            Admin
+          </NavLink>
+          <NavLink
             to="/privacy"
             className="nav-link"
             style={({ isActive }) => ({
