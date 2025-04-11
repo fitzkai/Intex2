@@ -71,6 +71,7 @@ const MovieDetailPage: React.FC = () => {
             }
 
             setRecommendedMovies(recommendedList);
+            console.log('Recommended movies:', recommendedList);
           });
       });
   }, [id, navigate]);
@@ -90,7 +91,7 @@ const MovieDetailPage: React.FC = () => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.4 }}
-        style={{ flex: '0 0 350px', maxWidth: '350px' }}
+        className='movie-poster'
       >
         <img
           src={movie.imagePath}
@@ -108,17 +109,10 @@ const MovieDetailPage: React.FC = () => {
       </motion.div>
 
       {/* Info */}
-      <div style={{ flex: '1 1 auto' }}>
-        <h1 style={{ marginBottom: '0.5rem' }}>{movie.title}</h1>
-        <p style={{ fontStyle: 'italic', color: '#777' }}>{movie.type}</p>
-        <ul
-          style={{
-            listStyle: 'none',
-            padding: 0,
-            lineHeight: '1.6',
-            textAlign: 'left',
-          }}
-        >
+      <div className='movie-info'>
+        <h1>{movie.title}</h1>
+        <p>{movie.type}</p>
+        <ul>
           <li>
             <strong>Director:</strong> {movie.director}
           </li>
@@ -145,19 +139,19 @@ const MovieDetailPage: React.FC = () => {
         </ul>
 
         {/* Description */}
-        <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+        <div className='movie-description'>
           <h3>Description</h3>
-          <p style={{ textAlign: 'left' }}>{movie.description}</p>
+          <p>{movie.description}</p>
         </div>
 
         {/* Star Rating */}
-        <div style={{ marginTop: '2rem' }}>
+        <div className='star-rating'>
           <h3>Seen this one? Rate it below!</h3>
           <StarRating showId={movie.showId} rating={0} />
         </div>
 
         {/* Recommended Movies */}
-        <div style={{ marginTop: '2rem' }}>
+        <div className='recommendations'>
           <h3>You might like...</h3>
           <div className="movie-carousel">
             {recommendedMovies.map((movie, index) => (
@@ -167,6 +161,7 @@ const MovieDetailPage: React.FC = () => {
                   alt={movie.title}
                 />
                 <h3 className="movie-title">{movie.title}</h3>
+
               </div>
             ))}
           </div>
@@ -174,14 +169,7 @@ const MovieDetailPage: React.FC = () => {
 
         {/* Back Button */}
         <button
-          style={{
-            marginTop: '2rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '5px',
-            backgroundColor: '#007BFF',
-            color: '#fff',
-            border: 'none',
-          }}
+          className='back-button'
           onClick={() => navigate('/MoviesPage')}
         >
           Back to Movies
