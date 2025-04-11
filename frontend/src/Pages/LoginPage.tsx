@@ -62,7 +62,7 @@ function LoginPage() {
         throw new Error(data?.message || 'Invalid email or password.');
       }
 
-      navigate('/recommendations'); // Redirect to recommendations page on success
+      navigate('/MoviesPage'); // Redirect to movies page on success
     } catch (error: any) {
       setError(error.message || 'Error logging in.');
       console.error('Fetch attempt failed:', error);
