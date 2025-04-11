@@ -19,6 +19,7 @@
 .movie-poster {
   flex: 0 0 350px;
   max-width: 350px;
+  padding-top: 20px;
 }
 
 .movie-poster img {
@@ -92,10 +93,12 @@
 .back-button {
   margin-top: 2rem;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
   border: none;
+  background-color: #0b3d91;
+  color: white;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .movie-carousel {
@@ -116,7 +119,6 @@
   display: none;
 }
 
-.movie-title{
-  color:black
+.movie-title {
+  color: black;
 }
-

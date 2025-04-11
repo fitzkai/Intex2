@@ -154,7 +154,7 @@ return (
       {/* Recommended Movies */}
       <div className="recommendations">
         <h3>You might like...</h3>
-        <div className="recommdations-grid">
+        <div className="movie-carousel">
           {recommendedMovies.map((rec, index) => (
             <div key={index} className="recommendation-card">
               <div>
