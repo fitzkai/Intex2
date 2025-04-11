@@ -2,7 +2,7 @@
 .recommendations-page {
   padding: 1.5rem;
   min-height: 100vh;
-  color: white;
+  color: black;
   width: 100%;
 }
 
@@ -11,11 +11,13 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
+  color: white;
 }
 
 .genre-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: white;
 }
 
 /* Horizontal carousel */
