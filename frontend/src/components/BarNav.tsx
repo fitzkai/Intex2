@@ -50,7 +50,7 @@ const BarNav = () => {
               fontWeight: isActive ? '500' : '400',
             })}
           >
-            Admin
+            Recommended for You
           </NavLink>
           <NavLink
             to="/privacy"
