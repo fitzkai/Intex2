@@ -1,71 +1,67 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../css/identity.css';
-import '@fortawesome/fontawesome-free/css/all.css';
 
-function LoginPage() {
+function Register() {
   // state variables for email and passwords
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [rememberme, setRememberme] = useState<boolean>(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   // state variable for error messages
-  const [error, setError] = useState<string>('');
-  const navigate = useNavigate();
+  const [error, setError] = useState('');
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
 
   // handle change events for input fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, type, checked, value } = e.target;
-    if (type === 'checkbox') {
-      setRememberme(checked);
-    } else if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
-  };
-
-  const handleRegisterClick = () => {
-    navigate('/register');
+    const { name, value } = e.target;
+    if (name === 'email') setEmail(value);
+    if (name === 'password') setPassword(value);
+    if (name === 'confirmPassword') setConfirmPassword(value);
   };
 
   // handle submit event for the form
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(''); // Clear any previous errors
-
-    if (!email || !password) {
+    // validate email and passwords
+    if (!email || !password || !confirmPassword) {
       setError('Please fill in all fields.');
-      return;
-    }
-
-    const loginUrl = rememberme
-      ? 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useCookies=true'
-      : 'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/login?useSessionCookies=true';
-
-    try {
-      const response = await fetch(loginUrl, {
-        method: 'POST',
-        credentials: 'include', // ✅ Ensures cookies are sent & received
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      // Ensure we only parse JSON if there is content
-      let data = null;
-      const contentLength = response.headers.get('content-length');
-      if (contentLength && parseInt(contentLength, 10) > 0) {
-        data = await response.json();
-      }
-
-      if (!response.ok) {
-        throw new Error(data?.message || 'Invalid email or password.');
-      }
-
-      navigate('/MoviesPage');
-    } catch (error: any) {
-      setError(error.message || 'Error logging in.');
-      console.error('Fetch attempt failed:', error);
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Please enter a valid email address.');
+    } else if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+    } else {
+      // clear error message
+      setError('');
+      // post data to the /register api
+      fetch(
+        'https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      )
+        //.then((response) => response.json())
+        .then((data) => {
+          // handle success or error from the server
+          console.log(data);
+          if (data.ok) setError('Successful registration. Please log in.');
+          else setError('Error registering.');
+        })
+        .catch((error) => {
+          // handle network error
+          console.error(error);
+          setError('Error registering.');
+        });
     }
   };
 
@@ -75,7 +71,7 @@ function LoginPage() {
         <div className="card border-0 shadow rounded-3 ">
           <div className="card-body p-4 p-sm-5">
             <h5 className="card-title text-center mb-5 fw-light fs-5">
-              Sign In
+              Register
             </h5>
             <form onSubmit={handleSubmit}>
               <div className="form-floating mb-3">
@@ -100,58 +96,36 @@ function LoginPage() {
                 />
                 <label htmlFor="password">Password</label>
               </div>
-
-              <div className="form-check mb-3">
+              <div className="form-floating mb-3">
                 <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="rememberme"
-                  name="rememberme"
-                  checked={rememberme}
+                  className="form-control"
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={confirmPassword}
                   onChange={handleChange}
                 />
-                <label className="form-check-label" htmlFor="rememberme">
-                  Remember password
-                </label>
+                <label htmlFor="confirmPassword">Confirm Password</label>
               </div>
+
               <div className="d-grid mb-2">
                 <button
                   className="btn btn-primary btn-login text-uppercase fw-bold"
                   type="submit"
                 >
-                  Sign in
+                  Register
                 </button>
               </div>
               <div className="d-grid mb-2">
                 <button
                   className="btn btn-primary btn-login text-uppercase fw-bold"
-                  onClick={handleRegisterClick}
+                  onClick={handleLoginClick}
                 >
-                  Register
-                </button>
-              </div>
-              <hr className="my-4" />
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-google btn-login text-uppercase fw-bold"
-                  type="button"
-                >
-                  <i className="fa-brands fa-google me-2"></i> Sign in with
-                  Google
-                </button>
-              </div>
-              <div className="d-grid mb-2">
-                <button
-                  className="btn btn-facebook btn-login text-uppercase fw-bold"
-                  type="button"
-                >
-                  <i className="fa-brands fa-facebook-f me-2"></i> Sign in with
-                  Facebook
+                  Go to Login
                 </button>
               </div>
             </form>
-            {error && <p className="error">{error}</p>}
+            <strong>{error && <p className="error">{error}</p>}</strong>
           </div>
         </div>
       </div>
@@ -159,4 +133,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Register;

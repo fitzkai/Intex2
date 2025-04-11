@@ -18,19 +18,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDbContext<RecommendationsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DetailRecommendationsConnection")));
 
-
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MoviesConnection")));
-
 
 builder.Services.AddAuthorization();
 
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
-/*builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();*/
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -39,16 +33,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, CustomUserClaimsPrincipalFactory>();
-
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.Name = ".AspNetCore.Identity.Application";
-    options.LoginPath = "/login";
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-});
-
 
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
@@ -61,7 +45,6 @@ builder.Services.AddCors(options =>
             .WithExposedHeaders("Content-Security-Policy");
     }));
 
-builder.Services.AddSingleton<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
 var app = builder.Build();
 
@@ -72,31 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseStaticFiles();
 
 app.UseCors("AllowReactApp");
 
-if (!app.Environment.IsDevelopment())
-    app.UseHttpsRedirection(); // You can disable this temporarily
+app.UseHttpsRedirection();
 
-/*app.Use(async (context, next) =>
-{
-    context.Response.Headers.Add("Content-Security-Policy",
-        "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com; " +
-        "style-src 'self' 'unsafe-inline' fonts.googleapis.com https://accounts.google.com; " +
-        "img-src 'self' data: https://localhost:5000 http://localhost:4000 https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net; " +
-        "frame-ancestors 'none'; " +
-        "font-src 'self' fonts.gstatic.com data:; " +
-        "connect-src 'self' https://localhost:5000 https://accounts.google.com https://oauth2.googleapis.com https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net; " +
-        "object-src 'none'; " +
-        "base-uri 'self'; " +
-        "form-action 'self'; " +
-        "frame-src 'self' https://accounts.google.com https://oauth2.googleapis.com;");
-    await next();
-});*/
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
@@ -107,17 +71,12 @@ app.MapPost("/logout", async (HttpContext context, SignInManager<IdentityUser> s
     await signInManager.SignOutAsync();
     
     // Ensure authentication cookie is removed
-    context.Response.Cookies.Delete(".AspNetCore.Identity.Application", new CookieOptions
-    {
-        HttpOnly = true,
-        Secure = false,
-        SameSite = SameSiteMode.None
-    });
+    context.Response.Cookies.Delete(".AspNetCore.Identity.Application");
 
     return Results.Ok(new { message = "Logout successful" });
 }).RequireAuthorization();
 
-app.MapGet("/pingauth", (HttpContext context, ClaimsPrincipal user) =>
+app.MapGet("/pingauth", (ClaimsPrincipal user) =>
 {
     Console.WriteLine($"User authenticated? {user.Identity?.IsAuthenticated}");
     
