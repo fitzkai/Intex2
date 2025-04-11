@@ -90,7 +90,7 @@ const Recommendations: React.FC = () => {
 
   return (
     <div className="recommendations-page">
-      <h1 className="page-title">Your Recommendations</h1>
+      <h1 className="page-title">Recommended For You</h1>
 
       {Object.entries(movies).map(([genre, movieList]) => (
         <div key={genre} className="genre-section">
