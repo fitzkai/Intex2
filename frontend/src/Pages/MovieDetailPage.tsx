@@ -4,6 +4,7 @@ import StarRating from '../components/StarRating';
 // import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
 import { RecommendationRow } from '../types/Movie';
+import AuthorizeView from '../components/AuthorizeView';
 import '../css/MovieDetailPage.css';
 
 interface Movie {
@@ -82,8 +83,9 @@ const MovieDetailPage: React.FC = () => {
   }
   if (!movie) return <p>Loading...</p>;
 
+
 return (
-  // <AuthorizeView>
+  <AuthorizeView>
   <div className="d-flex gap-4 align-items-start flex-wrap flex-md-nowrap">
     {/* Poster */}
     <motion.div
@@ -163,21 +165,41 @@ return (
                   alt={rec.title}
                   className="recommendation-image"
                 />
-              </div>
-              <strong>{rec.title}</strong>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/MoviesPage')}>
-        Back to Movies
-      </button>
-    </div>
-  </div>
-  // </AuthorizeView>
-);
+              </div>
+
+              <div className="star-rating">
+                <h3>Seen this one? Rate it below!</h3>
+                <StarRating showId={movie.showId} rating={0} />
+              </div>
+
+              <div className="recommendations">
+                <h3>You might like...</h3>
+                <div className="movie-carousel">
+                  {recommendedMovies.map((movie, index) => (
+                    <div key={index} className="movie-card">
+                      <img
+                        src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                        alt={movie.title}
+                      />
+                      <h3 className="movie-title">{movie.title}</h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                className="back-button"
+                onClick={() => navigate('/MoviesPage')}
+              >
+                Back to Movies
+              </button>
+            </div>
+          </div>
+        </div>
+      </AuthorizeView>
+    </>
+  );
 };
 
 export default MovieDetailPage;
