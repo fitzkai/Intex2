@@ -4,6 +4,7 @@ import StarRating from '../components/StarRating';
 // import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
 import { RecommendationRow } from '../types/Movie';
+import AuthorizeView from '../components/AuthorizeView';
 import '../css/MovieDetailPage.css';
 
 interface Movie {
@@ -82,102 +83,68 @@ const MovieDetailPage: React.FC = () => {
   }
   if (!movie) return <p>Loading...</p>;
 
-return (
-  // <AuthorizeView>
-  <div className="d-flex gap-4 align-items-start flex-wrap flex-md-nowrap">
-    {/* Poster */}
-    <motion.div
-      layoutId={`movie-${movie.showId}`}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4 }}
-      className="movie-poster"
-    >
-      <img
-        src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
-        alt={movie.title}
-        style={{
-          width: '100%',
-          height: 'auto',
-          maxHeight: '500px',
-          objectFit: 'cover',
-          borderRadius: '12px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-          marginBottom: '1rem',
-        }}
-      />
-    </motion.div>
+  return (
+    <>
+      <AuthorizeView>
+        <div className="movie-detail-page fade-in">
+          <div className="movie-detail-container">
+            <motion.div
+              layoutId={`movie-${movie.showId}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="movie-poster"
+            >
+              <img
+                src={movie.imagePath}
+                alt={movie.title}
+                className="movie-poster-img"
+              />
+            </motion.div>
 
-    {/* Info */}
-    <div className="movie-info">
-      <h1>{movie.title}</h1>
-      <p>{movie.type}</p>
-      <ul>
-        <li>
-          <strong>Director:</strong> {movie.director}
-        </li>
-        <li>
-          <strong>Cast:</strong>{' '}
-          {movie.cast?.match(/\b[A-Z][a-z]+\s[A-Z][a-z]+\b/g)?.join(', ') ??
-            movie.cast}
-        </li>
-        <li>
-          <strong>Year:</strong> {movie.releaseYear}
-        </li>
-        <li>
-          <strong>Country:</strong> {movie.country}
-        </li>
-        <li>
-          <strong>Rating:</strong> {movie.rating}
-        </li>
-        <li>
-          <strong>Duration:</strong> {movie.duration}
-        </li>
-        <li>
-          <strong>Genre:</strong> {movie.genre}
-        </li>
-      </ul>
+            <div className="movie-info">
+              <h1>{movie.title}</h1>
+              <p>{movie.type}</p>
+              <ul>{/* Movie Details */}</ul>
 
-      {/* Description */}
-      <div className="movie-description">
-        <h3>Description</h3>
-        <p>{movie.description}</p>
-      </div>
-
-      {/* Star Rating */}
-      <div className="star-rating">
-        <h3>Seen this one? Rate it below!</h3>
-        <StarRating showId={movie.showId} rating={0} />
-      </div>
-
-      {/* Recommended Movies */}
-      <div className="recommendations">
-        <h3>You might like...</h3>
-        <div className="movie-carousel">
-          {recommendedMovies.map((rec, index) => (
-            <div key={index} className="recommendation-card">
-              <div>
-                <img
-                  src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(rec.title))}.jpg`}
-                  alt={rec.title}
-                  className="recommendation-image"
-                />
+              <div className="movie-description">
+                <h3>Description</h3>
+                <p>{movie.description}</p>
               </div>
-              <strong>{rec.title}</strong>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/MoviesPage')}>
-        Back to Movies
-      </button>
-    </div>
-  </div>
-  // </AuthorizeView>
-);
+              <div className="star-rating">
+                <h3>Seen this one? Rate it below!</h3>
+                <StarRating showId={movie.showId} rating={0} />
+              </div>
+
+              <div className="recommendations">
+                <h3>You might like...</h3>
+                <div className="movie-carousel">
+                  {recommendedMovies.map((movie, index) => (
+                    <div key={index} className="movie-card">
+                      <img
+                        src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                        alt={movie.title}
+                      />
+                      <h3 className="movie-title">{movie.title}</h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                className="back-button"
+                onClick={() => navigate('/MoviesPage')}
+              >
+                Back to Movies
+              </button>
+            </div>
+          </div>
+        </div>
+      </AuthorizeView>
+    </>
+  );
 };
 
 export default MovieDetailPage;
