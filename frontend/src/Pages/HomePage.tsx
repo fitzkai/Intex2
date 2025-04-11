@@ -15,7 +15,7 @@ const HomePage = () => {
             <h3>Sign up today or login with your account here!</h3>
             <div className="homepage-buttons">
               <button onClick={() => navigate('/login')}>Login</button>
-              <button onClick={() => navigate('/userinfo')}>Register</button>
+              <button onClick={() => navigate('/register')}>Register</button>
             </div>
           </div>
           <div className="homepage-right">

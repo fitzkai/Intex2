@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/MovieCard.css';
 import { motion } from 'framer-motion';
 import BarNav from '../components/BarNav';
+import AuthorizeView from '../components/AuthorizeView';
 
 interface Movie {
   showId: string;
@@ -95,80 +96,84 @@ const MoviesPage: React.FC = () => {
   // };
   return (
     <>
-      {/* <AuthorizeView> */}
-      <BarNav />
-      <div className="page-content">
-        <div>
-          <h1>All Movies</h1>
-          <div style={{ padding: '2rem' }}>
-            <input
-              type="text"
-              placeholder="Search by title..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={styles.search}
-            />
-            <div style={styles.genreContainer}>
-              <button
-                onClick={() => setSelectedGenres([])}
-                style={{
-                  ...styles.genreButton,
-                  backgroundColor:
-                    selectedGenres.length === 0 ? '#333' : '#bbb',
-                  color: selectedGenres.length === 0 ? '#fff' : '#000',
-                  fontWeight: 'bold',
-                }}
-              >
-                Clear Filters
-              </button>
-              {genres.map((genre) => (
+      <AuthorizeView>
+        <BarNav />
+        <div className="page-content">
+          <div>
+            <h1>All Movies</h1>
+            <div style={{ padding: '2rem' }}>
+              <input
+                type="text"
+                placeholder="Search by title..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={styles.search}
+              />
+              <div style={styles.genreContainer}>
                 <button
-                  key={genre}
-                  onClick={() => toggleGenre(genre)}
+                  onClick={() => setSelectedGenres([])}
                   style={{
                     ...styles.genreButton,
-                    backgroundColor: selectedGenres.includes(genre)
-                      ? '#333'
-                      : '#eee',
-                    color: selectedGenres.includes(genre) ? '#fff' : '#000',
+                    backgroundColor:
+                      selectedGenres.length === 0 ? '#333' : '#bbb',
+                    color: selectedGenres.length === 0 ? '#fff' : '#000',
+                    fontWeight: 'bold',
                   }}
                 >
-                  {genre}
+                  Clear Filters
                 </button>
-              ))}
-            </div>
-            <div style={styles.grid}>
-              {filteredMovies.map((movie) => (
-                <motion.div
-                  key={movie.showId}
-                  layoutId={`movie-${movie.showId}`}
-                  style={styles.card}
-                  onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                {genres.map((genre) => (
+                  <button
+                    key={genre}
+                    onClick={() => toggleGenre(genre)}
+                    style={{
+                      ...styles.genreButton,
+                      backgroundColor: selectedGenres.includes(genre)
+                        ? '#333'
+                        : '#eee',
+                      color: selectedGenres.includes(genre) ? '#fff' : '#000',
+                    }}
+                  >
+                    {genre}
+                  </button>
+                ))}
+              </div>
+              <div style={styles.grid}>
+                {filteredMovies.map((movie) => (
+                  <motion.div
+                    key={movie.showId}
+                    layoutId={`movie-${movie.showId}`}
+                    style={styles.card}
+                    onClick={() => navigate(`/MoviesPage/${movie.showId}`)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <img
+                      src={movie.imagePath}
+                      alt={movie.title}
+                      style={styles.poster}
+                    />
+                    <h2>{movie.title}</h2>
+                    <p>{movie.description}</p>
+                    <small style={{ color: '#777' }}>{movie.genre}</small>
+                  </motion.div>
+                ))}
+              </div>
+              {hasMore && (
+                <p
+                  style={{
+                    textAlign: 'center',
+                    padding: '1rem',
+                    color: '#666',
+                  }}
                 >
-                  <img
-                    src={movie.imagePath}
-                    alt={movie.title}
-                    style={styles.poster}
-                  />
-                  <h2>{movie.title}</h2>
-                  <p>{movie.description}</p>
-                  <small style={{ color: '#777' }}>{movie.genre}</small>
-                </motion.div>
-              ))}
+                  Loading more movies...
+                </p>
+              )}
             </div>
-            {hasMore && (
-              <p
-                style={{ textAlign: 'center', padding: '1rem', color: '#666' }}
-              >
-                Loading more movies...
-              </p>
-            )}
           </div>
         </div>
-      </div>
-      {/* </AuthorizeView> */}
+      </AuthorizeView>
     </>
   );
 };

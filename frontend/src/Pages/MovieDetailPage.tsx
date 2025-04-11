@@ -5,6 +5,7 @@ import StarRating from '../components/StarRating';
 import { motion } from 'framer-motion';
 import { RecommendationRow } from '../types/Movie';
 import '../styles/MovieDetailPage.css';
+import AuthorizeView from '../components/AuthorizeView';
 
 interface Movie {
   showId: string;
@@ -83,62 +84,66 @@ const MovieDetailPage: React.FC = () => {
   if (!movie) return <p>Loading...</p>;
 
   return (
-    <div className="movie-detail-page fade-in">
-      <div className="movie-detail-container">
-        <motion.div
-          layoutId={`movie-${movie.showId}`}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
-          className="movie-poster"
-        >
-          <img
-            src={movie.imagePath}
-            alt={movie.title}
-            className="movie-poster-img"
-          />
-        </motion.div>
+    <>
+      <AuthorizeView>
+        <div className="movie-detail-page fade-in">
+          <div className="movie-detail-container">
+            <motion.div
+              layoutId={`movie-${movie.showId}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="movie-poster"
+            >
+              <img
+                src={movie.imagePath}
+                alt={movie.title}
+                className="movie-poster-img"
+              />
+            </motion.div>
 
-        <div className="movie-info">
-          <h1>{movie.title}</h1>
-          <p>{movie.type}</p>
-          <ul>{/* Movie Details */}</ul>
+            <div className="movie-info">
+              <h1>{movie.title}</h1>
+              <p>{movie.type}</p>
+              <ul>{/* Movie Details */}</ul>
 
-          <div className="movie-description">
-            <h3>Description</h3>
-            <p>{movie.description}</p>
-          </div>
+              <div className="movie-description">
+                <h3>Description</h3>
+                <p>{movie.description}</p>
+              </div>
 
-          <div className="star-rating">
-            <h3>Seen this one? Rate it below!</h3>
-            <StarRating showId={movie.showId} rating={0} />
-          </div>
+              <div className="star-rating">
+                <h3>Seen this one? Rate it below!</h3>
+                <StarRating showId={movie.showId} rating={0} />
+              </div>
 
-          <div className="recommendations">
-            <h3>You might like...</h3>
-            <div className="movie-carousel">
-              {recommendedMovies.map((movie, index) => (
-                <div key={index} className="movie-card">
-                  <img
-                    src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
-                    alt={movie.title}
-                  />
-                  <h3 className="movie-title">{movie.title}</h3>
+              <div className="recommendations">
+                <h3>You might like...</h3>
+                <div className="movie-carousel">
+                  {recommendedMovies.map((movie, index) => (
+                    <div key={index} className="movie-card">
+                      <img
+                        src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                        alt={movie.title}
+                      />
+                      <h3 className="movie-title">{movie.title}</h3>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <button
+                className="back-button"
+                onClick={() => navigate('/MoviesPage')}
+              >
+                Back to Movies
+              </button>
             </div>
           </div>
-
-          <button
-            className="back-button"
-            onClick={() => navigate('/MoviesPage')}
-          >
-            Back to Movies
-          </button>
         </div>
-      </div>
-    </div>
+      </AuthorizeView>
+    </>
   );
 };
 
