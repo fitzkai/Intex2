@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../css/recommendations.css'
 
 interface RecommendedMovie {
   title: string;
@@ -94,7 +95,6 @@ const Recommendations: React.FC = () => {
             {movieList.map((movie, index) => (
               <div key={index} className="movie-card">
                 <h3 className="movie-title">{movie.title}</h3>
-                <p className="movie-genres">{movie.genres.join(', ')}</p>
               </div>
             ))}
           </div>
