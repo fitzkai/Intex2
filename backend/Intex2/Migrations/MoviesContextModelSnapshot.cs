@@ -24,7 +24,7 @@ namespace Intex2.Migrations
                         .HasColumnName("rating");
 
                     b.Property<string>("ShowId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("show_id");
 
                     b.Property<int?>("UserId")
@@ -160,7 +160,7 @@ namespace Intex2.Migrations
                         .HasColumnName("release_year");
 
                     b.Property<string>("ShowId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("show_id");
 
                     b.Property<int?>("Spirituality")
