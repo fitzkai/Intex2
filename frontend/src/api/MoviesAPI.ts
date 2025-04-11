@@ -58,12 +58,19 @@ export const UpdateMovie = async (
       body: JSON.stringify(updatedMovie),
       credentials: 'include',
     });
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Update failed: ${response.status} ${text}`);
+    }
+
     return await response.json();
   } catch (error) {
     console.error('Error updating movie', error);
     throw error;
   }
 };
+
 export const DeleteMovie = async (movieId: number): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/DeleteMovie/${movieId}`, {
@@ -72,7 +79,8 @@ export const DeleteMovie = async (movieId: number): Promise<void> => {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to delete movie');
+      const text = await response.text();
+      throw new Error(`Delete failed: ${response.status} ${text}`);
     }
   } catch (error) {
     console.error('Error deleting movie', error);

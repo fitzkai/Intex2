@@ -56,23 +56,6 @@ function UserInfoForm() {
     }
 
     try {
-      // 1. Save user info to backend (C# API)
-      const saveRes = await fetch(
-        'https://index2-4-8-backend-bwe2c5c2a3dzfhdd.eastus-01.azurewebsites.net/Movies/AddUserInfo',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (!saveRes.ok) {
-        const errorMsg = await saveRes.text();
-        setError(errorMsg);
-        return;
-      }
-
-      // 2. Store recommender payload for later use
       const recommenderPayload = {
         age: formData.age,
         gender: formData.gender,
@@ -90,14 +73,13 @@ function UserInfoForm() {
       };
 
       localStorage.setItem('userPrefs', JSON.stringify(recommenderPayload));
-
-      // 3. Redirect to sign-in
-      navigate('/register');
+      navigate('/recommendations');
     } catch (err: any) {
       console.error('Error during submission:', err);
       setError(err?.message || 'Something went wrong. Please try again.');
     }
   };
+
 
   const streamingServices = [
     { name: 'netflix', label: 'Netflix' },
