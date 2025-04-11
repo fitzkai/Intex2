@@ -40,10 +40,10 @@ const MovieDetailPage: React.FC = () => {
 
     // Fetch movie details
     fetch(
-      `https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage/${id}`
-      // {
-      //   credentials: 'include',
-      // }
+      `https://intex2-4-8-backend-bkh8h0caezhmfhcj.eastus-01.azurewebsites.net/Movies/MoviesPage/${id}`,
+      {
+        credentials: 'include',
+      }
     )
       .then(async (res) => {
         if (!res.ok) {

@@ -11,10 +11,10 @@ export const fetchMovies = async (
 ): Promise<FetchMoviesResponse> => {
   try {
     const response = await fetch(
-      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}`
-      // {
-      //   credentials: 'include',
-      // }
+      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}`,
+      {
+        credentials: 'include',
+      }
     );
     if (!response.ok) {
       throw new Error('Failed to fetch movies');
