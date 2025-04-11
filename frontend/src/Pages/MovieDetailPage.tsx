@@ -75,6 +75,9 @@ const MovieDetailPage: React.FC = () => {
       });
   }, [id, navigate]);
 
+  function sanitizeFileName(title: string): string {
+    return title.replace(/[^\p{L}\p{Nd} ]+/gu, '');
+  }
   if (!movie) return <p>Loading...</p>;
 
   return (
@@ -156,27 +159,14 @@ const MovieDetailPage: React.FC = () => {
         {/* Recommended Movies */}
         <div style={{ marginTop: '2rem' }}>
           <h3>You might like...</h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-            {recommendedMovies.map((rec, index) => (
-              <div key={index} style={{ width: '180px', textAlign: 'center' }}>
-                <div
-                  style={{
-                    width: '100%',
-                    height: '250px',
-                    backgroundColor: '#f2f2f2',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#aaa',
-                    fontStyle: 'italic',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
-                    marginBottom: '0.5rem',
-                  }}
-                >
-                  image coming soon
-                </div>
-                <strong>{rec.title}</strong>
+          <div className="movie-carousel">
+            {recommendedMovies.map((movie, index) => (
+              <div key={index} className="movie-card">
+                <img
+                  src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                  alt={movie.title}
+                />
+                <h3 className="movie-title">{movie.title}</h3>
               </div>
             ))}
           </div>
