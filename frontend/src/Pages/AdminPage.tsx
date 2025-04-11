@@ -50,7 +50,6 @@ const AdminPage = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    // <AuthorizeView>
     <>
       <AuthorizeView>
         <BarNav />
