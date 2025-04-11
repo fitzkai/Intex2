@@ -71,6 +71,7 @@ const MovieDetailPage: React.FC = () => {
             }
 
             setRecommendedMovies(recommendedList);
+            console.log('Recommended movies:', recommendedList);
           });
       });
   }, [id, navigate]);
