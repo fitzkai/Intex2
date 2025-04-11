@@ -1,6 +1,10 @@
 /* Homepage layout (optional background if needed) */
 .homepage-container {
   padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers vertically */
+  height: 100vh;
 }
 
 /* Buttons */

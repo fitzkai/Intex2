@@ -31,8 +31,8 @@ const HomePage = () => {
                 className="poster"
               />
               <img
-                src="https://moviepostersintex48.blob.core.windows.net/movieposters/My Little Pony Friendship Is Magic.jpg"
-                alt="My little Pony"
+                src="https://moviepostersintex48.blob.core.windows.net/movieposters/The Great British Baking Show Masterclass.jpg"
+                alt="Great British Baking Show"
                 className="poster"
               />
               <img
