@@ -4,7 +4,7 @@ import StarRating from '../components/StarRating';
 // import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
 import { RecommendationRow } from '../types/Movie';
-import '../styles/MovieDetailPage.css';
+import '../css/MovieDetailPage.css';
 
 interface Movie {
   showId: string;
@@ -154,7 +154,7 @@ return (
       {/* Recommended Movies */}
       <div className="recommendations">
         <h3>You might like...</h3>
-        <div className="recommdations-grid">
+        <div className="movie-carousel">
           {recommendedMovies.map((rec, index) => (
             <div key={index} className="recommendation-card">
               <div>
