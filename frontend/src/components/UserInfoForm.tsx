@@ -77,7 +77,7 @@ const handleChange = (
       };
 
       localStorage.setItem('userPrefs', JSON.stringify(recommenderPayload));
-      navigate('/recommendations');
+      navigate('/register');
     } catch (err: any) {
       console.error('Error during submission:', err);
       setError(err?.message || 'Something went wrong. Please try again.');
