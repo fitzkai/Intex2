@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/recommendations.css'
+import AuthorizeView from './AuthorizeView';
+import BarNav from './BarNav';
 
 interface RecommendedMovie {
   title: string;
@@ -89,26 +91,29 @@ const Recommendations: React.FC = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="recommendations-page">
-      <h1 className="page-title">Recommended For You</h1>
+    <AuthorizeView>
+    <BarNav />
+      <div className="recommendations-page">
+        <h1 className="page-title">Recommended For You</h1>
 
-      {Object.entries(movies).map(([genre, movieList]) => (
-        <div key={genre} className="genre-section">
-          <h2 className="genre-title">{genre}</h2>
-          <div className="movie-carousel">
-            {movieList.map((movie, index) => (
-              <div key={index} className="movie-card">
-                <img
-                  src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
-                  alt={movie.title}
-                />
-                <h3 className="movie-title">{movie.title}</h3>
-              </div>
-            ))}
+        {Object.entries(movies).map(([genre, movieList]) => (
+          <div key={genre} className="genre-section">
+            <h2 className="genre-title">{genre}</h2>
+            <div className="movie-carousel">
+              {movieList.map((movie, index) => (
+                <div key={index} className="movie-card">
+                  <img
+                    src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                    alt={movie.title}
+                  />
+                  <h3 className="movie-title">{movie.title}</h3>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </AuthorizeView>
   );
 };
 
