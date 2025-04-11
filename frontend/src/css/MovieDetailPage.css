@@ -24,7 +24,7 @@
 .movie-poster img {
   width: 100%;
   height: auto;
-  max-height: 500px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
