@@ -33,7 +33,7 @@ const Recommendations: React.FC = () => {
       try {
         const storedPrefs = localStorage.getItem('userPrefs');
         if (!storedPrefs) {
-          setError('User preferences not found.');
+          setError('Sign in to see recommendations!');
           return;
         }
 
