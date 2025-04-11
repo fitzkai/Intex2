@@ -26,7 +26,7 @@ function LoginPage() {
   };
 
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate('/userinfo');
   };
 
   // handle submit event for the form
@@ -62,7 +62,7 @@ function LoginPage() {
         throw new Error(data?.message || 'Invalid email or password.');
       }
 
-      navigate('/MoviesPage');
+      navigate('/recommendations'); // Redirect to recommendations page on success
     } catch (error: any) {
       setError(error.message || 'Error logging in.');
       console.error('Fetch attempt failed:', error);
