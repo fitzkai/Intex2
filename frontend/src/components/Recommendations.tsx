@@ -84,22 +84,17 @@ const Recommendations: React.FC = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="p-6 bg-gradient-to-br from-indigo-900 to-blue-900 min-h-screen text-white">
-      <h1 className="text-3xl font-bold mb-6">Your Recommendations</h1>
+    <div className="recommendations-page">
+      <h1 className="page-title">Your Recommendations</h1>
 
       {Object.entries(movies).map(([genre, movieList]) => (
-        <div key={genre} className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">{genre}</h2>
-          <div className="flex overflow-x-auto space-x-4 pb-2 w-full">
+        <div key={genre} className="genre-section">
+          <h2 className="genre-title">{genre}</h2>
+          <div className="movie-carousel">
             {movieList.map((movie, index) => (
-              <div
-                key={index}
-                className="min-w-[200px] max-w-[200px] flex-shrink-0 bg-white text-black rounded-lg shadow-md p-4"
-              >
-                <h3 className="font-semibold text-lg">{movie.title}</h3>
-                <p className="text-sm text-gray-600">
-                  {movie.genres.join(', ')}
-                </p>
+              <div key={index} className="movie-card">
+                <h3 className="movie-title">{movie.title}</h3>
+                <p className="movie-genres">{movie.genres.join(', ')}</p>
               </div>
             ))}
           </div>

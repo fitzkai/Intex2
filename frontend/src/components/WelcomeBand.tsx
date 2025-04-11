@@ -1,5 +1,6 @@
 import '../css/WelcomeBand.css';
 
+
 function WelcomeBanner() {
   return (
     <div className="page-content">
