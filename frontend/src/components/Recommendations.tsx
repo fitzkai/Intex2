@@ -19,6 +19,10 @@ interface GroupedByGenre {
   [genre: string]: RecommendedMovie[];
 }
 
+function sanitizeFileName(title: string): string {
+  return title.replace(/[^\p{L}\p{Nd} ]+/gu, '');
+}
+
 const Recommendations: React.FC = () => {
   const [movies, setMovies] = useState<GroupedByGenre>({});
   const [loading, setLoading] = useState(true);
@@ -94,6 +98,10 @@ const Recommendations: React.FC = () => {
           <div className="movie-carousel">
             {movieList.map((movie, index) => (
               <div key={index} className="movie-card">
+                <img
+                  src={`https://moviepostersintex48.blob.core.windows.net/movieposters/${encodeURIComponent(sanitizeFileName(movie.title))}.jpg`}
+                  alt={movie.title}
+                />
                 <h3 className="movie-title">{movie.title}</h3>
               </div>
             ))}
