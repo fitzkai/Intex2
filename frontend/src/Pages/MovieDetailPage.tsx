@@ -4,6 +4,7 @@ import StarRating from '../components/StarRating';
 // import AuthorizeView from '../components/AuthorizeView';
 import { motion } from 'framer-motion';
 import { RecommendationRow } from '../types/Movie';
+import '../styles/MovieDetailPage.css';
 
 interface Movie {
   showId: string;
