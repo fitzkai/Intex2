@@ -19,16 +19,14 @@
 .movie-poster {
   flex: 0 0 350px;
   max-width: 350px;
+  padding-top: 20px;
 }
 
 .movie-poster img {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
+  width: auto;
+  height: 300px;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  border-radius: 8px;
 }
 
 .movie-info {
@@ -76,6 +74,8 @@
   width: 180px;
   text-align: center;
   color: black;
+  background-color: white;
+  align-items: center;
 }
 
 .recommendation-image {
@@ -95,10 +95,12 @@
 .back-button {
   margin-top: 2rem;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
   border: none;
+  background-color: #0b3d91;
+  color: white;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .movie-carousel {
@@ -119,7 +121,6 @@
   display: none;
 }
 
-.movie-title{
-  color:black
+.movie-title {
+  color: black;
 }
-
