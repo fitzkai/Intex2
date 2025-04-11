@@ -57,8 +57,9 @@ const StarRating: React.FC<StarRatingProps> = ({
             style={{ background: 'none', border: 'none' }}
           >
             <Star
-              fill={filled ? 'currentColor' : 'none'}
-              className={`w-6 h-6 ${filled ? 'text-yellow-400' : 'text-gray-300'}`}
+              fill={filled ? 'white' : 'none'}
+              stroke="white"
+              className="w-6 h-6"
             />
           </button>
         );
